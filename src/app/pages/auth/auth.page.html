@@ -1,0 +1,18 @@
+<app-header title="Login"></app-header>
+<ion-content>
+
+    <div class="d-flex-center">
+        <!--Etiquetas-->
+        <form [formGroup]="form" class="auth-form"> <!--La clase hace que el formulario se centre y tenga margen -->
+            <!--Inputs-->
+            <app-custom-input autocomplete="email" icon="mail-outline" [control]="form.controls.email" type="email"
+                label="Correo electronico"></app-custom-input>
+            <!--Esta conectado con la variable email del form a traves de [control]-->
+            <!--{{form.value.email}} - aqui mostramos lo que hay en el input de email-->
+            <app-custom-input [control]="form.controls.password" type="password" label="Contraseña"
+                icon="lock-closed-outline"></app-custom-input>
+        </form>
+    </div>
+
+
+</ion-content>

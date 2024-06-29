@@ -1,0 +1,12 @@
+<ion-item class="custom-input" lines="none"> <!--la clase es la que le da ese diseño al input  -->
+ @if(icon) {
+  <ion-icon class="icon" slot="start" [name]="icon"></ion-icon> <!--name es una variable y por eso se pone entre corchetes y se le esta pasando el parámetro icon-->
+ }
+  <ion-input [type]="type" [autocomplete]="autocomplete" [label]="label" [formControl]="control" label-placement="floating"></ion-input> <!--Le pasamos a la variable type el parámetro type-->
+
+ @if(isPassword) {
+  <ion-button (click)="showOrHidePassword()" slot="end" fill="clear" shape="round"> 
+    <ion-icon slot="icon-only" [name]="hide ? 'eye-outline': 'eye-off-outline'"></ion-icon> <!--Si hide es true, mostrara el icono de ojo, si no, mostrara el icono de ojo tachado-->
+  </ion-button> <!--Boton que mostrara u ocultara la contraseña. slot="end" es una directiva de Ionic que controla la ubicación del botón dentro de su contenedor padre,-->
+ }
+</ion-item>
