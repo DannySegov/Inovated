@@ -9,10 +9,10 @@ import { FormControl } from '@angular/forms';
 export class CustomInputComponent implements OnInit {
 
   @Input() control!: FormControl;
-  @Input() type!: string; //Tipo de input que vamos a utilizar
-  @Input() label!: string;//Identifica que input vamos a utilizar
-  @Input() autocomplete!: string;//Autocompletado del input
-  @Input() icon!: string;//Icono que vamos a utilizar
+  @Input() type!: string; 
+  @Input() label!: string;
+  @Input() autocomplete!: string;
+  @Input() icon!: string;
 
   isPassword!: boolean;
   hide: boolean = true; //Es para decir si la contraseña debe estar o no oculta

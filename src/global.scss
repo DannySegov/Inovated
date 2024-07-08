@@ -30,13 +30,18 @@ ion-button {
 }
 
 // safe padding for ios
-.safe-p-bottom{
+.safe-p-bottom {
     padding-bottom: constant(safe-area-inset-bottom); // for ios 13+
     padding-bottom: env(safe-area-inset-bottom); // for previous ios versions
 }
 
 .submit {
-    margin-top: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    height: 80% !important;
+    --background: #219cdb;
+    --border-radius: 10px;
 }
 
 .empty {
@@ -55,21 +60,21 @@ ion-button {
     align-items: center;
 }
 
-
 .custom-input {
-    --border-color: #e0e0e0;
+    --border-color: #219cdb;
     --border-radius: 15px;
     --border-style: solid;
     --border-width: 1px;
-    margin: 20px 0;
+    //margin: 10px 0;
 
-    ion-label {
-        position: relative;
-        bottom: 2px;
+    ion-input {
+        font-size: 14px !important;
+        min-height: 40px !important;
+        height: 30px !important; 
     }
 
     .eye-icon {
-        position: relative;
+        position: initial;
         top: 13px;
     }
 }
@@ -85,6 +90,16 @@ ion-button {
     width: 100%;
     text-align: center;
     padding: 20px;
+
+    p {
+        text-align: left;
+        margin-bottom: 2px;
+    }
+}
+
+.logo2 {
+    width: 10%;
+    height: 8%;
 }
 
 .product-item {
@@ -122,8 +137,10 @@ ion-button {
 
 .icon {
     color: #219cdb;
-  }
+}
 
+
+/*
 @media (min-width: 769px) {
     .auth-form {
         width: 500px;
@@ -133,4 +150,21 @@ ion-button {
         --height: 680px;
     }
 }
+*/
 
+@media (min-width: 369px) {
+    .auth-form {
+        width: 500px;
+    }
+
+    .add-update-modal {
+        --height: 680px;
+    }
+
+    .logo2 {
+        width: 50%;
+        height: 5%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

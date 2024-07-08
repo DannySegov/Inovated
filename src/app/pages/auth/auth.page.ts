@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
   selector: 'app-auth',
@@ -13,9 +14,22 @@ export class AuthPage implements OnInit {
     password: new FormControl('', [Validators.required, Validators.minLength(6)]) //Valida que el campo sea requerido y que tenga al menos 6 caracteres
   });
 
+  utilsService = inject(UtilsService);
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  async login() {
+    if (this.form.valid) {
+      const loading = await this.utilsService.loading();
+      await loading.present();
+
+      setTimeout(() => {
+        loading.dismiss();
+      }, 2500);
+    }
   }
 
 }

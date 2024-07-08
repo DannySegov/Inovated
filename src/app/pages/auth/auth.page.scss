@@ -1,4 +1,20 @@
 /* En tu archivo de estilos del componente padre o global */
 ::ng-deep app-custom-input label {
-    color: #FF0000; /* Cambia #FF0000 por el código de color que desees */
+    color: #219cdb;
 }
+
+.toggle {
+    zoom: 0.8;
+    margin-right: 5px;
+}
+
+#forgot-password {
+    color: #259edb;
+    text-align: right;
+}
+
+#remember {
+    color: #259edb;
+    align-items: center;
+}
+
