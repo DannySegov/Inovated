@@ -9,11 +9,11 @@
 
             @if(form.controls.email.errors && form.controls.email.touched) {
             <div class="validators">
-                @if(form.controls.email.errors?.['required']) {
+                @if(form.controls.email.errors['required']) {
                 <!--div>El correo electronico es requerido</div-->
                 }
 
-                @if (form.controls.email.errors?.['email']) {
+                @if (form.controls.email.errors['email']) {
                 <!--Valida que lo que se ingreso al input tenga el formato de email-->
                 <!--div>Ingrese un correo valido</div-->
                 }
@@ -33,12 +33,11 @@
 
             @if(form.controls.password.errors && form.controls.password.touched) {
             <div class="validators">
-                @if(form.controls.password.errors?.['required']) {
+                @if(form.controls.password.errors['required']) {
                 <!--div class="ion-text-start">La contraseña es requerida</div-->
                 }
 
-                @if(form.controls.password.errors?.['minlength']) {
-                <!--Valida que el password tenga al menos 6 caracteres-->
+                @if(form.controls.password.errors['minlength']) {
                 <!--div>La contraseña debe tener al menos 6 caracteres</div-->
                 }
             </div>
