@@ -1,13 +1,20 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>main</ion-title>
+<ion-menu contentId="menu-content" menuId="menu-content" side="start">
+  <ion-header  class="ion-no-border">
+  <ion-toolbar class="custom-toolbar-color">
+      <ion-img src="assets/icon/logo/inovated fc.png"></ion-img>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">main</ion-title>
-    </ion-toolbar>
-  </ion-header>
-</ion-content>
+  <ion-content>
+    @for(page of pages; track page) {
+      <ion-menu-toggle auto-hide="false" >
+        <ion-item [routerLink]="page.Url" routerDirection="root" detail>
+          <ion-icon slot="start" [name]="page.Icon"></ion-icon>
+          <ion-label>{{ page.Title }}</ion-label>
+        </ion-item>
+      </ion-menu-toggle>
+    }
+  </ion-content>
+</ion-menu>
+
+<ion-router-outlet id="menu-content" main></ion-router-outlet>

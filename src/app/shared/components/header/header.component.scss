@@ -1,5 +1,50 @@
 .custom-toolbar-color {
-    --background: #219cdb;
-    color: white;
-    height: 40px;
+  --background: #219cdb;
+  color: white;
+  height: 80px;
+}
+
+ion-header {
+  position: relative;
+  background-color: white; /* Asegura que el fondo sea blanco */
+
+  ion-toolbar {
+    border-radius: 0 0 30px 30px;
+    overflow: hidden;
+    background-color: white; /* Asegura que el fondo sea blanco */
   }
+}
+
+ion-img {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5%;
+}
+
+
+
+
+/* Estilos específicos para modo escritorio */
+@media (min-width: 768px) {
+  .custom-toolbar-color {
+    height: 100px; /* Aumenta la altura de la barra de herramientas */
+  }
+
+  ion-header ion-toolbar {
+    border-radius: 0 0 50px 50px; /* Hace los bordes inferiores más curvos */
+    display: flex; /* Habilita flexbox */
+    align-items: center; /* Centra verticalmente el contenido */
+    justify-content: center; /* Centra horizontalmente el contenido, si es necesario */
+  }
+
+  ion-img {
+    width: 20%; /* Ajusta el ancho de la imagen */
+    /* text-align: center; No es necesario con flexbox */
+    margin: auto; /* Mantiene el margen automático para asegurar el centrado */
+  }
+
+  ion-buttons {
+    margin-top: 5%;
+  }
+}
