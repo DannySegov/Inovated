@@ -1,20 +1,40 @@
-<ion-menu contentId="menu-content" menuId="menu-content" side="start">
-  <ion-header  class="ion-no-border">
+<ion-menu class="glass-content" mode="ios" contentId="menu-content" menuId="menu-content" side="start">
   <ion-toolbar class="custom-toolbar-color">
-      <ion-img src="assets/icon/logo/inovated fc.png"></ion-img>
+    <ion-img class="logo" src="assets/icon/logo/inovated fc.png"></ion-img>
   </ion-toolbar>
-</ion-header>
 
-  <ion-content>
-    @for(page of pages; track page) {
-      <ion-menu-toggle auto-hide="false" >
-        <ion-item [routerLink]="page.Url" routerDirection="root" detail>
-          <ion-icon slot="start" [name]="page.Icon"></ion-icon>
-          <ion-label>{{ page.Title }}</ion-label>
+  <ion-card mode="ios" class="name-user">
+    <ion-card-header>
+      <div class="card-content">
+        <ion-avatar>
+          <img alt="User" src="assets/icon/avatar/user.jpg" />
+        </ion-avatar>
+        <div class="data-profile">
+          <ion-card-title>Daniela</ion-card-title>
+          <ion-label class="profile">Administrador</ion-label>
+        </div>
+      </div>
+    </ion-card-header>
+  </ion-card>
+  
+  <ion-card mode="ios" class="menu">
+    <ion-card-content>
+      @for(page of pages; track page) {
+      <ion-menu-toggle auto-hide="false">
+        <ion-item [routerLink]="page.Url" routerDirection="root" detail='false' lines="none">
+          <div class="icon-container">
+            <span class="{{ 'icon-' + page.Icon }}" id="icon"></span>
+          </div>
+          <ion-label class="option">{{ page.Title }}</ion-label>
         </ion-item>
       </ion-menu-toggle>
-    }
-  </ion-content>
+      }
+    </ion-card-content>
+    <ion-button class="logout" size="small" color="danger" expand="block">
+      <span class="icon-salir"></span>
+      Cerrar Sesión
+    </ion-button>
+  </ion-card>
 </ion-menu>
 
 <ion-router-outlet id="menu-content" main></ion-router-outlet>

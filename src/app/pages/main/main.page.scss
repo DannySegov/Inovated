@@ -1,19 +1,122 @@
 ion-menu::part(backdrop) {
-  background-color: rgba(255, 0, 255, 0.5);
+  background-color: rgba(254, 254, 254, 0.381);
 }
 
 ion-menu::part(container) {
   border-radius: 0 50px 50px 0;
-  box-shadow: 4px 0px 16px rgba(255, 0, 255, 0.18);
-  margin-top: 5%;
-  margin-bottom: 5%;
+  transform: translateY(-50%);
 }
 
+ion-menu {
+  --background: #f4f4f4;
+}
 
-/* Estilos específicos para modo escritorio */
-@media (min-width: 768px) {
+.custom-toolbar-color {
+  --background: #f4f4f4;
+}
+
+ion-img.logo {
+  width: 70%;
+  margin-top: 5%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+ion-card.name-user {
+  height: 10%;
+}
+
+ion-avatar {
+  --border-radius: 15px;
+  transform: translateY(-20%);
+  margin-right: 5px;
+
+}
+
+ion-card.menu {
+  height: 90%;
+  margin-top: 0;
+}
+
+ion-card {
+  position: relative;
+  border-radius: 20px 20px 20px 20px;
+  box-shadow: none;
+}
+
+ion-card-title {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+ion-item {
+  display: flex;
+  align-items: center;
+  --padding-start: 0;
+  --inner-padding-end: 0;
+}
+
+.icon-salir {
+  margin-right: 10px;
+}
+
+.icon-container {
+  width: 30px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+ion-label.option {
+  flex-grow: 1; /* Ocupa el espacio restante */
+  margin-left: 10px; /* Espacio entre el icono y el texto */
+}
+
+.profile {
+  background-color: #229cdb;
+  color: white;
+  font-size: small;
+  padding: 0 4px;
+  line-height: 1.5;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  border-radius: 5px;
+}
+
+.logout {
+  margin-left: 10px;
+  margin-right: 10px;
+  --border-radius: 15px;
+}
+
+.card-content {
+  display: flex;
+  align-items: center;
+}
+
+ion-avatar {
+  --border-radius: 15px;
+  transform: translateY(-25%);
+  margin-right: 5px;
+
+}
+
+.data-profile {
+  transform: translateY(-25%);
+}
+
+/* Estilos específicos para modo mobile */
+@media (max-width: 300px) {
   ion-menu::part(container) {
-    border-radius: 0 50px 50px 0;
+    border-radius: 0 50px 50px 0 !important;
   }
-  
+
+  ion-card.name-user {
+    height: 12%;
+    transform: translateY(-25%);
+  }
+
+  ion-card.menu {
+    height: 90%;
+  }
 }

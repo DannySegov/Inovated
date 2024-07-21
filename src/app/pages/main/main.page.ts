@@ -1,5 +1,4 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,17 +12,17 @@ export class MainPage implements OnInit {
   constructor() { }
 
   pages = [
-    { Title: 'Inicio', Url: 'home', Icon: '/src/assets/icon/favicon.png' },
-    { Title: 'Clientes', Url: 'clientes', Icon: 'home-outline' },
-    { Title: 'Solicitudes', Url: 'solicitudes', Icon: 'home-outline' },
-    { Title: 'Levantamientos', Url: 'levantamientos', Icon: 'home-outline' },
-    { Title: 'Cotizaciones', Url: 'cotizaciones', Icon: 'home-outline' },
-    { Title: 'Ejecuciones', Url: 'ejecuciones', Icon: 'home-outline' },
-    { Title: 'Pagos Pendientes', Url: 'pagosPend', Icon: 'home-outline' },
-    { Title: 'Servicios', Url: 'servicios', Icon: 'home-outline' },
-    { Title: 'Usuarios', Url: 'usuarios', Icon: 'home-outline' },
-    { Title: 'Reportes', Url: 'reportes', Icon: 'home-outline' },
-    { Title: 'Configuración', Url: 'configuracion', Icon: 'home-outline' },
+    { Title: 'Inicio', Url: 'home', Icon: 'home' },
+    { Title: 'Clientes', Url: 'clientes', Icon: 'cliente' },
+    { Title: 'Solicitudes', Url: 'solicitudes', Icon: 'solicitud' },
+    { Title: 'Levantamientos', Url: 'levantamientos', Icon: 'levantamiento' },
+    { Title: 'Cotizaciones', Url: 'cotizaciones', Icon: 'cotizacion' },
+    { Title: 'Ejecuciones', Url: 'ejecuciones', Icon: 'ejecuciones' },
+    { Title: 'Pagos Pendientes', Url: 'pagosPend', Icon: 'pagos-pendientes' },
+    { Title: 'Servicios', Url: 'servicios', Icon: 'servicios' },
+    { Title: 'Usuarios', Url: 'usuarios', Icon: 'usuario' },
+    { Title: 'Reportes', Url: 'reportes', Icon: 'solicitud' },
+    { Title: 'Configuración', Url: 'configuracion', Icon: 'configuracion' },
   ];
 
   router = inject(Router);
