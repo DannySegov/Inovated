@@ -1,8 +1,19 @@
+<!--ion-header  class="ion-no-border">
+  <ion-toolbar class="custom-toolbar-color">
+    <ion-img src="assets/icon/logo/inovated white.png"></ion-img>
+  </ion-toolbar>
+</ion-header-->
+
+<!--ion-buttons slot="start">
+  <ion-menu-button *ngIf="showMenu" menu="menu-content"></ion-menu-button>
+</ion-buttons-->
+
 <ion-header class="ion-no-border">
   <ion-toolbar class="custom-toolbar-color">
-    <!--ion-title>
-      <strong>{{ title }}</strong>
-      <div class="admin">S E R V I C I O S  I N T E G R A L E S</div>
-    </ion-title-->
+    <!-- Mover ion-buttons aquí dentro -->
+    <ion-buttons slot="start">
+      <ion-menu-button *ngIf="showMenu" menu="menu-content"></ion-menu-button>
+    </ion-buttons>
+    <ion-img src="assets/icon/logo/inovated white.png"></ion-img>
   </ion-toolbar>
 </ion-header>

@@ -8,8 +8,11 @@ import { Component, Input, OnInit } from '@angular/core';
 export class HeaderComponent  implements OnInit {
 
   @Input() title!: string; //Recibimos el titulo desde el componente padre
+  @Input() showMenu!: boolean;
+
   constructor() { }
 
   ngOnInit() {}
+
 
 }

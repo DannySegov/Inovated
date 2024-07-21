@@ -1,5 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UtilsService } from 'src/app/services/utils.service';
 
 @Component({
@@ -15,6 +16,7 @@ export class AuthPage implements OnInit {
   });
 
   utilsService = inject(UtilsService);
+  router = inject(Router);
 
   constructor() { }
 
@@ -29,6 +31,8 @@ export class AuthPage implements OnInit {
       setTimeout(() => {
         loading.dismiss();
       }, 2500);
+
+      this.router.navigate(['/main/home']);
     }
   }
 

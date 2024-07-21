@@ -1,4 +1,7 @@
-<app-header title="Login"></app-header>
+<ion-header class="ion-no-border">
+    <ion-toolbar class="custom-toolbar-color">
+    </ion-toolbar>
+</ion-header>
 <ion-content>
     <div class="d-flex-center">
         <form [formGroup]="form" class="auth-form">
@@ -28,7 +31,8 @@
             <ion-row id="remember">
                 <ion-toggle [checked]="false" mode="ios" class="toggle"></ion-toggle>
                 <ion-text style="color: black;">Recuérdame</ion-text>
-                <ion-button fill="clear" id="forgot-password" routerLink="forgot-password">Olvidé mi contraseña</ion-button>
+                <ion-button fill="clear" id="forgot-password" routerLink="forgot-password">Olvidé mi
+                    contraseña</ion-button>
             </ion-row>
 
             @if(form.controls.password.errors && form.controls.password.touched) {
@@ -43,7 +47,8 @@
             </div>
             }
 
-            <ion-button class="submit" type="submit" size="smaller" size="medium" [disabled]="form.invalid" (click)="login()">
+            <ion-button class="submit" type="submit" size="smaller" size="medium" [disabled]="form.invalid"
+                (click)="login()">
                 Iniciar Sesión
             </ion-button>
         </form>
