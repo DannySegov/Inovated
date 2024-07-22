@@ -149,6 +149,17 @@ ion-button {
     border: 1px solid rgba(8, 8, 8, 0.3);
 }
 
+.text {
+    font-size: 25px;
+    /* Ajusta el tamaño según sea necesario */
+    transform: translateY(-30%);
+}
+
+.card-title {
+    height: 50px;
+    /* Ajusta este valor según tus necesidades */
+}
+
 /*
 @media (min-width: 769px) {
     .auth-form {
