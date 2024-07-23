@@ -5,6 +5,7 @@ import { CustomInputComponent } from './components/custom-input/custom-input.com
 import { LogoComponent } from './components/logo/logo.component';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CardTitleComponent } from './components/card-title/card-title.component';
 
 
 
@@ -12,12 +13,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   declarations: [
     HeaderComponent,
     CustomInputComponent,
-    LogoComponent
+    LogoComponent,
+    CardTitleComponent
   ],
   exports: [
     HeaderComponent,
     CustomInputComponent,
     LogoComponent,
+    CardTitleComponent,
     ReactiveFormsModule
   ],
   imports: [ //Aqui importamos modulos para que nuestros componentes funcionen

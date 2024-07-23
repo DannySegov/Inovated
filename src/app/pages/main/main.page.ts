@@ -13,16 +13,16 @@ export class MainPage implements OnInit {
 
   pages = [
     { Title: 'Inicio', Url: 'home', Icon: 'home' },
-    { Title: 'Clientes', Url: 'clientes', Icon: 'cliente' },
-    { Title: 'Solicitudes', Url: 'solicitudes', Icon: 'solicitud' },
-    { Title: 'Levantamientos', Url: 'levantamientos', Icon: 'levantamiento' },
-    { Title: 'Cotizaciones', Url: 'cotizaciones', Icon: 'cotizacion' },
-    { Title: 'Ejecuciones', Url: 'ejecuciones', Icon: 'ejecuciones' },
-    { Title: 'Pagos Pendientes', Url: 'pagosPend', Icon: 'pagos-pendientes' },
-    { Title: 'Servicios', Url: 'servicios', Icon: 'servicios' },
-    { Title: 'Usuarios', Url: 'usuarios', Icon: 'usuario' },
-    { Title: 'Reportes', Url: 'reportes', Icon: 'solicitud' },
-    { Title: 'Configuración', Url: 'configuracion', Icon: 'configuracion' },
+    { Title: 'Clientes', Url: 'clients', Icon: 'cliente' },
+    { Title: 'Solicitudes', Url: 'requests', Icon: 'solicitud' },
+    { Title: 'Levantamientos', Url: 'uprisings', Icon: 'levantamiento' },
+    { Title: 'Cotizaciones', Url: 'quotes', Icon: 'cotizacion' },
+    { Title: 'Ejecuciones', Url: 'executions', Icon: 'ejecuciones' },
+    { Title: 'Pagos Pendientes', Url: 'pending-payments', Icon: 'pagos-pendientes' },
+    { Title: 'Servicios', Url: 'services', Icon: 'servicios' },
+    { Title: 'Usuarios', Url: 'users', Icon: 'usuario' },
+    { Title: 'Reportes', Url: 'reports', Icon: 'solicitud' },
+    { Title: 'Configuración', Url: 'configuration', Icon: 'configuracion' },
   ];
 
   router = inject(Router);
