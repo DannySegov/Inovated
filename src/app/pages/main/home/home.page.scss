@@ -1,3 +1,18 @@
 .welcome {
     border-radius: 20px;
+    height: 70px;
+    transform: translateY(-15%);
+    box-shadow: none;
+}
+
+ion-card-title {
+    font-size: 20px;
+    transform: translateY(-37%);
+}
+
+/* Estilos específicos para modo mobile */
+@media (max-width: 300px) {
+    .text {
+        font-size: 16px;
+    }
 }

@@ -6,10 +6,10 @@
 
 ion-header {
   position: relative;
-  background-color: white; /* Asegura que el fondo sea blanco */
+  background-color: #f1f1f1;
 
   ion-toolbar {
-    display: flex; /* Habilita flexbox */
+    display: flex;
     align-items: center; /* Centra verticalmente el contenido */
     border-radius: 0 0 30px 30px;
     overflow: hidden;
@@ -21,9 +21,6 @@ ion-img {
   width: 50%;
   margin: auto;
 }
-
-
-
 
 /* Estilos específicos para modo escritorio */
 @media (min-width: 768px) {

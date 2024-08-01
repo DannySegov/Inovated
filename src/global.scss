@@ -27,6 +27,10 @@
 
 @import url('/Innovated/style.css');
 
+ion-content {
+    --background: #f1f1f1 !important;
+}
+
 ion-button {
     text-transform: none;
 }
@@ -136,10 +140,6 @@ ion-button {
     }
 }
 
-.icon {
-    color: #219cdb;
-}
-
 
 .glass-content {
     background: rgba(14, 13, 13, 0.2);
@@ -149,17 +149,39 @@ ion-button {
     border: 1px solid rgba(8, 8, 8, 0.3);
 }
 
-.text {
+.title-module {
     font-size: 25px;
-    /* Ajusta el tamaño según sea necesario */
-    transform: translateY(-30%);
+    transform: translateY(-43%);
+    display: flex;
+    align-items: center;
 }
 
 .card-title {
-    height: 50px;
-    /* Ajusta este valor según tus necesidades */
+    height: 42px;
 }
 
+#icon-title {
+    margin-right: 7px;
+}
+
+.icon {
+    color: #219cdb;
+}
+
+ion-card {
+    box-shadow: none;
+}
+
+ion-fab-button {
+    --background: #219cdb;
+}  
+
+/*
+ion-footer {
+    height: 60px;
+    background-color: white;
+}
+    */
 /*
 @media (min-width: 769px) {
     .auth-form {

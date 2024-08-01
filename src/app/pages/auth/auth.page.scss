@@ -1,6 +1,9 @@
-/* En tu archivo de estilos del componente padre o global */
 ::ng-deep app-custom-input label {
     color: #219cdb;
+}
+
+ion-content {
+    --background: #ffff;
 }
 
 .toggle {
@@ -22,4 +25,4 @@
     --background: #219cdb;
     color: white;
     height: 40px;
-  }
+}

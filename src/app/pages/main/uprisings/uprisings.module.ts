@@ -8,6 +8,8 @@ import { UprisingsPageRoutingModule } from './uprisings-routing.module';
 
 import { UprisingsPage } from './uprisings.page';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { MenuTabPageModule } from '../menu-tab/menu-tab.module';
+import { MenuTabPageRoutingModule } from '../menu-tab/menu-tab-routing.module';
 
 @NgModule({
   imports: [
@@ -15,7 +17,9 @@ import { SharedModule } from 'src/app/shared/shared.module';
     FormsModule,
     IonicModule,
     UprisingsPageRoutingModule,
-    SharedModule
+    SharedModule,
+    MenuTabPageModule,
+    MenuTabPageRoutingModule
   ],
   declarations: [UprisingsPage]
 })
