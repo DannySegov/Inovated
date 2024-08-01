@@ -2,8 +2,33 @@
 
 <ion-content [fullscreen]="true">
   <div class="custom-card-border-radius">
-      <app-card-title [icon]="'icon-cliente'" [cardText]="'Mis clientes'">
+      <app-card-title [icon]="'icon-cliente'" [cardText]="'Mis Clientes'" slot="fixed">
           <span class="icon-cliente"></span>
       </app-card-title>
   </div>
+
+  @for(client of clients; track client) {
+    <ion-card mode="ios" class="client">
+      <ion-card-content>
+        <ion-icon name="ellipsis-vertical" class="card-options-icon"></ion-icon>
+        <div class="card-content">
+          <ion-avatar>
+            <div class="user-initials" [ngStyle]="{'background-color': client.color}">{{ client.name.split(' ')[0][0] + client.name.split(' ')[1][0] }}</div>
+          </ion-avatar>
+          <div class="info">
+            <ion-card-title class="name-client">{{ client.name }}</ion-card-title>
+            <ion-label class="profile">{{ client.address }}</ion-label>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  }
+
+  <ion-fab mode="md" horizontal="end" vertical="bottom" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
+
+<app-menu-tab></app-menu-tab>

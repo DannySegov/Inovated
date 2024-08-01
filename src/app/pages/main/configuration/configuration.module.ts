@@ -8,6 +8,7 @@ import { ConfigurationPageRoutingModule } from './configuration-routing.module';
 
 import { ConfigurationPage } from './configuration.page';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { MenuTabPageModule } from '../menu-tab/menu-tab.module';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     FormsModule,
     IonicModule,
     ConfigurationPageRoutingModule,
-    SharedModule
+    SharedModule,
+    MenuTabPageModule
   ],
   declarations: [ConfigurationPage]
 })

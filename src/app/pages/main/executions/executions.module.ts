@@ -8,6 +8,7 @@ import { ExecutionsPageRoutingModule } from './executions-routing.module';
 
 import { ExecutionsPage } from './executions.page';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { MenuTabPageModule } from '../menu-tab/menu-tab.module';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     FormsModule,
     IonicModule,
     ExecutionsPageRoutingModule,
-    SharedModule
+    SharedModule,
+    MenuTabPageModule
   ],
   declarations: [ExecutionsPage]
 })

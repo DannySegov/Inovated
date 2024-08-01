@@ -1,3 +1,54 @@
-::ng-deep .custom-card-border-radius ion-card {
-    border-radius: 50px;
+.card-content {
+    display: flex;
+    align-items: center;
+    height: 40px; /* Aumentado de 50px */
+    transform: translateY(-15%);
+    z-index: 1;
 }
+
+.user-initials {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px; /* Ajustado para mantener la proporción */
+    font-weight: bold;
+}
+
+.name-client {
+    font-size: 17px; /* Aumentado para mantener la proporción */
+}
+
+ion-avatar {
+    margin-right: 30px; /* Ajustado para proporcionar más espacio */
+}
+
+.info {
+    transform: translateY(20%);
+
+}
+
+.client {
+    border-radius: 15px;
+    transform: translateY(-20%);
+    margin-top: 12px;
+    margin-bottom: 16px;
+}
+
+.card-options-icon {
+    position: absolute;
+    top: 5px; 
+    right: -3px;
+    padding: 8px;
+}
+
+.profile {
+    color: #878787;
+    font-size: 15px;
+}
+
+
+

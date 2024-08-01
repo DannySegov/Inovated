@@ -1,0 +1,30 @@
+<ion-fab mode="ios" horizontal="center" vertical="bottom" slot="fixed" class="home">
+  <ion-fab-button routerLink="/main/home">
+    <span class="icon-home icon-white"></span>
+  </ion-fab-button>
+</ion-fab>
+
+<ion-toolbar class="menu-tab">
+  <ion-tabs #tabs (ionTabsDidChange)="setCurrentTab($event)" class="tab"> <!--class="rounded-tabs"-->
+    <!-- -------------------Custom Tabs with fab button------------------------------- -->
+    <ion-tab-bar slot="bottom" class="custom-tab-bar">
+      <ion-tab-button routerLink="/main/uprisings">
+        <span class="icon-levantamiento icon-black"></span>
+      </ion-tab-button>
+  
+      <ion-tab-button routerLink="/main/clients">
+        <span class="icon-cliente icon-black"></span>
+      </ion-tab-button>
+  
+      <ion-tab-button></ion-tab-button>
+  
+      <ion-tab-button routerLink="/main/services">
+        <span class="icon-servicios icon-black"></span>
+      </ion-tab-button>
+  
+      <ion-tab-button routerLink="/main/reports">
+        <span class="icon-solicitud icon-black"></span>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+</ion-toolbar>

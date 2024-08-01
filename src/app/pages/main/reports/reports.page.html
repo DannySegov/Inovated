@@ -1,13 +1,11 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>reports</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header [showMenu]="true"></app-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">reports</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="custom-card-border-radius">
+    <app-card-title [icon]="'icon-solicitud'" [cardText]="'Reportes'" slot="fixed">
+        <span class="icon-cliente"></span>
+    </app-card-title>
+</div>
 </ion-content>
+
+<app-menu-tab></app-menu-tab>

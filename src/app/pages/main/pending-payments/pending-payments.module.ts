@@ -8,6 +8,7 @@ import { PendingPaymentsPageRoutingModule } from './pending-payments-routing.mod
 
 import { PendingPaymentsPage } from './pending-payments.page';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { MenuTabPageModule } from '../menu-tab/menu-tab.module';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     FormsModule,
     IonicModule,
     PendingPaymentsPageRoutingModule,
-    SharedModule
+    SharedModule,
+    MenuTabPageModule
   ],
   declarations: [PendingPaymentsPage]
 })

@@ -26,12 +26,6 @@ ion-card.name-user {
   height: 10%;
 }
 
-ion-avatar {
-  --border-radius: 15px;
-  transform: translateY(-20%);
-  margin-right: 5px;
-}
-
 ion-card.menu {
   height: 90%;
   margin-top: 0;
@@ -60,7 +54,7 @@ ion-item {
 }
 
 .icon-container {
-  width: 30px; 
+  width: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -91,13 +85,13 @@ ion-label.option {
 .card-content {
   display: flex;
   align-items: center;
+  margin-left: -8px;
 }
 
 ion-avatar {
   --border-radius: 15px;
   transform: translateY(-25%);
   margin-right: 5px;
-
 }
 
 .data-profile {
@@ -118,4 +112,6 @@ ion-avatar {
   ion-card.menu {
     height: 90%;
   }
+
+ 
 }
