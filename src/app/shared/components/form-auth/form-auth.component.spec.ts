@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { MainTabComponent } from './main-tab.component';
+import { FormAuthComponent } from './form-auth.component';
 
-describe('MainTabComponent', () => {
-  let component: MainTabComponent;
-  let fixture: ComponentFixture<MainTabComponent>;
+describe('FormAuthComponent', () => {
+  let component: FormAuthComponent;
+  let fixture: ComponentFixture<FormAuthComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ MainTabComponent ],
+      declarations: [ FormAuthComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(MainTabComponent);
+    fixture = TestBed.createComponent(FormAuthComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

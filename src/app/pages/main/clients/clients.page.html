@@ -1,12 +1,8 @@
-<app-header [showMenu]="true"></app-header>
+<div class="custom-card-border-radius">
+  <app-header [showMenu]="true" [icon]="'icon-cliente'" [cardText]="'Mis Clientes'"></app-header>
+</div>
 
 <ion-content [fullscreen]="true">
-  <div class="custom-card-border-radius">
-      <app-card-title [icon]="'icon-cliente'" [cardText]="'Mis Clientes'" slot="fixed">
-          <span class="icon-cliente"></span>
-      </app-card-title>
-  </div>
-
   @for(client of clients; track client) {
     <ion-card mode="ios" class="client">
       <ion-card-content>
@@ -25,7 +21,7 @@
   }
 
   <ion-fab mode="md" horizontal="end" vertical="bottom" slot="fixed">
-    <ion-fab-button>
+    <ion-fab-button routerLink="/main/clients/customer-detail">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>

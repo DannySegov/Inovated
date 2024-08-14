@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-card-title',
@@ -7,10 +8,19 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class CardTitleComponent  implements OnInit {
 
-  constructor() { }
-
-  ngOnInit() {}
+  constructor(private router: Router) { }
 
   @Input() cardText: string = ''; 
   @Input() icon: string = ''; 
+  @Input() iconPosition: 'left' | 'right' = 'left'; // Nueva propiedad
+
+  isCustomerDetailPage!: boolean;
+
+  ngOnInit() {
+    this.isCustomerDetailPage = this.router.url.includes('main/clients/customer-detail');
+  }
+
+  navigateTo(url: string) {
+    this.router.navigate([url]);
+  }
 }

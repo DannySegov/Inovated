@@ -1,0 +1,134 @@
+<div class="custom-card-border-radius">
+  <app-header [showMenu]="true" [icon]="'icon-cliente'" [cardText]="'Nuevo Cliente'"></app-header>
+</div>
+
+<ion-content [fullscreen]="true">
+  <form [formGroup]="form" class="form">
+    <div class="title-section">
+      <ion-text>
+        <h6>
+          Información general
+        </h6>
+      </ion-text>
+      <hr class="line">
+    </div>
+
+    <p>Nombre:</p>
+    <app-custom-input type="text" label="Nombre Completo"></app-custom-input>
+
+    <p>Teléfono:</p>
+    <app-custom-input type="number" label="10 Digitos"></app-custom-input>
+
+    <p>Correo:</p>
+    <app-custom-input type="email" label="Correo Electrónico"></app-custom-input>
+
+    <div class="title-section">
+      <ion-text>
+        <h6>
+          Dirección
+        </h6>
+      </ion-text>
+      <hr class="line">
+    </div>
+
+    <p>Calle:</p>
+    <app-custom-input type="text" label="Calle"></app-custom-input>
+
+    <p>Número exterior:</p>
+    <app-custom-input type="number" label="ext."></app-custom-input>
+
+    <p>Número interior:</p>
+    <app-custom-input type="number" label="Opcional"></app-custom-input>
+
+    <p>Colonia:</p>
+    <app-custom-input type="text" label="Colonia"></app-custom-input>
+
+    <p>Código Postal:</p>
+    <app-custom-input type="number" label="CP"></app-custom-input>
+
+    <p>Ciudad:</p>
+    <app-custom-input type="text" label="Delegación o Municipio"></app-custom-input>
+
+    <p>Estado:</p>
+    <app-custom-input type="text" label="Entidad Federativa"></app-custom-input>
+
+    <div class="title-section">
+      <ion-text>
+        <h6>
+          Contactos adicionales
+        </h6>
+      </ion-text>
+      <hr class="line">
+    </div>
+    <p>Nombre:</p>
+    <app-custom-input type="text" label="Nombre Completo"></app-custom-input>
+
+    <p>Teléfono</p>
+    <app-custom-input type="number" label="10 Digitos"></app-custom-input>
+
+    <p>Correo</p>
+    <app-custom-input type="email" label="Correo Electrónico"></app-custom-input>
+  
+    <ion-button mode="ios" class="add" type="submit" size="small">
+      <strong>Agregar</strong>
+    </ion-button>
+
+    <div class="title-section">
+      <ion-text>
+        <h6>
+          Información Fiscal
+        </h6>
+      </ion-text>
+      <hr class="line">
+    </div>
+
+    <p>Persona Fisica/Moral:</p>
+    <app-custom-input type="text" label="Calle"></app-custom-input>
+
+    <p>Razón Social:</p>
+    <app-custom-input type="text" label="Razón Social"></app-custom-input>
+
+    <p>RFC:</p>
+    <app-custom-input type="text" label="13 Digitos"></app-custom-input>
+
+    <div class="title-section">
+      <strong class="title1">Dirección de facturación</strong>
+      <strong class="title">Igual que dirección</strong>
+    </div>
+
+    <p>Calle:</p>
+    <app-custom-input type="text" label="Calle"></app-custom-input>
+
+    <p>Número exterior:</p>
+    <app-custom-input type="number" label="ext."></app-custom-input>
+
+    <p>Número interior:</p>
+    <app-custom-input type="number" label="Opcional"></app-custom-input>
+
+    <p>Código Postal:</p>
+    <app-custom-input type="number" label="CP"></app-custom-input>
+
+    <p>Colonia:</p>
+    <app-custom-input type="text" label="Colonia"></app-custom-input>
+
+    <p>Ciudad:</p>
+    <app-custom-input type="text" label="Delegación o municipio"></app-custom-input>
+
+    <p>Estado:</p>
+    <app-custom-input type="text" label="Entidad federativa"></app-custom-input>
+
+    <p>Observaciones generales:</p>
+    <ion-item class="custom-input" lines="none" size="large">
+      <ion-textarea type="text" placeholder="Opcional"></ion-textarea>
+    </ion-item>
+
+    <ion-button mode="ios" class="add" type="submit" size="small">
+      <strong>Guardar cliente</strong>
+    </ion-button>
+  </form>
+</ion-content>
+
+<app-menu-tab></app-menu-tab>
+
+
+

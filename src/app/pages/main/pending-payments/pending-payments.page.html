@@ -1,10 +1,9 @@
-<app-header [showMenu]="true"></app-header>
+<div class="custom-card-border-radius">
+    <app-header [showMenu]="true" [icon]="'icon-pagos-pendientes'" [cardText]="'Pagos pendientes'"></app-header>
+</div>
 
 <ion-content [fullscreen]="true">
-    <div class="custom-card-border-radius">
-        <app-card-title [icon]="'icon-pagos-pendientes'" [cardText]="'Pagos pendientes'">
-        </app-card-title>
-    </div>
+
 </ion-content>
 
 <app-menu-tab></app-menu-tab>
