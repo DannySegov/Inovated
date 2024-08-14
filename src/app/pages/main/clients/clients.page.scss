@@ -1,7 +1,7 @@
 .card-content {
     display: flex;
     align-items: center;
-    height: 40px; /* Aumentado de 50px */
+    height: 40px; 
     transform: translateY(-15%);
     z-index: 1;
 }
@@ -14,16 +14,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 24px; /* Ajustado para mantener la proporción */
+    font-size: 24px; 
     font-weight: bold;
 }
 
 .name-client {
-    font-size: 17px; /* Aumentado para mantener la proporción */
+    font-size: 17px; 
 }
 
 ion-avatar {
-    margin-right: 30px; /* Ajustado para proporcionar más espacio */
+    margin-right: 30px; 
 }
 
 .info {
@@ -34,8 +34,8 @@ ion-avatar {
 .client {
     border-radius: 15px;
     transform: translateY(-20%);
-    margin-top: 12px;
-    margin-bottom: 16px;
+    margin-top: 1px;
+    margin-bottom: 15px;
 }
 
 .card-options-icon {

@@ -71,13 +71,14 @@ ion-button {
     --border-radius: 15px;
     --border-style: solid;
     --border-width: 1px;
-    //margin: 10px 0;
 
+    /*
     ion-input {
         font-size: 14px !important;
         min-height: 40px !important;
         height: 30px !important;
     }
+        */
 
     .eye-icon {
         position: initial;
@@ -153,7 +154,7 @@ ion-button {
     font-size: 25px;
     transform: translateY(-43%);
     display: flex;
-    align-items: center;
+    //align-items: center;
 }
 
 .card-title {

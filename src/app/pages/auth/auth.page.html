@@ -2,13 +2,14 @@
     <ion-toolbar class="custom-toolbar-color">
     </ion-toolbar>
 </ion-header>
+
 <ion-content>
     <div class="d-flex-center">
         <form [formGroup]="form" class="auth-form">
             <app-logo></app-logo>
             <p>Usuario:</p>
-            <app-custom-input class="email" autocomplete="email" icon="mail-outline" [control]="form.controls.email"
-                type="email" label="Correo electrónico"></app-custom-input>
+            <app-form-auth class="email" autocomplete="email" icon="mail-outline" [control]="form.controls.email"
+                type="email" label="Correo electrónico"></app-form-auth>
 
             @if(form.controls.email.errors && form.controls.email.touched) {
             <div class="validators">
@@ -24,9 +25,9 @@
             }
 
             <p>Contraseña:</p>
-            <app-custom-input [control]="form.controls.password" type="password" label="Contraseña"
+            <app-form-auth [control]="form.controls.password" type="password" label="Contraseña"
                 icon="lock-closed-outline">
-            </app-custom-input>
+            </app-form-auth>
 
             <ion-row id="remember">
                 <ion-toggle [checked]="false" mode="ios" class="toggle"></ion-toggle>

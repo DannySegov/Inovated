@@ -1,9 +1,11 @@
+/*
 ::ng-deep app-custom-input label {
     color: #219cdb;
 }
+*/
 
 ion-content {
-    --background: #ffff;
+    --background: #ffff !important;
 }
 
 .toggle {

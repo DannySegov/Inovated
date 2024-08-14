@@ -1,4 +1,31 @@
 ::ng-deep .custom-card-border-radius ion-card {
     border-radius: 50px;
-    transform: translateY(-15%);
+    transform: translateY(-35%);
+}
+
+.card-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#icon-title {
+    display: flex;
+    align-items: center;
+}
+
+.small-font {
+    font-size: 20px;
+    color: black;
+    margin-left: 8px;
+}
+
+.title-module {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+#icon-title-right {
+    margin-left: auto;
 }

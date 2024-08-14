@@ -1,11 +1,9 @@
-<app-header [showMenu]="true"></app-header>
+<div class="custom-card-border-radius">
+  <app-header [showMenu]="true" [icon]="'icon-solicitud'" [cardText]="'Reportes'"></app-header>
+</div>
 
 <ion-content [fullscreen]="true">
-  <div class="custom-card-border-radius">
-    <app-card-title [icon]="'icon-solicitud'" [cardText]="'Reportes'" slot="fixed">
-        <span class="icon-cliente"></span>
-    </app-card-title>
-</div>
+  
 </ion-content>
 
 <app-menu-tab></app-menu-tab>

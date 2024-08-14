@@ -5,4 +5,8 @@
     </ion-buttons>
     <ion-img src="assets/icon/logo/inovated white.png"></ion-img>
   </ion-toolbar>
+
+  <app-card-title *ngIf="showCardTitle" [icon]="icon" [cardText]="cardText"></app-card-title> <!-- TODO: Cambiar el nombre de showToolbar y acomodar el if con la nueva sintaxis-->
 </ion-header>
+
+

@@ -7,29 +7,28 @@ import { IonicModule } from '@ionic/angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CardTitleComponent } from './components/card-title/card-title.component';
 import { ListCardComponent } from './components/list-card/list-card.component';
-import { MainTabComponent } from './components/main-tab/main-tab.component';
 import { MenuTabPageModule } from '../pages/main/menu-tab/menu-tab.module';
 import { MenuTabPage } from '../pages/main/menu-tab/menu-tab.page';
-
+import { FormAuthComponent } from './components/form-auth/form-auth.component';
 
 
 @NgModule({
   declarations: [
     HeaderComponent,
     CustomInputComponent,
+    FormAuthComponent,
     LogoComponent,
     CardTitleComponent,
     ListCardComponent,
-    MainTabComponent,
   ],
   exports: [
     HeaderComponent,
     CustomInputComponent,
+    FormAuthComponent,
     LogoComponent,
     CardTitleComponent,
     ListCardComponent,
     ReactiveFormsModule,
-    MainTabComponent,
   ],
   imports: [ //Aqui importamos modulos para que nuestros componentes funcionen
     CommonModule,

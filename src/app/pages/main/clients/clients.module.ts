@@ -9,6 +9,7 @@ import { ClientsPageRoutingModule } from './clients-routing.module';
 import { ClientsPage } from './clients.page';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MenuTabPageModule } from '../menu-tab/menu-tab.module';
+import { CustomerDetailPageModule } from './customer-detail/customer-detail.module';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { MenuTabPageModule } from '../menu-tab/menu-tab.module';
     IonicModule,
     ClientsPageRoutingModule,
     SharedModule,
-    MenuTabPageModule
+    MenuTabPageModule,
+    CustomerDetailPageModule
   ],
   declarations: [ClientsPage]
 })

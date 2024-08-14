@@ -1,10 +1,28 @@
-<ion-card mode="ios" class="card-title">
+<ion-card mode="ios" class="card-title fixed">
   <ion-card-header>
     <div class="card-content">
-      <ion-card-title class="title-module ">
-        <span id="icon-title" class="{{ icon }}"></span>
-        {{ cardText }}
-      </ion-card-title>
+      <ng-container *ngIf="isCustomerDetailPage; else defaultTitle">
+        <ion-text class="title-module">
+          <ng-content select="ion-icon"></ng-content>
+          <ion-icon name="arrow-back-outline" (click)="navigateTo('/main/clients')"></ion-icon>
+          <span class="small-font">{{ cardText }}</span>
+          <span id="icon-title-right" class="{{ icon }}" ></span>
+        </ion-text>
+      </ng-container>
+      <ng-template #defaultTitle>
+        <ion-card-title class="title-module">
+          <ng-content select="ion-icon"></ng-content>
+          <ng-container *ngIf="iconPosition === 'left'">
+            <span id="icon-title" class="{{ icon }}"></span>
+          </ng-container>
+          {{ cardText }}
+        </ion-card-title>
+      </ng-template>
     </div>
   </ion-card-header>
 </ion-card>
+
+
+
+
+
