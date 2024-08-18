@@ -1,0 +1,31 @@
+.user-initials {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px; 
+    font-weight: bold;
+}
+
+ion-avatar {
+    margin-right: 30px; 
+}
+
+.info {
+    transform: translateY(20%);
+}
+
+.name-client {
+    font-size: 17px; 
+}
+
+/*
+.large-avatar .user-initials {
+    width: 68px; 
+    height: 68px; 
+    font-size: 26px; 
+}
+    */

@@ -1,0 +1,44 @@
+<ion-content class="ion-padding">
+  <ion-modal #modal class="glass-content modal" trigger="open-modal" [initialBreakpoint]="1" [breakpoints]="[0, 1]">
+    <ng-template>
+      <ion-card-content id="open-modal">
+        <ion-icon name="ellipsis-vertical" class="card-options-icon"></ion-icon>
+        <div class="card-content">
+          <app-name-client [client]="client"></app-name-client>
+          <div class="info">
+            <ion-card-title class="name-client">{{ client.name }}</ion-card-title>
+          </div>
+        </div>
+        <div class="icon-container">
+          <div class="content-icon">
+            <span class="icon-direccion icon-black"></span>
+            <ion-label class="address-client">{{ client.address }}</ion-label>
+          </div>
+          <div class="content-icon">
+            <span class="icon-telefono icon-black"></span>
+            <ion-label class="address-client">{{ client.address }}</ion-label>
+          </div>
+          <div class="content-icon">
+            <span class="icon-correo icon-black"></span>
+            <ion-label class="address-client">{{ client.address }}</ion-label>
+          </div>
+        </div>
+
+
+        <div class="content-button">
+          <ng-container *ngFor="let button of buttons; let i = index">
+            <ion-button mode="ios" shape="round" size="large" [style.--background]="i < 3 ? client.color : (i === 3 ? 'red' : '')">
+              <ion-icon slot="icon-only" class="{{ 'icon-' + button.Icon }} icon-white large-icon"></ion-icon>
+            </ion-button>
+          </ng-container>
+        </div>
+
+        <!--ion-button [style.--background]="client.color">C</!--ion-button-->
+        
+      </ion-card-content>
+      <div *ngIf="!client">
+        <p>No hay información del cliente disponible.</p>
+      </div>
+    </ng-template>
+  </ion-modal>
+</ion-content>

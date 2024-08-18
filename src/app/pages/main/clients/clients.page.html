@@ -5,12 +5,10 @@
 <ion-content [fullscreen]="true">
   @for(client of clients; track client) {
     <ion-card mode="ios" class="client">
-      <ion-card-content>
+      <ion-card-content id="open-modal" (click)="onCardClick(client)">
         <ion-icon name="ellipsis-vertical" class="card-options-icon"></ion-icon>
         <div class="card-content">
-          <ion-avatar>
-            <div class="user-initials" [ngStyle]="{'background-color': client.color}">{{ client.name.split(' ')[0][0] + client.name.split(' ')[1][0] }}</div>
-          </ion-avatar>
+          <app-name-client [client]="client"></app-name-client>
           <div class="info">
             <ion-card-title class="name-client">{{ client.name }}</ion-card-title>
             <ion-label class="profile">{{ client.address }}</ion-label>
@@ -25,6 +23,8 @@
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
+
+  <app-modal-info></app-modal-info>
 </ion-content>
 
 <app-menu-tab></app-menu-tab>
