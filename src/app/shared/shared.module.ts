@@ -35,6 +35,7 @@ import { NameClientComponent } from './components/name-client/name-client.compon
     ListCardComponent,
     ModalInfoComponent,
     NameClientComponent,
+    ReactiveFormsModule,
 
     //Modules
     ReactiveFormsModule,

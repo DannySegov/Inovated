@@ -1,0 +1,35 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar class="custom-toolbar-color">
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="d-flex-center">
+        <form [formGroup]="form" (ngSubmit)="login()" class="auth-form">
+            <app-logo></app-logo>
+            <p>Usuario:</p>
+            <app-form-auth class="email" autocomplete="email" icon="mail-outline" [control]="form.controls.email"
+                type="email" label="Correo electrónico"></app-form-auth>
+
+            <p>Contraseña:</p>
+            <app-form-auth [control]="form.controls.password" type="password" label="Contraseña"
+                icon="lock-closed-outline">
+            </app-form-auth>
+
+            <ion-row id="remember">
+                <ion-toggle [checked]="false" mode="ios" class="toggle"></ion-toggle>
+                <ion-text style="color: black;">Recuérdame</ion-text>
+                <ion-button fill="clear" id="forgot-password" routerLink="forgot-password">Olvidé mi
+                    contraseña</ion-button>
+            </ion-row>
+
+
+            <ion-button class="submit" type="submit" size="smaller" size="medium" [disabled]="form.invalid">
+                Iniciar Sesión
+            </ion-button>
+        </form>
+    </div>
+
+    <ion-img class="logo2" src="/assets/icon/logo/inovated fc.png" alt="Inovated">
+    </ion-img>
+</ion-content>
