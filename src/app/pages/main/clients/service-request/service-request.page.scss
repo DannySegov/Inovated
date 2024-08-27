@@ -20,7 +20,7 @@ ion-text {
     width: 100%;
     text-align: center;
     padding: 20px;
-    transform: translateY(-6%);
+    transform: translateY(-19%);
 
     p {
         text-align: left;
@@ -30,13 +30,11 @@ ion-text {
     }
 
     margin-bottom: 0 !important;
-    /* Ajusta el margen inferior del formulario a 0 */
     padding-bottom: 0 !important;
 }
 
 app-custom-input {
     height: 5px !important;
-    /* Ajusta el alto de los inputs */
     margin: 0;
 }
 
