@@ -1,0 +1,65 @@
+<div class="custom-card-border-radius">
+  <app-header [showMenu]="true" [icon]="'icon-solicitud'" [cardText]="'Solicitud de servicio'"></app-header>
+</div>
+
+<ion-content [fullscreen]="true">
+  <app-info-client></app-info-client>
+  <form class="form">
+    <div class="title-section">
+      <ion-text>
+        <h6>
+          Información sobre la solicitud
+        </h6>
+      </ion-text>
+      <hr class="line">
+    </div>
+
+    <p>Servicio:</p>
+    @for (option of options; track $index) {
+    <app-custom-select [options]="options"></app-custom-select>
+    }
+
+    <p>Descripción:</p>
+    <ion-item class="custom-input" lines="none" size="large">
+      <ion-textarea class="custom-textarea" type="text"
+        placeholder="Descripción del servicio a realizar"></ion-textarea>
+    </ion-item>
+
+    <p>Fecha:</p>
+    <ion-button mode="ios" id="open-custom-date" class="custom-button" size="small" style="display: flex; align-items: center; justify-content: space-between;">
+      <span style="margin-right: auto;">dd / mm / aaaa</span>
+      <span class="icon-rec_pago" style="margin-left: auto;"></span>
+    </ion-button>
+  
+    <p>Hora:</p>
+    <ion-button mode="ios" id="open-custom-hour" class="custom-button" size="small" style="display: flex; align-items: center; justify-content: space-between;">
+      <span style="margin-right: auto;">12:00 pm</span>
+      <ion-icon name="time-outline" style="margin-left: auto; color: #219cdb;"></ion-icon>
+    </ion-button>
+
+    <ion-button mode="ios" class="add" type="submit" size="small">
+      <strong>Guardar cliente</strong>
+    </ion-button>
+  </form>
+</ion-content>
+
+
+  <ion-modal id="example-modal" #modal trigger="open-custom-date" class="glass-content">
+    <ng-template>
+      <div class="wrapper">
+        <ion-datetime presentation="date"></ion-datetime>
+      </div>
+    </ng-template>
+  </ion-modal>
+
+  <ion-modal id="example-modal" #modal trigger="open-custom-hour" class="glass-content custom-modal-width">
+    <ng-template>
+      <div class="hour">
+        <ion-datetime presentation="time" [preferWheel]="true"></ion-datetime>
+        <ion-button mode="ios" class="save" type="submit" size="small">
+          <strong>Guardar</strong>
+        </ion-button>
+      </div>
+    </ng-template>
+  </ion-modal>
+

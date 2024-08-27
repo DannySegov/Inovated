@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { UtilsService } from 'src/app/services/utils.service';
 import { AuthService } from '../services/auth.service';
+import { User } from '../shared/interfaces/auth';
 
 @Component({
   selector: 'app-auth',
@@ -12,23 +13,13 @@ import { AuthService } from '../services/auth.service';
 export class AuthPage implements OnInit {
 
   private router = inject(Router);
-  private fb = inject(FormBuilder);
   public authService = inject(AuthService);
   public utilsService = inject(UtilsService);
   
-  
-  form = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]), //Valida que el campo sea requerido y que sea un email
+  loginForm = new FormGroup({
+    correo: new FormControl('', [Validators.required, Validators.email]), //Valida que el campo sea requerido y que sea un email
     password: new FormControl('', [Validators.required, Validators.minLength(6)]) //Valida que el campo sea requerido y que tenga al menos 6 caracteres
   });
-  
-
-  /*
-  public form: FormGroup = this.fb.group({
-    email: ['', [ Validators.required, Validators.email ]],
-    password: ['', [ Validators.required, Validators.minLength(6) ]],
-  });
-  */
 
   constructor() { }
 
@@ -36,31 +27,19 @@ export class AuthPage implements OnInit {
   }
 
   login() {
-    const email = this.form.value.email;
-    const password = this.form.value.password;
-  
-    if (email && password) {
-      this.authService.login(email, password)
-        .subscribe(success => {
-          console.log({ success });
-        });
+    if (this.loginForm.valid) {
+      const formValue = this.loginForm.value;
+      const user: User = {
+        correo: formValue.correo || '', // Aseguramos que no sea null ni undefined
+        password: formValue.password || '' // Aseguramos que no sea null ni undefined
+      };
+
+      this.authService.login(user).subscribe({
+        next: () => this.router.navigateByUrl('/main/home'),
+        error: (err) => console.error('Login failed', err) // Manejo de errores
+      });
     } else {
-      console.error('Email o contraseña no válidos');
+      console.error('Formulario no válido');
     }
   }
-  /*
-  async login() {
-    if (this.form.valid) {
-      const loading = await this.utilsService.loading();
-      await loading.present();
-
-      setTimeout(() => {
-        loading.dismiss();
-      }, 2500);
-
-      this.router.navigate(['/main/home']);
-    }
-  }
-    */
-
 }

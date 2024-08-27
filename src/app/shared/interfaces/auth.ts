@@ -4,6 +4,7 @@ export interface User {
 }
 
 export interface AuthResponse {
+    success: any;
     correo: string;
     refresh: string;
     access: string;

@@ -1,0 +1,6 @@
+<ion-item mode="ios" lines="none" class="select-data">
+  <ion-select justify="space-between" label="Selecciona una opción" class="custom-label">
+    <ion-select-option *ngFor="let option of options" [value]="option.value">{{ option.name }}</ion-select-option>
+  </ion-select>
+</ion-item>
+

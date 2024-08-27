@@ -9,6 +9,7 @@ ion-textarea {
     --placeholder-color: #219cdb;
 }
 
+/*
 .line {
     flex-grow: 1;
     border: .5px solid #288bd6;
@@ -16,6 +17,7 @@ ion-textarea {
     transform: translateY(20%) !important;
     border-radius: 10px;
 }
+*/
 
 .add {
     width: 100%;
@@ -28,6 +30,7 @@ ion-textarea {
     margin-bottom: 0px !important;
 }
 
+/*
 .title-section {
     display: flex;
     align-items: center;
@@ -37,6 +40,7 @@ ion-textarea {
 .title-section + p {
     margin-top: 0; 
 }
+*/
 
 .form {
     width: 100%;
@@ -78,7 +82,7 @@ app-custom-input {
 
 
 .custom-input {
-    height: 120px; // Permitir que el contenedor se ajuste automáticamente
+    //height: 120px; // Permitir que el contenedor se ajuste automáticamente
     display: flex; // Asegurar que el contenido se alinee correctamente
     align-items: center; // Centrar verticalmente el contenido
     --border-radius: 8px; // Añadir un borde redondeado

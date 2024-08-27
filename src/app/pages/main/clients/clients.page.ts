@@ -15,7 +15,6 @@ export class ClientsPage implements OnInit {
   ngOnInit() {
   }
 
-
   clients = [
     { id: 1, name: 'Obed Jimenez Mendoza', address: 'Paseo de los Gavilanes #132-A', color: '#b9cb2d' },
     { id: 2, name: 'Sebastian Bolaños', address: 'Grabadores de Aurora #112', color: '#f95252' },
@@ -27,7 +26,6 @@ export class ClientsPage implements OnInit {
 
 
   onCardClick(client: any) {
-    console.log(client);
     this.clientsService.changeClient(client);
   }
 }

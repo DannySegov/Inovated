@@ -1,7 +1,7 @@
 <ion-card mode="ios" class="card-title fixed">
   <ion-card-header>
     <div class="card-content">
-      <ng-container *ngIf="isCustomerDetailPage; else defaultTitle">
+      <ng-container *ngIf="isCustomerDetailPage || isServiceRequestPage; else defaultTitle">
         <ion-text class="title-module">
           <ng-content select="ion-icon"></ng-content>
           <ion-icon name="arrow-back-outline" (click)="navigateTo('/main/clients')"></ion-icon>
@@ -21,8 +21,3 @@
     </div>
   </ion-card-header>
 </ion-card>
-
-
-
-
-

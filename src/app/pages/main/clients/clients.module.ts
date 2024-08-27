@@ -10,6 +10,7 @@ import { ClientsPage } from './clients.page';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MenuTabPageModule } from '../menu-tab/menu-tab.module';
 import { CustomerDetailPageModule } from './customer-detail/customer-detail.module';
+import { ServiceRequestPageModule } from './service-request/service-request.module';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { CustomerDetailPageModule } from './customer-detail/customer-detail.modu
     ClientsPageRoutingModule,
     SharedModule,
     MenuTabPageModule,
-    CustomerDetailPageModule
+    CustomerDetailPageModule,
+    ServiceRequestPageModule
   ],
   declarations: [ClientsPage]
 })
