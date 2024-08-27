@@ -24,10 +24,9 @@
           </div>
         </div>
 
-
-        <div class="content-button">
+        <div class="content-button no-hover">
           <ng-container *ngFor="let button of buttons; let i = index">
-            <ion-button mode="ios" shape="round" size="large" [style.--background]="i < 3 ? client.color : (i === 3 ? 'red' : '')">
+            <ion-button mode="ios" shape="round" size="large" [style.--background]="i < 3 ? client.color : (i === 3 ? 'red' : '')" (click)="onCardClick()">
               <ion-icon slot="icon-only" class="{{ 'icon-' + button.Icon }} icon-white large-icon"></ion-icon>
             </ion-button>
           </ng-container>

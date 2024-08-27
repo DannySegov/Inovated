@@ -12,31 +12,35 @@ import { MenuTabPage } from '../pages/main/menu-tab/menu-tab.page';
 import { FormAuthComponent } from './components/form-auth/form-auth.component';
 import { ModalInfoComponent } from './components/modal-info/modal-info.component';
 import { NameClientComponent } from './components/name-client/name-client.component';
+import { InfoClientComponent } from './components/info-client/info-client.component';
+import { CustomSelectComponent } from './components/custom-select/custom-select.component';
 
 
 @NgModule({
   declarations: [
     HeaderComponent,
     CustomInputComponent,
+    CustomSelectComponent,
     FormAuthComponent,
     LogoComponent,
     CardTitleComponent,
     ListCardComponent,
     ModalInfoComponent,
     NameClientComponent,
+    InfoClientComponent,
   ],
   exports: [
     //Components
     HeaderComponent,
     CustomInputComponent,
+    CustomSelectComponent,
     FormAuthComponent,
     LogoComponent,
     CardTitleComponent,
     ListCardComponent,
     ModalInfoComponent,
     NameClientComponent,
-    ReactiveFormsModule,
-
+    InfoClientComponent,
     //Modules
     ReactiveFormsModule,
   ],

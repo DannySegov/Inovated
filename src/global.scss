@@ -177,6 +177,25 @@ ion-fab-button {
     --background: #219cdb;
 }  
 
+//Label with line
+.title-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+}
+
+.title-section + p {
+    margin-top: 0; 
+}
+
+.line {
+    flex-grow: 1;
+    border: .5px solid #288bd6;
+    background-color: #288bd6;
+    transform: translateY(20%) !important;
+    border-radius: 10px;
+}
+
 /*
 ion-footer {
     height: 60px;

@@ -1,6 +1,7 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, inject, Input, OnInit, ViewChild } from '@angular/core';
 import { ClientsService } from '../../services/clients.service';
 import { IonModal } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-modal-info',
@@ -9,25 +10,26 @@ import { IonModal } from '@ionic/angular';
 })
 export class ModalInfoComponent  implements OnInit {
 
-  constructor(private clientsService: ClientsService) { }
+  private router = inject(Router);
+  private clientsService = inject(ClientsService);
 
+  constructor() { }
   
   //@Input() client!: { name: string, color: string };
   @ViewChild(IonModal) modal!: IonModal;
   client: any
   
   buttons = [
-    { Icon: 'cotizar'},
-    { Icon: 'historial'},
-    { Icon: 'editar'},
-    { Icon: 'eliminar'},
+    { Icon: 'cotizar', Url: '/main/clients/service-request'},
+    { Icon: 'historial', Url: '/quote'},
+    { Icon: 'editar', Url: '/quote'},
+    { Icon: 'eliminar', Url: '/quote'},
   ];
 
   ngOnInit() {
     this.clientsService.currentClient.subscribe(client => {
       this.client = client;
       if (client) {
-        console.log('Received client data in ModalInfoComponent:', client);
         this.openModal();
       }
     });
@@ -43,5 +45,15 @@ export class ModalInfoComponent  implements OnInit {
     if (this.modal) {
       this.modal.dismiss();
     }
+  }
+
+  get hoverColor() {
+    return this.client.color;
+  }
+
+  onCardClick() {
+    console.log('Card clicked');
+    this.router.navigate(['/main/clients/service-request']);
+    this.closeModal();
   }
 }

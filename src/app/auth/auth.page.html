@@ -5,14 +5,14 @@
 
 <ion-content>
     <div class="d-flex-center">
-        <form [formGroup]="form" (ngSubmit)="login()" class="auth-form">
+        <form [formGroup]="loginForm" (ngSubmit)="login()" class="auth-form">
             <app-logo></app-logo>
             <p>Usuario:</p>
-            <app-form-auth class="email" autocomplete="email" icon="mail-outline" [control]="form.controls.email"
+            <app-form-auth class="email" autocomplete="email" icon="mail-outline" [control]="loginForm.controls.correo"
                 type="email" label="Correo electrónico"></app-form-auth>
 
             <p>Contraseña:</p>
-            <app-form-auth [control]="form.controls.password" type="password" label="Contraseña"
+            <app-form-auth [control]="loginForm.controls.password" type="password" label="Contraseña"
                 icon="lock-closed-outline">
             </app-form-auth>
 
@@ -23,8 +23,7 @@
                     contraseña</ion-button>
             </ion-row>
 
-
-            <ion-button class="submit" type="submit" size="smaller" size="medium" [disabled]="form.invalid">
+            <ion-button class="submit" type="submit" size="smaller" size="medium" [disabled]="loginForm.invalid">
                 Iniciar Sesión
             </ion-button>
         </form>

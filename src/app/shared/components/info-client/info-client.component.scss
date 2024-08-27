@@ -1,0 +1,47 @@
+.card-info-client {
+    border-radius: 20px;
+    transform: translateY(-30%);
+}
+
+.card-content {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    //transform: translateY(30%);
+    transform: translateX(-7px);
+    z-index: 1;
+}
+
+.icon-black:before {
+    color: #000000 !important;
+    font-size: 18px;
+}
+
+.icon-container {
+    display: flex;
+    flex-direction: column;
+    transform: translateY(20%);
+    //margin-left: 20px;
+}
+
+.content-icon {
+    //display: flex;
+    align-items: center;
+    height: 30px;
+    margin-left: 5px;
+}
+
+.info {
+    margin-left: -5px;
+    transform: translateY(20%);
+}
+
+.name-client {
+    font-size: 20px;
+}
+
+.address-client {
+    font-size: 13px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 13px;
+}

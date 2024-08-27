@@ -15,9 +15,11 @@ export class CardTitleComponent  implements OnInit {
   @Input() iconPosition: 'left' | 'right' = 'left'; // Nueva propiedad
 
   isCustomerDetailPage!: boolean;
+  isServiceRequestPage!: boolean; 
 
   ngOnInit() {
     this.isCustomerDetailPage = this.router.url.includes('main/clients/customer-detail');
+    this.isServiceRequestPage = this.router.url.includes('main/clients/service-request');
   }
 
   navigateTo(url: string) {
