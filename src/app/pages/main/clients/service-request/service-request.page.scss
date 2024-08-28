@@ -55,27 +55,31 @@ app-custom-input {
     margin-bottom: 15px;
 }
 
-
 .custom-input {
-    //height: 120px; 
+    height: auto; 
     display: flex;
     align-items: center;
     --border-radius: 8px;
+    width: 100%; 
 }
 
 ion-textarea {
     font-size: 14px !important;
-    min-height: 100px !important;
-    height: 100px !important;
-    width: 100%;
+    min-height: 200px !important; /* Cambiado de 100px a 200px */
+    height: 200px !important; /* Cambiado de 100px a 200px */
+    //width: 100%; /* Cambiado de 500px a 100% para ocupar todo el ancho */
     --placeholder-color: #78737b;
     --placeholder-opacity: 1;
+    //padding: 10px; /* Añadir padding interno para evitar que se corten los bordes */
+    margin: 0; /* Asegurarse de que no haya margen que pueda causar el corte */
+    //background-color: #f0f3f5; /* Añadir el color de fondo deseado */
+    border-radius: 8px; /* Asegurar que el borde tenga el mismo radio que el contenedor */
+    //box-sizing: border-box; /* Asegurarse de que el padding se incluya en el tamaño total */
 }
 
 ion-content {
     --padding-bottom: 0px !important;
 }
-
 
 .select-data {
     height: 40px; // Permitir que el contenedor se ajuste automáticamente
@@ -83,13 +87,6 @@ ion-content {
     align-items: center; // Centrar verticalmente el contenido
     border: 1px solid #219cdb; // Añadir un borde de 1px de color gris claro
 }
-
-
-
-
-
-
-
 
 ion-modal#example-modal {
     --width: fit-content;
@@ -105,12 +102,9 @@ ion-modal#example-modal h1 {
 
 ion-modal#example-modal ion-icon {
     margin-right: 6px;
-
     width: 48px;
     height: 48px;
-
     padding: 4px 0;
-
     color: #aaaaaa;
 }
 
@@ -132,6 +126,12 @@ ion-modal#example-modal .hour {
     height: 40px;
     border: 1px solid #219cdb;
     border-radius: 8px;
+    --background-hover: white; /* Desactivar el efecto hover */
+    --color-hover: #b1b1b1; /* Mantener el color en hover */
+    --background-activated: white; /* Desactivar el efecto active */
+    --color-activated: #b1b1b1; /* Mantener el color en active */
+    --background-focused: white; /* Desactivar el efecto focus */
+    --color-focused: #b1b1b1; /* Mantener el color en focus */
 }
 
 .save {
@@ -142,15 +142,6 @@ ion-modal#example-modal .hour {
     --border-radius: 25px;
 }
 
-/*
-span {
-    margin-right: auto;
-
-    .icon-rec_pago {
-        transform: translateX(10px);
-    }
-}
-    */
 ion-datetime {
     --wheel-highlight-background: white;
     --wheel-highlight-border-radius: 8px;
@@ -176,4 +167,4 @@ ion-datetime::part(wheel-item)::before {
     pointer-events: none;
     left: 10%;
     top: 40%;
-}
+}   
