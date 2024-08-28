@@ -13,13 +13,23 @@ import { User } from '../shared/interfaces/auth';
 export class AuthPage implements OnInit {
 
   private router = inject(Router);
+  private fb = inject(FormBuilder);
   public authService = inject(AuthService);
   public utilsService = inject(UtilsService);
-  
+
+  showNewPassword = false;
+    showConfirmPassword = false;
+
+    public loginForm: FormGroup = this.fb.group({
+      correo: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+  });
+  /*
   loginForm = new FormGroup({
     correo: new FormControl('', [Validators.required, Validators.email]), //Valida que el campo sea requerido y que sea un email
     password: new FormControl('', [Validators.required, Validators.minLength(6)]) //Valida que el campo sea requerido y que tenga al menos 6 caracteres
   });
+  */
 
   constructor() { }
 

@@ -3,7 +3,7 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<!--ion-content>
     <div class="d-flex-center">
         <form [formGroup]="loginForm" (ngSubmit)="login()" class="auth-form">
             <app-logo></app-logo>
@@ -31,4 +31,38 @@
 
     <ion-img class="logo2" src="/assets/icon/logo/inovated fc.png" alt="Inovated">
     </ion-img>
+</!--ion-content-->
+
+<ion-content>
+    <div class="d-flex-center">
+        <form [formGroup]="loginForm" (ngSubmit)="login()" class="auth-form">
+            <app-logo></app-logo>
+            <p>Usuario:</p>
+            <ion-item class="custom-input" lines="none">
+                <ion-icon class="icon" slot="start" name="mail-outline"></ion-icon>
+                <ion-input class="custom-label" type="email" autocomplete="email" formControlName="correo" placeholder="Correo electrónico"></ion-input>
+            </ion-item>
+
+            <p>Contraseña:</p>
+            <ion-item class="custom-input" lines="none">
+                <ion-icon class="icon" slot="start" name="lock-closed-outline"></ion-icon>
+                <ion-input class="custom-label" [type]="showNewPassword ? 'text' : 'password'" formControlName="password" placeholder="Contraseña"></ion-input>
+                <ion-button (click)="showNewPassword = !showNewPassword" slot="end" fill="clear" shape="round">
+                    <ion-icon slot="icon-only" [name]="showNewPassword ? 'eye-off-outline' : 'eye-outline'"></ion-icon>
+                </ion-button>
+            </ion-item>
+
+            <ion-row id="remember">
+                <ion-toggle [checked]="false" mode="ios" class="toggle"></ion-toggle>
+                <ion-text style="color: black;">Recuérdame</ion-text>
+                <ion-button fill="clear" id="forgot-password" routerLink="forgot-password">Olvidé mi contraseña</ion-button>
+            </ion-row>
+
+            <ion-button class="submit" type="submit" size="smaller" size="medium" [disabled]="loginForm.invalid">
+                Iniciar Sesión
+            </ion-button>
+        </form>
+    </div>
+
+    <ion-img class="logo2" src="/assets/icon/logo/inovated fc.png" alt="Inovated"></ion-img>
 </ion-content>
