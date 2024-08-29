@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { computed, inject, Injectable, signal } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { User, AuthResponse, AuthStatus, loginResponse } from '../shared/interfaces/auth';
-import { Observable, tap, map } from 'rxjs';
+import { User, AuthResponse, AuthStatus } from '../shared/interfaces/auth';
+import { Observable, tap, map, catchError, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -20,14 +20,20 @@ export class AuthService {
 
   constructor() { }
 
-  login(usuario: User): Observable<Boolean> {
-    return this.http.post<AuthResponse>(`${ this.baseUrl }/auth/get`, usuario)
+  login(user: User): Observable<Boolean> {
+    return this.http
+      .post<AuthResponse>(`${this.baseUrl}/auth/get`, user)
       .pipe(
-        tap(response => {
-        console.log({ response });  
+        map((resp) => {
+          console.log({ resp }, 'INICIO SESIÓN');
+          return true;
         }),
-        map(response => response.success)
+        catchError((error) => {
+          console.error('Error al iniciar sesión:', error);
+          return of(false);
+        })
       );
   }
+
 
 }

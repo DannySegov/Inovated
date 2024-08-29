@@ -18,18 +18,12 @@ export class AuthPage implements OnInit {
   public utilsService = inject(UtilsService);
 
   showNewPassword = false;
-    showConfirmPassword = false;
+  showConfirmPassword = false;
 
     public loginForm: FormGroup = this.fb.group({
       correo: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
   });
-  /*
-  loginForm = new FormGroup({
-    correo: new FormControl('', [Validators.required, Validators.email]), //Valida que el campo sea requerido y que sea un email
-    password: new FormControl('', [Validators.required, Validators.minLength(6)]) //Valida que el campo sea requerido y que tenga al menos 6 caracteres
-  });
-  */
 
   constructor() { }
 
@@ -37,19 +31,27 @@ export class AuthPage implements OnInit {
   }
 
   login() {
+    this.authService.login(this.loginForm.value).subscribe({
+      next: () => this.router.navigateByUrl('/main/home')
+    });
+  }
+
+  /*
+  login() {
     if (this.loginForm.valid) {
       const formValue = this.loginForm.value;
       const user: User = {
-        correo: formValue.correo || '', // Aseguramos que no sea null ni undefined
-        password: formValue.password || '' // Aseguramos que no sea null ni undefined
+        correo: formValue.correo || '', 
+        password: formValue.password || '' 
       };
 
       this.authService.login(user).subscribe({
         next: () => this.router.navigateByUrl('/main/home'),
-        error: (err) => console.error('Login failed', err) // Manejo de errores
+        error: (err) => console.error('Login failed', err) 
       });
     } else {
       console.error('Formulario no válido');
     }
   }
+    */
 }
