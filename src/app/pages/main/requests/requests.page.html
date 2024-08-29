@@ -1,8 +1,30 @@
 <div class="custom-card-border-radius">
-    <app-header [showMenu]="true" [icon]="'icon-solicitud'" [cardText]="'Solicitudes Pendientes'"></app-header>
+    <app-header [showMenu]="true" [icon]="'icon-solicitud'" [cardText]="'Solicitudes pendientes'"></app-header>
 </div>
+
 <ion-content [fullscreen]="true">
-    
+    @for(client of clients; track client) {
+    <ion-card mode="ios" class="client">
+        <ion-card-content id="open-modal" (click)="onCardClick(client)">
+            <ion-icon name="ellipsis-vertical" class="card-options-icon"></ion-icon>
+            <div class="card-content">
+                <app-name-client [client]="client"></app-name-client>
+                <div class="info">
+                    <ion-card-title class="name-client">{{ client.name }}</ion-card-title>
+                    <ion-label class="profile">{{ client.address }}</ion-label>
+                </div>
+            </div>
+        </ion-card-content>
+    </ion-card>
+    }
+
+    <ion-fab mode="md" horizontal="end" vertical="bottom" slot="fixed">
+        <ion-fab-button routerLink="/main/clients/customer-detail">
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+
+    <app-modal-info></app-modal-info>
 </ion-content>
 
 <app-menu-tab></app-menu-tab>
