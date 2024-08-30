@@ -187,6 +187,42 @@ ion-fab-button {
     border-radius: 10px;
 }
 
+//Page clients y requests
+.card-content {
+    display: flex;
+    align-items: center;
+    height: 40px; 
+    transform: translateY(-15%);
+    z-index: 1;
+}
+
+.name-client {
+    font-size: 17px; 
+}
+
+.info {
+    transform: translateY(20%);
+}
+
+.client {
+    border-radius: 15px;
+    transform: translateY(-34%);
+    margin-top: 1px;
+    margin-bottom: 12px;
+}
+
+.card-options-icon {
+    position: absolute;
+    top: 5px; 
+    right: -3px;
+    padding: 8px;
+}
+
+.profile {
+    color: #878787;
+    font-size: 15px;
+}
+
 @media (min-width: 369px) {
     .auth-form {
         width: 500px;
