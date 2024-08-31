@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, inject, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { ClientsService } from '../../services/clients.service';
 import { IonModal } from '@ionic/angular';
 import { Router } from '@angular/router';
@@ -8,22 +8,20 @@ import { Router } from '@angular/router';
   templateUrl: './modal-info.component.html',
   styleUrls: ['./modal-info.component.scss'],
 })
-export class ModalInfoComponent  implements OnInit {
+export class ModalInfoComponent implements OnInit {
 
   private router = inject(Router);
   private clientsService = inject(ClientsService);
 
-  constructor() { }
-  
-  //@Input() client!: { name: string, color: string };
   @ViewChild(IonModal) modal!: IonModal;
-  client: any
-  
+  @Output() close = new EventEmitter<void>();
+  client: any;
+
   buttons = [
-    { Icon: 'cotizar', Url: '/main/clients/service-request'},
-    { Icon: 'historial', Url: '/quote'},
-    { Icon: 'editar', Url: '/quote'},
-    { Icon: 'eliminar', Url: '/quote'},
+    { Icon: 'cotizar', Url: '/main/clients/service-request' },
+    { Icon: 'historial', Url: '/quote' },
+    { Icon: 'editar', Url: '/quote' },
+    { Icon: 'eliminar', Url: '/quote' },
   ];
 
   ngOnInit() {
@@ -43,7 +41,9 @@ export class ModalInfoComponent  implements OnInit {
 
   closeModal() {
     if (this.modal) {
-      this.modal.dismiss();
+      this.modal.dismiss().then(() => {
+        this.close.emit();
+      });
     }
   }
 
