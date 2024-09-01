@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { computed, inject, Injectable, signal } from '@angular/core';
+import { ToastController } from '@ionic/angular';
+import { Observable, map, catchError, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { User, AuthResponse, AuthStatus } from '../shared/interfaces/auth';
-import { Observable, tap, map, catchError, of } from 'rxjs';
+import { User, AuthResponse, RefreshResponse } from '../shared/interfaces/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -11,29 +12,61 @@ export class AuthService {
 
   private readonly baseUrl: string = environment.baseUrl; // Obtenemos la URL del archivo environment.ts
   private http = inject(HttpClient); // Inyectamos el servicio HttpClient
-
-  private _currentUser = signal<User | null>(null); // Creamos una señal para almacenar el usuario actual
-  private _authStatus = signal<AuthStatus>(AuthStatus.checking);
-
-  public currentUser = computed(() => this._currentUser());
-  public authStatus = computed(() => this._authStatus());
+  private toastController = inject(ToastController); 
 
   constructor() { }
 
-  login(user: User): Observable<Boolean> { //Obtener Token
-    return this.http
-      .post<AuthResponse>(`${this.baseUrl}/auth/get`, user)
-      .pipe(
-        map((resp) => {
-          console.log({ resp }, 'INICIO SESIÓN');
-          return true;
-        }),
-        catchError((error) => {
-          console.error('Error al iniciar sesión:', error);
-          return of(false);
-        })
-      );
+  private async presentToast(message: string, position: 'top' | 'middle' | 'bottom', color: 'primary' | 'secondary' | 'tertiary' | 'success' | 'warning' | 'danger' | 'light' | 'medium' | 'dark') {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 2000,
+      position: position,
+      color: color,
+      mode: 'ios'
+    });
+    await toast.present();
   }
 
+  login(user: User): Observable<Boolean> { // Obtener Token
+    return this.http.post<AuthResponse>(`${this.baseUrl}/auth/get`, user).pipe(
+      map((resp) => {
+        console.log(resp);
+        this.setToken(resp.access);
+        this.setRefreshToken(resp.refresh);
 
+        this.presentToast('Inicio de sesión exitoso', 'top', 'success');
+        return true;
+      }),
+      catchError((error) => {
+        this.presentToast('Error al iniciar sesión', 'top', 'danger');
+        return of(false);
+      })
+    );
+  }
+
+  refreshToken() { // Actualizar Token
+    const refreshToken = this.getRefreshToken();
+    return this.http.post<RefreshResponse>(`${this.baseUrl}/auth/actualizar`, refreshToken);
+  }
+
+  validateToken(): Observable<Boolean> { //Verificar Token
+    const token = this.getToken();
+    return this.http.post<boolean>(`${this.baseUrl}/auth/verificar`, token);
+  }
+
+  setToken(token: string) {
+    localStorage.setItem('access', token);
+  }
+
+  setRefreshToken(refresh: string) {
+    localStorage.setItem('refresh', refresh);
+  }
+
+  getToken() {
+    return localStorage.getItem('access');
+  }
+
+  getRefreshToken() {
+    return localStorage.getItem('refresh');
+  }
 }

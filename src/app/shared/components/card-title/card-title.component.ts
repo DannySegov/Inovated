@@ -18,7 +18,7 @@ export class CardTitleComponent  implements OnInit {
   isServiceRequestPage!: boolean; 
 
   ngOnInit() {
-    this.isCustomerDetailPage = this.router.url.includes('main/clients/customer-detail');
+    this.isCustomerDetailPage = this.router.url.includes('main/clients/new-client');
     this.isServiceRequestPage = this.router.url.includes('main/clients/service-request');
   }
 

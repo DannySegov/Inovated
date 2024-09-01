@@ -3,11 +3,11 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-customer-detail',
-  templateUrl: './customer-detail.page.html',
-  styleUrls: ['./customer-detail.page.scss'],
+  selector: 'app-new-client',
+  templateUrl: './new-client.page.html',
+  styleUrls: ['./new-client.page.scss'],
 })
-export class CustomerDetailPage implements OnInit {
+export class NewClientPage implements OnInit {
 
   constructor(private router: Router) { }
 

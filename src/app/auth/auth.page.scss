@@ -8,9 +8,17 @@ ion-content {
     --background: #ffff !important;
 }
 
+p {
+    font-size: small;
+}
+
 .toggle {
     zoom: 0.8;
     margin-right: 5px;
+}
+
+ion-input {
+    --placeholder-color: #219cdb;
 }
 
 #forgot-password {
@@ -27,4 +35,11 @@ ion-content {
     --background: #219cdb;
     color: white;
     height: 40px;
+}
+
+//Toggle
+ion-toggle::part(track),
+ion-toggle.toggle-checked::part(track) {
+    background: #278bd6;
+    overflow: visible;
 }

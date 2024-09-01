@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { CustomerDetailPageRoutingModule } from './customer-detail-routing.module';
+import { NewClientPageRoutingModule } from './new-client-routing.module';
 
-import { CustomerDetailPage } from './customer-detail.page';
+import { NewClientPage } from './new-client.page';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MenuTabPageModule } from '../../menu-tab/menu-tab.module';
 
@@ -15,10 +15,10 @@ import { MenuTabPageModule } from '../../menu-tab/menu-tab.module';
     CommonModule,
     FormsModule,
     IonicModule,
-    CustomerDetailPageRoutingModule,
+    NewClientPageRoutingModule,
     SharedModule,
     MenuTabPageModule
   ],
-  declarations: [CustomerDetailPage]
+  declarations: [NewClientPage]
 })
-export class CustomerDetailPageModule {}
+export class NewClientPageModule {}

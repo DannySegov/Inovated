@@ -9,7 +9,7 @@ import { ClientsPageRoutingModule } from './clients-routing.module';
 import { ClientsPage } from './clients.page';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MenuTabPageModule } from '../menu-tab/menu-tab.module';
-import { CustomerDetailPageModule } from './customer-detail/customer-detail.module';
+import { NewClientPageModule } from './new-client/new-client.module';
 import { ServiceRequestPageModule } from './service-request/service-request.module';
 
 @NgModule({
@@ -20,7 +20,7 @@ import { ServiceRequestPageModule } from './service-request/service-request.modu
     ClientsPageRoutingModule,
     SharedModule,
     MenuTabPageModule,
-    CustomerDetailPageModule,
+    NewClientPageModule,
     ServiceRequestPageModule
   ],
   declarations: [ClientsPage]
