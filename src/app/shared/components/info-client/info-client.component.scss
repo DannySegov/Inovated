@@ -1,8 +1,10 @@
 .card-info-client {
     border-radius: 20px;
-    transform: translateY(-30%);
-    height: 180px; /* Ajusta esta altura según tus necesidades */
-    background-color: aqua;
+    transform: translateY(-7%);
+    transform: translateX(-5%);
+    height: 180px; 
+    width: 100%;
+    background-color: #f4f4f4;
 }
 
 .card-content {
@@ -10,7 +12,7 @@
     align-items: center;
     height: 40px;
     //transform: translateY(30%);
-    transform: translateX(-7px);
+    //transform: translateX(-7px);
     z-index: 1;
 }
 

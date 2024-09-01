@@ -11,7 +11,6 @@ import { Router } from '@angular/router';
 export class ModalInfoComponent implements OnInit {
 
   private router = inject(Router);
-  private clientsService = inject(ClientsService);
 
   @ViewChild(IonModal) modal!: IonModal;
   @Output() close = new EventEmitter<void>();
@@ -24,21 +23,23 @@ export class ModalInfoComponent implements OnInit {
     { Icon: 'eliminar', Url: '/quote' },
   ];
 
+  buttonsRequest = [
+    { icon: 'asignar', label: "Asignar", url: '/main/clients/service-request' },
+    { icon: 'editar', label: "Editar", url: '/quote' },
+    { icon: 'eliminar', label: "Eliminar", url: '/quote' },
+  ];
+
   ngOnInit() {
-    this.clientsService.currentClient.subscribe(client => {
-      this.client = client;
-      if (client) {
-        this.openModal();
-      }
-    });
+
   }
 
+  /*
   openModal() {
     if (this.modal) {
       this.modal.present();
     }
   }
-
+    */
   closeModal() {
     if (this.modal) {
       this.modal.dismiss().then(() => {
@@ -47,6 +48,7 @@ export class ModalInfoComponent implements OnInit {
     }
   }
 
+
   get hoverColor() {
     return this.client.color;
   }
@@ -54,6 +56,22 @@ export class ModalInfoComponent implements OnInit {
   onCardClick() {
     console.log('Card clicked');
     this.router.navigate(['/main/clients/service-request']);
-    this.closeModal();
+   this.closeModal();
+  }
+
+
+
+  @ViewChild('modalRequest', { static: true }) modalRequest!: IonModal;
+  @ViewChild('modalClient', { static: true }) modalClient!  : IonModal;
+
+  // Método para abrir el modal de solicitudes
+  openRequestModal(client: any) {
+    this.client = client;
+    this.modalRequest.present();
+  }
+
+  openClientModal(client: any) {
+    this.client = client;
+    this.modalClient.present();
   }
 }

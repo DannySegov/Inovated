@@ -1,6 +1,5 @@
 .modal {
   --height: 37%;
-  //--width: 100%;
   --border-radius: 35px;
 }
 
@@ -61,6 +60,7 @@ ion-label {
   //margin-left: 5px;
 }
 
+
 .content-button {
   position: absolute;
   bottom: -60%;
@@ -80,6 +80,41 @@ ion-label {
   color: white !important;
 }
 
+// MODAL REQUEST
+.modal-request {
+  --height: 90%;
+  --border-radius: 35px;
+}
+
+.content-button-request  {
+  position: relative;
+  bottom: -80%;
+  right: -40%;
+  display: flex;
+  flex-direction: row;
+  gap: 10px; 
+}
+
+.label-modal ion-label {
+  text-align: left;
+  margin-bottom: -7px;
+  font-size: small;
+  //transform: translateY(-50%);
+  font-weight: bold;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px; /* Ajusta el margen según sea necesario */
+}
+
+.button-container ion-label {
+  margin-top: 5px; /* Ajusta el margen según sea necesario */
+  font-weight: bold;
+  font-size: 10px;
+}
 /*
 .no-hover ion-button {
   pointer-events: none;
