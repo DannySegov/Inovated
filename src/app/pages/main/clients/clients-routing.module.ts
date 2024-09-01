@@ -9,13 +9,13 @@ const routes: Routes = [
     component: ClientsPage
   },
   {
-    path: 'customer-detail',
-    loadChildren: () => import('./customer-detail/customer-detail.module').then( m => m.CustomerDetailPageModule)
+    path: 'new-client',
+    loadChildren: () => import('./new-client/new-client.module').then( m => m.NewClientPageModule)
   },
   {
     path: 'service-request',
     loadChildren: () => import('./service-request/service-request.module').then( m => m.ServiceRequestPageModule)
-  }
+  },
 ];
 
 @NgModule({
