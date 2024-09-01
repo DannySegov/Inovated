@@ -5,7 +5,7 @@
 <ion-content [fullscreen]="true">
     @for(client of clients; track client) {
     <ion-card mode="ios" class="client">
-        <ion-card-content id="open-modal" (click)="onCardClick(client)">
+        <ion-card-content id="modal-request" (click)="onCardClick(client)">
             <ion-icon name="ellipsis-vertical" class="card-options-icon"></ion-icon>
             <div class="card-content">
                 <app-name-client [client]="client"></app-name-client>

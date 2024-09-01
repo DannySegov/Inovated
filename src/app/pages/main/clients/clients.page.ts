@@ -1,4 +1,5 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, ViewChild } from '@angular/core';
+import { ModalInfoComponent } from 'src/app/shared/components/modal-info/modal-info.component';
 import { ClientsService } from 'src/app/shared/services/clients.service';
 
 @Component({
@@ -8,6 +9,7 @@ import { ClientsService } from 'src/app/shared/services/clients.service';
 })
 export class ClientsPage implements OnInit {
 
+  @ViewChild(ModalInfoComponent) modalInfoComponent!: ModalInfoComponent;
   private clientsService = inject(ClientsService);
 
   constructor() { }
@@ -24,8 +26,14 @@ export class ClientsPage implements OnInit {
     { id: 6, name: 'Diana Victoria Guerrero', address: 'Xichu #106 Moderna, León', color: '#0d3d57' },
   ];
 
+/*
+  onCardClick(client: any) {
+    this.clientsService.changeClient(client);
+  }
+    */
 
   onCardClick(client: any) {
+    this.modalInfoComponent.openClientModal(client);
     this.clientsService.changeClient(client);
   }
 }

@@ -20,7 +20,7 @@ export class AuthService {
 
   constructor() { }
 
-  login(user: User): Observable<Boolean> {
+  login(user: User): Observable<Boolean> { //Obtener Token
     return this.http
       .post<AuthResponse>(`${this.baseUrl}/auth/get`, user)
       .pipe(

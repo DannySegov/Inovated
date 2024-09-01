@@ -1,6 +1,5 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { ClientsService } from 'src/app/shared/services/clients.service';
-
+import { Component, inject, OnInit, ViewChild } from '@angular/core';
+import { ModalInfoComponent } from 'src/app/shared/components/modal-info/modal-info.component';
 @Component({
   selector: 'app-requests',
   templateUrl: './requests.page.html',
@@ -8,7 +7,7 @@ import { ClientsService } from 'src/app/shared/services/clients.service';
 })
 export class RequestsPage implements OnInit {
   
-  private clientsService = inject(ClientsService);
+  @ViewChild(ModalInfoComponent) modalInfoComponent!: ModalInfoComponent;
 
   constructor() { }
 
@@ -25,6 +24,6 @@ export class RequestsPage implements OnInit {
   ];
 
   onCardClick(client: any) {
-    this.clientsService.changeClient(client);
+    this.modalInfoComponent.openRequestModal(client);
   }
 }

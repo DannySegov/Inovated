@@ -1,5 +1,5 @@
 <ion-content class="ion-padding">
-  <ion-modal #modal class="glass-content modal" trigger="open-modal" [initialBreakpoint]="1" [breakpoints]="[0, 1]">
+  <ion-modal #modalClient class="glass-content modal" [initialBreakpoint]="1" [breakpoints]="[0, 1]">
     <ng-template>
       <ion-card-content id="open-modal">
         <ion-icon name="ellipsis-vertical" class="card-options-icon"></ion-icon>
@@ -41,4 +41,41 @@
       </div>
     </ng-template>
   </ion-modal>
+
+    <!-- Modal para solicitudes -->
+    <ion-modal #modalRequest class="glass-content modal-request" [initialBreakpoint]="1" [breakpoints]="[0, 1]">
+      <ng-template>
+        <ion-card-content id="modal-request">
+          <app-info-client></app-info-client>
+            <h2>H3: The quick brown fox jumps over the lazy dog</h2>
+            <div class="label-modal" style="display: flex; flex-direction: column;">
+              <ion-label>Clave</ion-label>
+              <p>INS-12PR</p>
+              <ion-label>Categoria</ion-label>
+              <p>Audio y Video</p>
+              <ion-label>Fecha</ion-label>
+              <p>17 / Junio / 2024</p>
+              <ion-label>Hora</ion-label>
+              <p>03:30 p.m.</p>
+              <ion-label>Descripción</ion-label>
+              <p>Lorem ipsum dolor sit amet consectetur adipiscing elit cum quis, 
+                nisi nullam molestie dictumst dis euismod facilisi magna, fames ac 
+                sed feugiat imperdiet iaculis dapibus sapien. Risus ullamcorper id .
+              </p>
+            </div>
+
+          <div class="content-button-request no-hover">
+            <ng-container *ngFor="let button of buttonsRequest; let i = index">
+              <div class="button-container">
+                <ion-button mode="ios" shape="round" size="large"
+                  [style.--background]="i < 2 ? client.color : (i === 2 ? 'red' : '')" (click)="onCardClick()">
+                  <ion-icon slot="icon-only" class="{{ 'icon-' + button.icon }} icon-white large-icon"></ion-icon>
+                </ion-button>
+                <ion-label>{{ button.label }}</ion-label>
+              </div>
+            </ng-container>
+          </div>
+        </ion-card-content>
+      </ng-template>
+    </ion-modal>
 </ion-content>
