@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { computed, inject, Injectable, signal } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { Observable, map, catchError, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -12,7 +12,7 @@ export class AuthService {
 
   private readonly baseUrl: string = environment.baseUrl; // Obtenemos la URL del archivo environment.ts
   private http = inject(HttpClient); // Inyectamos el servicio HttpClient
-  private toastController = inject(ToastController); 
+  private toastController = inject(ToastController);
 
   constructor() { }
 
@@ -52,6 +52,13 @@ export class AuthService {
   validateToken(): Observable<Boolean> { //Verificar Token
     const token = this.getToken();
     return this.http.post<boolean>(`${this.baseUrl}/auth/verificar`, token);
+  }
+
+  logout(): void {
+    localStorage.removeItem('access');
+    localStorage.removeItem('refresh');
+    localStorage.removeItem('url');
+    this.presentToast('Cierre de sesión exitoso', 'top', 'success');
   }
 
   setToken(token: string) {
