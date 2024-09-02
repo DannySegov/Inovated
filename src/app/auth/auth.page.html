@@ -23,8 +23,10 @@
             </ion-item>
 
             <ion-row id="remember">
-                <ion-toggle [checked]="false" mode="ios" class="toggle"></ion-toggle>
-                <p>Recuérdame</p>
+                <div style="display: flex; align-items: center;">
+                    <ion-toggle [checked]="false" mode="ios" class="toggle"></ion-toggle>
+                    <p>Recuérdame</p>
+                </div>
                 <ion-button fill="clear" id="forgot-password" routerLink="forgot-password">Olvidé mi contraseña</ion-button>
             </ion-row>
 

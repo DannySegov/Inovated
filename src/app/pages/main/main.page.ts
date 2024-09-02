@@ -1,5 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-main',
@@ -7,6 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./main.page.scss'],
 })
 export class MainPage implements OnInit {
+  private authService = inject(AuthService);  
   currentPath: any;
 
   constructor() { }
@@ -30,4 +32,8 @@ export class MainPage implements OnInit {
   ngOnInit() {
   }
 
+  logout() {
+    this.authService.logout();
+    this.router.navigateByUrl('/auth');
+  }
 }
