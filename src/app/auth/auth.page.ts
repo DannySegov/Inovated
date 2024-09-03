@@ -30,11 +30,32 @@ export class AuthPage implements OnInit {
   }
 
   login() {
+    console.log('Iniciando sesión...');
     this.authService.login(this.loginForm.value).subscribe({
       next: (isAuthenticated) => {
         if (isAuthenticated) {
-          this.router.navigateByUrl('/main/home');
+          console.log('Autenticación exitosa, verificando token...');
+          this.authService.checkAndRefreshToken().subscribe({
+            next: (isValid) => {
+              if (isValid) {
+                console.log('Token válido, navegando a la página principal...');
+                this.router.navigateByUrl('/main/home');
+              } else {
+                console.log('Ambos tokens han expirado, cerrando sesión...');
+                this.authService.logout();
+              }
+            },
+            error: (error) => {
+              console.log('Error al validar/refrescar el token, cerrando sesión...', error);
+              this.authService.logout();
+            }
+          });
+        } else {
+          console.log('Error al iniciar sesión');
         }
+      },
+      error: (err) => {
+        console.error('Error al iniciar sesión', err);
       }
     });
   }

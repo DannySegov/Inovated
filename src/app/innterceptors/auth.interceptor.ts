@@ -1,7 +1,7 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-import { catchError, switchMap, throwError } from 'rxjs';
+import { catchError, switchMap, throwError, of } from 'rxjs';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
 
@@ -16,27 +16,31 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
 
   return next(authReq).pipe(
     catchError((err) => {
+      console.log('Error en la petición, intentando refrescar el token...', err);
       return authService.refreshToken().pipe(
         switchMap((res) => {
-          //Guardar el nuevo token
-          //this.authService.setToken(res.access);  
-          localStorage.setItem('token', res.access); // Guardar el nuevo token
+          if (res && res.access) {
+            console.log('Token de acceso actualizado exitosamente.');
+            authService.setToken(res.access); // Guardar el nuevo token
 
-          const newReq = req.clone({ // Clonar la petición
-            setHeaders: {
-              Authorization: `Bearer ${res.access}`
-            }
-          });
-          return next(newReq); // Continuar con la petición
+            const newReq = req.clone({ // Clonar la petición
+              setHeaders: {
+                Authorization: `Bearer ${res.access}`
+              }
+            });
+            return next(newReq); // Continuar con la petición
+          } else {
+            console.log('No se pudo actualizar el token de acceso, cerrando sesión...');
+            authService.logout();
+            return throwError(() => new Error('No se pudo actualizar el token de acceso'));
+          }
         }),
         catchError((refreshErr) => {
-          const finalError = new Error(refreshErr);
-
-          localStorage.removeItem('token'); // Eliminar el token
-          localStorage.removeItem('refresh'); // Eliminar el refresh token
-          return throwError(() => finalError);
+          console.log('Error al refrescar el token, cerrando sesión...', refreshErr);
+          authService.logout();
+          return throwError(() => new Error(refreshErr));
         })
-      )
+      );
     })
-  ); // Continuar con la petición
+  );
 };
