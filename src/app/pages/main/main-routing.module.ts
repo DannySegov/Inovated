@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { MainPage } from './main.page';
+import { isAuthenticatedGuard } from 'src/app/auth/guards/isAuthenticated.guard';
 
 const routes: Routes = [
   {
@@ -10,6 +11,7 @@ const routes: Routes = [
     children: [
       {
         path: 'home',
+        canActivate: [ isAuthenticatedGuard ],
         loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
       },
       {
