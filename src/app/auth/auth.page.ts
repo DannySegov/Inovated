@@ -20,8 +20,8 @@ export class AuthPage implements OnInit {
   showConfirmPassword = false;
 
   public loginForm: FormGroup = this.fb.group({
-    correo: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, Validators.minLength(6)]],
+    correo: ['diana@inovated.com', [Validators.required, Validators.email]],
+    password: ['diana2806', [Validators.required, Validators.minLength(6)]],
   });
 
   constructor() { }
@@ -29,6 +29,7 @@ export class AuthPage implements OnInit {
   ngOnInit() {
   }
 
+  /*
   login() {
     console.log('Iniciando sesión...');
     this.authService.login(this.loginForm.value).subscribe({
@@ -59,4 +60,12 @@ export class AuthPage implements OnInit {
       }
     });
   }
-}
+    */
+  login() {
+      this.authService.login(this.loginForm.value)
+      .subscribe({
+        next: () => this.router.navigate(['/main/home']), // Navegar a la página principal
+        error: (error) => console.error('Error al iniciar sesión', error)
+      });
+    }
+  }

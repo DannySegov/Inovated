@@ -1,11 +1,11 @@
-import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { computed, inject, Injectable, signal } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
-import { Observable, of } from 'rxjs';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { Observable, of, throwError } from 'rxjs';
+import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { User, AuthResponse, RefreshResponse } from '../shared/interfaces/auth';
+import { User, AuthResponse, RefreshResponse, AuthStatus } from '../shared/interfaces/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -17,9 +17,15 @@ export class AuthService {
   private toastController = inject(ToastController);
   private router = inject(Router); // Inyectamos el servicio Router
 
+  private _currentUser = signal<User | null>(null); // Creamos una señal para almacenar el usuario actual
+  private _authStatus = signal<AuthStatus>(AuthStatus.checking);
+
+  public currentUser = computed(() => this._currentUser());
+  public authStatus = computed(() => this._authStatus());
+
   constructor() { }
 
-  private async presentToast(message: string, position: 'top' | 'middle' | 'bottom', color: 'primary' | 'secondary' | 'tertiary' | 'success' | 'warning' | 'danger' | 'light' | 'medium' | 'dark') {
+  public async presentToast(message: string, position: 'top' | 'middle' | 'bottom', color: 'primary' | 'secondary' | 'tertiary' | 'success' | 'warning' | 'danger' | 'light' | 'medium' | 'dark') {
     const toast = await this.toastController.create({
       message: message,
       duration: 2000,
@@ -30,6 +36,25 @@ export class AuthService {
     await toast.present();
   }
 
+  private setAuthentication(user: User, access: string, refresh: string) {
+    this._currentUser.set(user);
+    this._authStatus.set(AuthStatus.authenticated);
+    this.setToken(access);
+    this.setRefreshToken(refresh);
+    return true;
+  }
+
+  login(user: User): Observable<boolean> { // Obtener Token
+    return this.http.post<AuthResponse>(`${this.baseUrl}/auth/get`, user).pipe(
+      map(({ access, refresh }) => {
+        this.setAuthentication(user, access, refresh);
+        this.presentToast('Inicio de sesión exitoso', 'top', 'success');
+        return true;
+      }),
+      catchError(err => throwError(() => err.error.message))
+    );
+  }
+  /*
   login(user: User): Observable<Boolean> { // Obtener Token
     return this.http.post<AuthResponse>(`${this.baseUrl}/auth/get`, user).pipe(
       map((resp) => {
@@ -47,6 +72,7 @@ export class AuthService {
       })
     );
   }
+    */
 
   refreshToken(): Observable<RefreshResponse> { // Actualizar Token
     const refreshToken = this.getRefreshToken();
@@ -56,9 +82,26 @@ export class AuthService {
 
   validateToken(): Observable<Boolean> { // Verificar Token
     const token = this.getToken();
+    
+    if ( !token) return of(false);
+    const headers =  new HttpHeaders()
+    .set('Authorization', `Bearer ${token}`);
+    return this.http.post<any>(`${this.baseUrl}/auth/verificar`, { headers })
+    .pipe(
+      map( ({ user, access, refresh}) => this.setAuthentication(user, access, refresh)),
+      catchError(() => {
+        this._authStatus.set(AuthStatus.notAuthenticated); 
+        return of(false);
+      })
+    );
+  }
+  /*
+  validateToken(): Observable<Boolean> { // Verificar Token
+    const token = this.getToken();
     console.log('Validando token de acceso:', token);
     return this.http.post<boolean>(`${this.baseUrl}/auth/verificar`, { token });
   }
+    */
 
   logout(): void {
     console.log('Cerrando sesión...');
