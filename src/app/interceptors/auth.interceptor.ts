@@ -1,3 +1,4 @@
+/*
 import { HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { AuthService } from '../services/auth.service';
@@ -13,7 +14,6 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
       Authorization: token ? `Bearer ${token}` : ''
     }
   });
-
   return next(authReq).pipe(
     catchError((err) => {
       console.log('Error en la petición, intentando refrescar el token...', err);
@@ -43,4 +43,4 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
       );
     })
   );
-};
+};*/

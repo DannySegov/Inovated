@@ -23,7 +23,9 @@ export class AuthService {
   public currentUser = computed(() => this._currentUser());
   public authStatus = computed(() => this._authStatus());
 
-  constructor() { }
+  constructor() { 
+    this.validateToken().subscribe();
+  }
 
   public async presentToast(message: string, position: 'top' | 'middle' | 'bottom', color: 'primary' | 'secondary' | 'tertiary' | 'success' | 'warning' | 'danger' | 'light' | 'medium' | 'dark') {
     const toast = await this.toastController.create({
