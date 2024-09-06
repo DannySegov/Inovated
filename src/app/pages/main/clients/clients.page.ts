@@ -1,6 +1,7 @@
 import { Component, inject, OnInit, ViewChild } from '@angular/core';
+import { ClientsService } from 'src/app/services/clients.service';
 import { ModalInfoComponent } from 'src/app/shared/components/modal-info/modal-info.component';
-import { ClientsService } from 'src/app/shared/services/clients.service';
+import { ClientResponse } from 'src/app/shared/interfaces/clients';
 
 @Component({
   selector: 'app-clients',
@@ -15,6 +16,7 @@ export class ClientsPage implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.getClients();
   }
 
   clients = [
@@ -32,8 +34,17 @@ export class ClientsPage implements OnInit {
   }
     */
 
+
+  getClients() {
+    this.clientsService.getClients(10, 1).subscribe((resp: ClientResponse[]) => {
+      console.log('Clientes');
+      console.log(resp);
+    });
+  } 
+
   onCardClick(client: any) {
     this.modalInfoComponent.openClientModal(client);
     this.clientsService.changeClient(client);
   }
+
 }
