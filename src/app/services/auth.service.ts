@@ -82,16 +82,19 @@ export class AuthService {
     return this.http.post<RefreshResponse>(`${this.baseUrl}/auth/actualizar`, { refreshToken });
   }
 
-  validateToken(): Observable<Boolean> { // Verificar Token
+  validateToken(): Observable<boolean> {
     const token = this.getToken();
     
-    if ( !token) return of(false);
-    const headers =  new HttpHeaders()
-    .set('Authorization', `Bearer ${token}`);
-    return this.http.post<any>(`${this.baseUrl}/auth/verificar`, { headers })
-    .pipe(
-      map( ({ user, access, refresh}) => this.setAuthentication(user, access, refresh)),
-      catchError(() => {
+    if (!token) {
+      this._authStatus.set(AuthStatus.notAuthenticated);
+      return of(false);
+    }
+  
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post<any>(`${this.baseUrl}/auth/verificar`, {}, { headers }).pipe(
+      map(({ user, access, refresh }) => this.setAuthentication(user, access, refresh)),
+      catchError((error) => {
+        console.log('Error al verificar el token:', error);
         this._authStatus.set(AuthStatus.notAuthenticated); 
         return of(false);
       })

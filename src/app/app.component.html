@@ -1,14 +1,14 @@
 
-<!--ion-app>
-  <ion-router-outlet></ion-router-outlet>
-</!--ion-app-->
-
-
-
 <ion-app>
-  <h1 *ngIf="!finishedAuthCheck()">
+  <ion-router-outlet></ion-router-outlet>
+</ion-app>
+
+
+
+<!--ion-app>
+  <h1 >
     Loading...
   </h1>
-  <ion-router-outlet *ngIf="finishedAuthCheck()"></ion-router-outlet>
-</ion-app>
+  <ion-router-outlet></ion-router-outlet>
+</!--ion-app-->
 
