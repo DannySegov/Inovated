@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { ClientsService } from '../../services/clients.service';
+import { ClientsService } from '../../../services/clients.service';
 
 @Component({
   selector: 'app-info-client',

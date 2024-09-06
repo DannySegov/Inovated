@@ -1,5 +1,5 @@
 import { Component, EventEmitter, inject, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { ClientsService } from '../../services/clients.service';
+import { ClientsService } from '../../../services/clients.service';
 import { IonModal } from '@ionic/angular';
 import { Router } from '@angular/router';
 
