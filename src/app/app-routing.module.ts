@@ -11,7 +11,6 @@ const routes: Routes = [
   },
   {
     path: 'auth',
-    //canActivate: [ isNotAuthenticatedGuard ],
     loadChildren: () => import('./auth/auth.module').then( m => m.AuthPageModule)
   },
   {
@@ -20,7 +19,6 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    canActivate: [ isAuthenticatedGuard ],
     loadChildren: () => import('./pages/main/home/home.module').then( m => m.HomePageModule)
   },
   {
