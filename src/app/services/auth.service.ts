@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { computed, inject, Injectable, signal } from '@angular/core';
+import { computed, inject, Injectable, Injector, signal } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { Observable, of, throwError } from 'rxjs';
@@ -12,19 +12,28 @@ import { User, AuthResponse, RefreshResponse, AuthStatus } from '../shared/inter
 })
 export class AuthService {
 
-  private readonly baseUrl: string = environment.baseUrl; // Obtenemos la URL del archivo environment.ts
-  private http = inject(HttpClient); // Inyectamos el servicio HttpClient
-  private toastController = inject(ToastController);
-  private router = inject(Router); // Inyectamos el servicio Router
+  private readonly baseUrl: string = environment.baseUrl;
+  private http: HttpClient;
+  private toastController: ToastController;
+  private router: Router;
 
-  private _currentUser = signal<User | null>(null); // Creamos una señal para almacenar el usuario actual
+  private _currentUser = signal<User | null>(null);
   private _authStatus = signal<AuthStatus>(AuthStatus.checking);
 
   public currentUser = computed(() => this._currentUser());
   public authStatus = computed(() => this._authStatus());
 
-  constructor() { 
-    this.validateToken().subscribe();
+  constructor(private injector: Injector) { 
+    this.http = this.injector.get(HttpClient);
+    this.toastController = this.injector.get(ToastController);
+    this.router = this.injector.get(Router);
+
+    console.log('Constructor: Iniciando validación del token...');
+    this.validateToken().subscribe(isValid => {
+      console.log('Constructor: Resultado de la validación del token:', isValid);
+    });
+
+    this.checkAuthStatus().subscribe();
   }
 
   public async presentToast(message: string, position: 'top' | 'middle' | 'bottom', color: 'primary' | 'secondary' | 'tertiary' | 'success' | 'warning' | 'danger' | 'light' | 'medium' | 'dark') {
@@ -39,6 +48,7 @@ export class AuthService {
   }
 
   private setAuthentication(user: User, access: string, refresh: string) {
+    console.log('Estableciendo autenticación:', user, access, refresh);
     this._currentUser.set(user);
     this._authStatus.set(AuthStatus.authenticated);
     this.setToken(access);
@@ -46,7 +56,7 @@ export class AuthService {
     return true;
   }
 
-  login(user: User): Observable<boolean> { // Obtener Token
+  login(user: User): Observable<boolean> {
     return this.http.post<AuthResponse>(`${this.baseUrl}/auth/get`, user).pipe(
       map(({ access, refresh }) => {
         this.setAuthentication(user, access, refresh);
@@ -56,43 +66,41 @@ export class AuthService {
       catchError(err => throwError(() => err.error.message))
     );
   }
-  /*
-  login(user: User): Observable<Boolean> { // Obtener Token
-    return this.http.post<AuthResponse>(`${this.baseUrl}/auth/get`, user).pipe(
-      map((resp) => {
-        console.log('Respuesta de login:', resp);
-        this.setToken(resp.access);
-        this.setRefreshToken(resp.refresh);
 
-        this.presentToast('Inicio de sesión exitoso', 'top', 'success');
-        return true;
-      }),
-      catchError((error) => {
-        console.log('Error al iniciar sesión:', error);
-        this.presentToast('Error al iniciar sesión', 'top', 'danger');
+  checkAuthStatus(): Observable<boolean> {
+    const access = localStorage.getItem('access');
+
+    if (!access) {
+        this.logout();
         return of(false);
-      })
-    );
-  }
-    */
+    }
 
-  refreshToken(): Observable<RefreshResponse> { // Actualizar Token
+    return this.validateToken();
+  }
+
+  refreshToken(): Observable<RefreshResponse> {
     const refreshToken = this.getRefreshToken();
     console.log('Intentando refrescar el token con:', refreshToken);
     return this.http.post<RefreshResponse>(`${this.baseUrl}/auth/actualizar`, { refreshToken });
   }
 
   validateToken(): Observable<boolean> {
-    const token = this.getToken();
+    const access = localStorage.getItem('access');
     
-    if (!token) {
+    if (!access) {
+      console.log('No se encontró token, estableciendo estado no autenticado.');
       this._authStatus.set(AuthStatus.notAuthenticated);
       return of(false);
     }
   
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.post<any>(`${this.baseUrl}/auth/verificar`, {}, { headers }).pipe(
-      map(({ user, access, refresh }) => this.setAuthentication(user, access, refresh)),
+    console.log('Validando token a través de los encabezados');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${access}`);
+  
+    return this.http.post<any>(`${this.baseUrl}/auth/verificar`, null, { headers }).pipe(
+      map(({ user, access, refresh }) => {
+        console.log('Token válido, estableciendo autenticación.');
+        return this.setAuthentication(user, access, refresh);
+      }),
       catchError((error) => {
         console.log('Error al verificar el token:', error);
         this._authStatus.set(AuthStatus.notAuthenticated); 
@@ -100,13 +108,6 @@ export class AuthService {
       })
     );
   }
-  /*
-  validateToken(): Observable<Boolean> { // Verificar Token
-    const token = this.getToken();
-    console.log('Validando token de acceso:', token);
-    return this.http.post<boolean>(`${this.baseUrl}/auth/verificar`, { token });
-  }
-    */
 
   logout(): void {
     console.log('Cerrando sesión...');
@@ -114,12 +115,14 @@ export class AuthService {
     localStorage.removeItem('refresh');
     localStorage.removeItem('url');
     this.presentToast('Cierre de sesión exitoso', 'top', 'success');
-    this.router.navigate(['/auth']); // Redirigir a la página de autenticación
+    this._currentUser.set(null);
+    this._authStatus.set(AuthStatus.notAuthenticated);
+    this.router.navigate(['/auth']);
   }
 
-  setToken(token: string) {
-    console.log('Guardando token de acceso:', token);
-    localStorage.setItem('access', token);
+  setToken(access: string) {
+    console.log('Guardando token de acceso:', access);
+    localStorage.setItem('access', access);
   }
 
   setRefreshToken(refresh: string) {
@@ -128,9 +131,9 @@ export class AuthService {
   }
 
   getToken() {
-    const token = localStorage.getItem('access');
-    console.log('Obteniendo token de acceso:', token);
-    return token;
+    const access = localStorage.getItem('access');
+    console.log('Obteniendo token de acceso:', access);
+    return access;
   }
 
   getRefreshToken() {

@@ -61,11 +61,30 @@ export class AuthPage implements OnInit {
     });
   }
     */
+
+
+  /*
   login() {
       this.authService.login(this.loginForm.value)
       .subscribe({
         next: () => this.router.navigate(['/main/home']), // Navegar a la página principal
         error: (error) => console.error('Error al iniciar sesión', error)
+      });
+    }
+      */
+
+    login() {
+      this.authService.login(this.loginForm.value).subscribe({
+        next: (isAuthenticated) => {
+          if (isAuthenticated) {
+            this.router.navigate(['/main/home']); // Navegar a la página principal
+          } else {
+            console.error('Error al iniciar sesión');
+          }
+        },
+        error: (err) => {
+          console.error('Error al iniciar sesión', err);
+        }
       });
     }
   }

@@ -24,6 +24,7 @@ export interface Client {
     direccion: Direccion;
     contactosAdicionales: any[];
     informacionFiscal: informacionFiscal;
+    color?: string; 
 }
 
 export interface Direccion {

@@ -2,21 +2,21 @@
   <app-header [showMenu]="true" [icon]="'icon-cliente'" [cardText]="'Mis Clientes'"></app-header>
 </div>
 
-<ion-content [fullscreen]="true">
-  @for(client of clients; track client) {
-    <ion-card mode="ios" class="client">
-      <ion-card-content id="open-modal" (click)="onCardClick(client)">
-        <ion-icon name="ellipsis-vertical" class="card-options-icon"></ion-icon>
-        <div class="card-content">
-          <app-name-client [client]="client"></app-name-client>
-          <div class="info">
-            <ion-card-title class="name-client">{{ client.name }}</ion-card-title>
-            <ion-label class="profile">{{ client.address }}</ion-label>
-          </div>
+<ion-content [fullscreen]="true" (ionScroll)="onScroll($event)">
+  <ion-card *ngFor="let client of clients" mode="ios" class="client">
+    <ion-card-content id="open-modal" (click)="onCardClick(client)">
+      <ion-icon name="ellipsis-vertical" class="card-options-icon"></ion-icon>
+      <div class="card-content">
+        <app-name-client [client]="client"></app-name-client>
+        <div class="info">
+          <ion-card-title class="name-client">{{ client.nombre }}</ion-card-title>
+          <ion-label class="profile">{{ client.direccion.calle }}, #{{ client.direccion.numeroExterior }}, {{ client.direccion.colonia }}, 
+            C.P: {{ client.direccion.codigoPostal }}, {{ client.direccion.ciudad }}
+          </ion-label>
         </div>
-      </ion-card-content>
-    </ion-card>
-  }
+      </div>
+    </ion-card-content>
+  </ion-card>
 
   <ion-fab mode="md" horizontal="end" vertical="bottom" slot="fixed">
     <ion-fab-button routerLink="/main/clients/new-client">
