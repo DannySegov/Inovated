@@ -15,16 +15,19 @@ export class AppComponent {
   private router = inject(Router);
 
   public finishedAuthCheck = computed<boolean>(() => {
-
+    console.log(this.authService.authStatus());
     if (this.authService.authStatus() === AuthStatus.checking) {
       return false;
     }
+
     return true;
   });
 
   public authStatusChangedEffect = effect(() => {
+    const authStatus = this.authService.authStatus();
+    console.log('Auth status changed:', authStatus);
 
-    switch (this.authService.authStatus()) {
+    switch (authStatus) {
       case AuthStatus.checking:
         return;
 
@@ -37,5 +40,4 @@ export class AppComponent {
         return;
     }
   });
-
 }

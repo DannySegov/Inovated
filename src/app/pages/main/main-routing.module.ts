@@ -11,7 +11,7 @@ const routes: Routes = [
     children: [
       {
         path: 'home',
-        canActivate: [ isAuthenticatedGuard ],
+        //canActivate: [ isAuthenticatedGuard ],
         loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
       },
       {

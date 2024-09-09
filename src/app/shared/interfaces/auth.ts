@@ -25,3 +25,22 @@ export interface RefreshResponse {
     refresh: string;
     access: string;
 }
+
+export interface InfoUser {
+    estatus: boolean;
+    mensaje: string;
+    datos: DataUser;
+}
+
+export interface DataUser {
+    id: number;
+    nombre: string;
+    paterno: string;
+    materno: string;
+    correo: string;
+    fechaNacimiento: string;
+    estatus: number;
+    esSuperUsuario: boolean;
+    perfil: boolean; //null
+    permisos: string[];
+}

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Client } from '../../interfaces/clients';
 
 @Component({
   selector: 'app-name-client',
@@ -9,7 +10,8 @@ export class NameClientComponent  implements OnInit {
 
   constructor() { }
   
-  @Input() client!: { name: string, color: string };
+  //@Input() client!: Client;
+  @Input() client!: any; //TODO: Cambiar a Client
   ngOnInit() {}
 
 }
