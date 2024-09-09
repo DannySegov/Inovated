@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject } from '@angular/core';
+import { Component, computed, effect, inject, OnInit } from '@angular/core';
 import { AuthService } from './services/auth.service';
 import { AuthStatus } from './shared/interfaces/auth';
 import { Router } from '@angular/router';
@@ -8,8 +8,14 @@ import { Router } from '@angular/router';
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   constructor() { }
+
+  ngOnInit(): void {
+    this.authService.checkAuthentication().subscribe( () => {
+      console.log('checkAuthentication finished')
+    })
+  }
 
   private authService = inject(AuthService);
   private router = inject(Router);
