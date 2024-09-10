@@ -26,7 +26,7 @@ export interface RefreshResponse {
     access: string;
 }
 
-export interface InfoUser {
+export interface InfoUserResponse {
     estatus: boolean;
     mensaje: string;
     datos: DataUser;

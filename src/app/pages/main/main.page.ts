@@ -8,7 +8,7 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./main.page.scss'],
 })
 export class MainPage implements OnInit {
-  private authService = inject(AuthService);  
+  private authService = inject(AuthService);
   currentPath: any;
 
   constructor() { }
@@ -34,6 +34,5 @@ export class MainPage implements OnInit {
 
   logout() {
     this.authService.logout();
-    this.router.navigateByUrl('/auth');
   }
 }

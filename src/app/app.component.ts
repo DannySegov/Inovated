@@ -20,6 +20,7 @@ export class AppComponent implements OnInit {
   private authService = inject(AuthService);
   private router = inject(Router);
 
+  /*
   public finishedAuthCheck = computed<boolean>(() => {
     console.log(this.authService.authStatus());
     if (this.authService.authStatus() === AuthStatus.checking) {
@@ -28,6 +29,7 @@ export class AppComponent implements OnInit {
 
     return true;
   });
+  */
 
   public authStatusChangedEffect = effect(() => {
     const authStatus = this.authService.authStatus();
