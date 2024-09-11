@@ -20,7 +20,7 @@ export class HomePage implements OnInit {
   }
 
   private checkUserAuthentication() {
-    this.authService.checkAuthentication().subscribe(isAuthenticated => {
+    this.authService.validateToken().subscribe(isAuthenticated => {
       if (isAuthenticated) {
         // Actualiza la propiedad user si la autenticación es válida
         this.user = computed(() => this.authService.currentUser());
