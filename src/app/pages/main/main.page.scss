@@ -85,6 +85,7 @@ ion-label.option {
 .card-content {
   display: flex;
   align-items: center;
+  transform: translateY(8.5%);
   margin-left: -8px;
 }
 
@@ -99,14 +100,23 @@ ion-avatar {
 }
 
 /* Estilos específicos para modo mobile */
-@media (max-width: 300px) {
+@media (max-width: 400px) {
   ion-menu::part(container) {
     border-radius: 0 50px 50px 0 !important;
   }
 
+  .card-content {
+    display: flex;
+    align-items: center;
+    transform: translateY(30%);
+    margin-left: -8px;
+    //height: 100%; /* Asegúrate de que el contenedor ocupe toda la altura del padre */
+  }
+
   ion-card.name-user {
     height: 12%;
-    transform: translateY(-25%);
+    display: flex; /* Añadir flexbox */ /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
   }
 
   ion-card.menu {

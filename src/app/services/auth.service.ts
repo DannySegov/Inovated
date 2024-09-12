@@ -77,10 +77,9 @@ export class AuthService {
       }),
       catchError(err => throwError(() => err.error.message))
     );
-}
+  }
 
-  updateToken(): Observable<boolean> {
-    const refresh = localStorage.getItem('refresh');
+  updateToken(refresh: string): Observable<boolean> {
     console.log('Token de actualización:', refresh);
   
     return this.http.post<RefreshResponse>(`${this.baseUrl}/auth/actualizar`, { refresh }).pipe(
@@ -120,10 +119,18 @@ export class AuthService {
         }),
         catchError((error) => {
           if (error.status === 401 && error.error?.detail) {
-            console.log(error.error.detail); // Imprimir el detalle del error
+            console.log('Error 401 recibido:', error.error.detail); // Imprimir el detalle del error
             const refresh = localStorage.getItem('refresh');
-            this.updateToken().subscribe();
-            console.log('Token de actualización:', refresh);
+            console.log('Intentando obtener el token de actualización del localStorage:', refresh);
+            if (refresh) {
+              console.log('Token de actualización encontrado, llamando a updateToken...');
+              this.updateToken(refresh).subscribe(() => {
+                console.log('updateToken se ha ejecutado.');
+              });
+              console.log('Token de actualización:', refresh);
+            } else {
+              console.error('No se encontró el token de actualización en localStorage');
+            }
             return of(false);
           }
           return throwError(() => error);
