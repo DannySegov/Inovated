@@ -1,5 +1,4 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -26,8 +25,6 @@ export class MainPage implements OnInit {
     { Title: 'Reportes', Url: 'reports', Icon: 'solicitud' },
     { Title: 'Configuración', Url: 'configuration', Icon: 'configuracion' },
   ];
-
-  router = inject(Router);
 
   ngOnInit() {
   }
