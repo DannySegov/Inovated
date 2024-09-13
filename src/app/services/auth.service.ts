@@ -142,17 +142,8 @@ export class AuthService {
     const accessToken = localStorage.getItem('access');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${accessToken}`);
     
-    return this.http.post<InfoUserResponse>(`${this.baseUrl}/auth/perfil`, {}, { headers })
-      .pipe(
-        tap(response => {
-          console.log('Respuesta recibida:', response);
-        }),
-        catchError(err => {
-          console.error('Error en la llamada al traer info:', err);
-          return throwError(() => err);
-        })
-      );
-  }
+    return this.http.post<InfoUserResponse>(`${this.baseUrl}/auth/perfil`, {}, { headers });
+}
   
   logout() {
     console.log('Cerrando sesión...');

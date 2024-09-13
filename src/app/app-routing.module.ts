@@ -19,6 +19,7 @@ const routes: Routes = [
   },
   {
     path: 'home',
+    canActivate: [isAuthenticatedGuard],
     loadChildren: () => import('./pages/main/home/home.module').then( m => m.HomePageModule)
   },
   {
