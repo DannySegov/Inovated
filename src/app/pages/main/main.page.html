@@ -5,18 +5,22 @@
 
   <ion-card mode="ios" class="name-user">
     <ion-card-header>
+      @if(userData) {
       <div class="card-content">
         <ion-avatar>
           <img alt="User" src="assets/icon/avatar/user.jpg" />
         </ion-avatar>
         <div class="data-profile">
-          <ion-card-title>Daniela</ion-card-title>
+          <ion-card-title>{{ userData.nombre }} {{ userData.paterno }}</ion-card-title>
+          @if(userData.esSuperUsuario) {
           <ion-label class="profile">Administrador</ion-label>
+          }
         </div>
       </div>
+      }
     </ion-card-header>
   </ion-card>
-  
+
   <ion-card mode="ios" class="menu">
     <ion-card-content>
       @for(page of pages; track page) {

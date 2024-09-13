@@ -166,17 +166,17 @@ ion-card {
 
 ion-fab-button {
     --background: #219cdb;
-}  
+}
 
 //Label with line
 .title-section {
     display: flex;
     align-items: center;
-    justify-content: space-between; 
+    justify-content: space-between;
 }
 
-.title-section + p {
-    margin-top: 0; 
+.title-section+p {
+    margin-top: 0;
 }
 
 .line {
@@ -189,15 +189,23 @@ ion-fab-button {
 
 //Page clients y requests
 .card-content {
+    /* display: flex;*/
+    align-items: center;
+    height: 40px;
+    transform: translateY(-15%);
+    z-index: 1;
+}
+
+.list-client {
     display: flex;
     align-items: center;
-    height: 40px; 
+    height: 40px;
     transform: translateY(-15%);
     z-index: 1;
 }
 
 .name-client {
-    font-size: 17px; 
+    font-size: 17px;
 }
 
 .info {
@@ -213,7 +221,7 @@ ion-fab-button {
 
 .card-options-icon {
     position: absolute;
-    top: 5px; 
+    top: 5px;
     right: -3px;
     padding: 8px;
 }
@@ -239,6 +247,3 @@ ion-fab-button {
         margin-right: auto;
     }
 }
-
-
-

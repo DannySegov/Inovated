@@ -1,5 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
+import { DataUser, InfoUserResponse } from 'src/app/shared/interfaces/auth';
 
 @Component({
   selector: 'app-main',
@@ -9,6 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class MainPage implements OnInit {
   private authService = inject(AuthService);
   currentPath: any;
+  public userData!: DataUser;
 
   constructor() { }
 
@@ -26,7 +28,16 @@ export class MainPage implements OnInit {
     { Title: 'Configuración', Url: 'configuration', Icon: 'configuracion' },
   ];
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.authService.infoUser().subscribe(
+      (response) => {
+        this.userData = response.datos;
+        console.log('Datos del usuario recibidos:', this.userData);
+      },
+      (error) => {
+        console.error('Error en la llamada al traer info:', error);
+      }
+    );
   }
 
   logout() {
