@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ServiceRequeriments, ServicioRequerimentsResponse } from '../shared/interfaces/services';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -16,11 +16,11 @@ export class ServiceRequerimentsService {
 
   constructor() { }
 
-  getServiceRequeriments(): Observable<ServicioRequerimentsResponse> {
+  getServiceRequeriments(): Observable<ServicioRequerimentsResponse> { // Método para obtener los servicios que ofrece la empresa
     return this.http.get<ServicioRequerimentsResponse>(`${this.baseUrl}/solicitud-servicio/servicios-ofrece`, { headers: this.headers });
   }
 
-  addServiceRequeriments(clienteID: number, request: ServiceRequeriments): Observable<any> {
+  addServiceRequeriments(clienteID: number, request: ServiceRequeriments): Observable<any> { // Método para agregar una solicitud de servicio
     return this.http.post<ServiceRequeriments>(`${this.baseUrl}/solicitud-servicio/${clienteID}`, request, { headers: this.headers });
   }
 }

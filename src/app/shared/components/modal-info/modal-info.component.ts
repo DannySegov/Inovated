@@ -1,5 +1,4 @@
-import { Component, EventEmitter, inject, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { ClientsService } from '../../../services/clients.service';
+import { Component, EventEmitter, inject, OnInit, Output, ViewChild } from '@angular/core';
 import { IonModal } from '@ionic/angular';
 import { Router } from '@angular/router';
 
@@ -10,10 +9,13 @@ import { Router } from '@angular/router';
 })
 export class ModalInfoComponent implements OnInit {
 
+  @ViewChild(IonModal) modal!: IonModal;
+  @ViewChild('modalRequest', { static: true }) modalRequest!: IonModal;
+  @ViewChild('modalClient', { static: true }) modalClient!: IonModal;
+  @Output() close = new EventEmitter<void>();
+
   private router = inject(Router);
 
-  @ViewChild(IonModal) modal!: IonModal;
-  @Output() close = new EventEmitter<void>();
   client: any;
 
   buttons = [
@@ -40,7 +42,7 @@ export class ModalInfoComponent implements OnInit {
     }
   }
     */
-  closeModal() {
+  closeModal() { // Método para cerrar el modal
     if (this.modal) {
       this.modal.dismiss().then(() => {
         this.close.emit();
@@ -48,29 +50,21 @@ export class ModalInfoComponent implements OnInit {
     }
   }
 
-
-  get hoverColor() {
+  get hoverColor() { // Método para obtener el color de hover
     return this.client.color;
   }
 
-  onCardClick() {
-    console.log('Card clicked');
+  onCardClick() { // Método para manejar el click en la tarjeta
     this.router.navigate(['/main/clients/service-request']);
-   this.closeModal();
+    this.closeModal();
   }
 
-
-
-  @ViewChild('modalRequest', { static: true }) modalRequest!: IonModal;
-  @ViewChild('modalClient', { static: true }) modalClient!  : IonModal;
-
-  // Método para abrir el modal de solicitudes
-  openRequestModal(client: any) {
+  openRequestModal(client: any) {  // Método para abrir el modal de solicitudes
     this.client = client;
     this.modalRequest.present();
   }
 
-  openClientModal(client: any) {
+  openClientModal(client: any) { // Método para abrir el modal de clientes
     this.client = client;
     this.modalClient.present();
   }

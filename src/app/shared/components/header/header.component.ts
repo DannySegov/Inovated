@@ -13,7 +13,7 @@ export class HeaderComponent  implements OnInit {
 
   @Input() cardText: string = ''; 
   @Input() icon: string = ''; 
-  @Input() iconPosition: 'left' | 'right' = 'left'; // Nueva propiedad
+  @Input() iconPosition: 'left' | 'right' = 'left'; 
   showCardTitle: boolean = true;
   
   constructor(private router: Router) { }

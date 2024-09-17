@@ -5,10 +5,9 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { PendingPaymentsPageRoutingModule } from './pending-payments-routing.module';
-
-import { PendingPaymentsPage } from './pending-payments.page';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MenuTabPageModule } from '../menu-tab/menu-tab.module';
+import { PendingPaymentsPage } from './pending-payments.page';
 
 @NgModule({
   imports: [

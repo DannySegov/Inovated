@@ -23,7 +23,7 @@ export class ClientsPage implements OnInit {
     this.getClients();
   }
 
-  getClients(page: number = 1) {
+  getClients(page: number = 1) { // Método para obtener los clientes
     this.clientsService.getClients(10, page).subscribe(
       (resp: any) => {
         if (resp.estatus) {

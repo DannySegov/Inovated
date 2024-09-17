@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
-import { DataUser, InfoUserResponse } from 'src/app/shared/interfaces/auth';
+import { DataUser } from 'src/app/shared/interfaces/auth';
 
 @Component({
   selector: 'app-main',
@@ -11,8 +11,6 @@ export class MainPage implements OnInit {
   private authService = inject(AuthService);
   currentPath: any;
   public userData!: DataUser;
-
-  constructor() { }
 
   pages = [
     { Title: 'Inicio', Url: 'home', Icon: 'home' },
@@ -28,11 +26,13 @@ export class MainPage implements OnInit {
     { Title: 'Configuración', Url: 'configuration', Icon: 'configuracion' },
   ];
 
+  constructor() { }
+
   ngOnInit(): void {
     this.getInfoUser();
   }
 
-  getInfoUser() {
+  getInfoUser() { // Método para obtener la información del usuario
     this.authService.infoUser().subscribe(
       (response) => {
         this.userData = response.datos;
@@ -44,7 +44,7 @@ export class MainPage implements OnInit {
     );
   }
 
-  logout() {
+  logout() { // Método para cerrar sesión
     this.authService.logout();
   }
 }

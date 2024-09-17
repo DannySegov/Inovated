@@ -5,7 +5,6 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { MenuTabPageRoutingModule } from './menu-tab-routing.module';
-
 import { MenuTabPage } from './menu-tab.page';
 import { SharedModule } from 'src/app/shared/shared.module';
 

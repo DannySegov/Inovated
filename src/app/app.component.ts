@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, OnInit } from '@angular/core';
+import { Component, effect, inject, OnInit } from '@angular/core';
 import { AuthService } from './services/auth.service';
 import { AuthStatus } from './shared/interfaces/auth';
 import { Router } from '@angular/router';
@@ -9,6 +9,10 @@ import { Router } from '@angular/router';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent implements OnInit {
+
+  private authService = inject(AuthService);
+  private router = inject(Router);
+
   constructor() { }
 
   ngOnInit(): void {
@@ -16,9 +20,6 @@ export class AppComponent implements OnInit {
       console.log('checkAuthentication finished')
     })
   }
-
-  private authService = inject(AuthService);
-  private router = inject(Router);
 
   /*
   public finishedAuthCheck = computed<boolean>(() => {
@@ -31,7 +32,7 @@ export class AppComponent implements OnInit {
   });
   */
 
-  public authStatusChangedEffect = effect(() => {
+  public authStatusChangedEffect = effect(() => { // Efecto para verificar el estado de autenticación
     const authStatus = this.authService.authStatus();
     console.log('Auth status changed:', authStatus);
 

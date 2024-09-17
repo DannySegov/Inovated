@@ -12,7 +12,7 @@ export class CardTitleComponent  implements OnInit {
 
   @Input() cardText: string = ''; 
   @Input() icon: string = ''; 
-  @Input() iconPosition: 'left' | 'right' = 'left'; // Nueva propiedad
+  @Input() iconPosition: 'left' | 'right' = 'left';
 
   isCustomerDetailPage!: boolean;
   isServiceRequestPage!: boolean; 

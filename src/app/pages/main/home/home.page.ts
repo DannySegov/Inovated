@@ -21,7 +21,7 @@ export class HomePage implements OnInit {
     this.getnameUser();
   }
 
-  private checkUserAuthentication() {
+  private checkUserAuthentication() {// Método para verificar la autenticación del usuario
     this.authService.validateToken().subscribe(isAuthenticated => {
       if (isAuthenticated) {
         // Actualiza la propiedad user si la autenticación es válida
@@ -33,7 +33,7 @@ export class HomePage implements OnInit {
     });
   }
 
-  getnameUser() {
+  getnameUser() { // Método para obtener el nombre del usuario
     this.authService.infoUser().subscribe(
       (response) => {
         this.name = response.datos.nombre;

@@ -7,9 +7,6 @@ import { IonicModule } from '@ionic/angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CardTitleComponent } from './components/card-title/card-title.component';
 import { ListCardComponent } from './components/list-card/list-card.component';
-import { MenuTabPageModule } from '../pages/main/menu-tab/menu-tab.module';
-import { MenuTabPage } from '../pages/main/menu-tab/menu-tab.page';
-import { FormAuthComponent } from './components/form-auth/form-auth.component';
 import { ModalInfoComponent } from './components/modal-info/modal-info.component';
 import { NameClientComponent } from './components/name-client/name-client.component';
 import { InfoClientComponent } from './components/info-client/info-client.component';
@@ -21,7 +18,6 @@ import { CustomSelectComponent } from './components/custom-select/custom-select.
     HeaderComponent,
     CustomInputComponent,
     CustomSelectComponent,
-    FormAuthComponent,
     LogoComponent,
     CardTitleComponent,
     ListCardComponent,
@@ -34,7 +30,6 @@ import { CustomSelectComponent } from './components/custom-select/custom-select.
     HeaderComponent,
     CustomInputComponent,
     CustomSelectComponent,
-    FormAuthComponent,
     LogoComponent,
     CardTitleComponent,
     ListCardComponent,
@@ -47,7 +42,7 @@ import { CustomSelectComponent } from './components/custom-select/custom-select.
   imports: [ //Aqui importamos modulos para que nuestros componentes funcionen
     CommonModule,
     IonicModule,
-    ReactiveFormsModule, //Formularios reactivos
+    ReactiveFormsModule, 
     FormsModule,
   ]
 })

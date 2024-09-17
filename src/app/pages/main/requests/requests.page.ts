@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ModalInfoComponent } from 'src/app/shared/components/modal-info/modal-info.component';
 @Component({
   selector: 'app-requests',
@@ -9,11 +9,6 @@ export class RequestsPage implements OnInit {
   
   @ViewChild(ModalInfoComponent) modalInfoComponent!: ModalInfoComponent;
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
   clients = [
     { id: 1, name: 'Obed Jimenez Mendoza', address: 'Paseo de los Gavilanes #132-A', color: '#b9cb2d' },
     { id: 2, name: 'Sebastian Bolaños', address: 'Grabadores de Aurora #112', color: '#f95252' },
@@ -23,7 +18,12 @@ export class RequestsPage implements OnInit {
     { id: 6, name: 'Diana Victoria Guerrero', address: 'Xichu #106 Moderna, León', color: '#0d3d57' },
   ];
 
-  onCardClick(client: any) {
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+  onCardClick(client: any) { // Método para abrir el modal de información del cliente 
     this.modalInfoComponent.openRequestModal(client);
   }
 }
