@@ -63,21 +63,21 @@ app-custom-input {
 }
 
 .custom-input {
-    height: auto; 
+    height: auto;
     display: flex;
     align-items: center;
     --border-radius: 8px;
-    width: 100%; 
+    width: 100%;
 }
 
 ion-textarea {
     font-size: 14px !important;
-    min-height: 200px !important; 
-    height: 200px !important; 
+    min-height: 200px !important;
+    height: 200px !important;
     --placeholder-color: #78737b;
     --placeholder-opacity: 1;
     margin: 0;
-    border-radius: 8px; 
+    border-radius: 8px;
 }
 
 ion-content {
@@ -86,9 +86,9 @@ ion-content {
 
 .select-data {
     height: 40px;
-    display: flex; 
-    align-items: center; 
-    border: 1px solid #219cdb; 
+    display: flex;
+    align-items: center;
+    border: 1px solid #219cdb;
 }
 
 ion-modal#example-modal {
@@ -129,11 +129,11 @@ ion-modal#example-modal .hour {
     height: 40px;
     border: 1px solid #219cdb;
     border-radius: 8px;
-    --background-hover: white; 
-    --color-hover: #b1b1b1; 
-    --background-activated: white; 
+    --background-hover: white;
+    --color-hover: #b1b1b1;
+    --background-activated: white;
     --color-activated: #b1b1b1;
-    --background-focused: white; 
+    --background-focused: white;
     --color-focused: #b1b1b1;
 }
 
@@ -147,10 +147,10 @@ ion-modal#example-modal .hour {
 
 //Select
 .select-data {
-    height: 40px; // Permitir que el contenedor se ajuste automáticamente
-    display: flex; // Asegurar que el contenido se alinee correctamente
-    align-items: center; // Centrar verticalmente el contenido
-    border: 1px solid #219cdb; // Añadir un borde de 1px de color gris claro
+    height: 40px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #219cdb;
     border-radius: 8px;
 }
 
@@ -173,7 +173,7 @@ ion-select::part(icon) {
 }
 
 .custom-label::part(label) {
-    color: #219cdb; 
+    color: #219cdb;
 }
 
 ion-datetime {
@@ -197,9 +197,8 @@ ion-datetime::part(wheel-item)::before {
     left: 10%;
     top: 40%;
     z-index: 2;
-}  
+}
 
 .black-text {
     color: black;
-  }
-
+}

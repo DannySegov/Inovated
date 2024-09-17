@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -46,11 +46,8 @@ export class NewClientPage implements OnInit {
 
   ngOnInit() {
   }
-  
 
-  navigateToClients() {
+  navigateToClients() { // Método para navegar a la lista de clientes
     this.router.navigate(['/main/clients']);
   }
-  
-
 }

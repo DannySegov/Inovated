@@ -1,11 +1,12 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { computed, inject, Injectable, signal } from '@angular/core';
-import { ToastController } from '@ionic/angular';
+import { Router } from '@angular/router';
 import { Observable, of, throwError, BehaviorSubject } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
-import { environment } from 'src/environments/environment';
+
+import { ToastController } from '@ionic/angular';
 import { User, AuthResponse, AuthStatus, InfoUserResponse, RefreshResponse } from '../shared/interfaces/auth';
-import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +31,7 @@ export class AuthService {
 
   private toastController = inject(ToastController);
 
-  private loadUserFromLocalStorage() {
+  private loadUserFromLocalStorage() { // Método para cargar el usuario desde el localStorage
     const user = localStorage.getItem('user');
     const refresh = localStorage.getItem('refresh');
     const access = localStorage.getItem('access');
@@ -47,6 +48,7 @@ export class AuthService {
     }
   }
 
+  // Método para mostrar un mensaje emergente
   public async presentToast(message: string, position: 'top' | 'middle' | 'bottom', color: 'primary' | 'secondary' | 'tertiary' | 'success' | 'warning' | 'danger' | 'light' | 'medium' | 'dark') {
     const toast = await this.toastController.create({
       message: message,
@@ -58,7 +60,7 @@ export class AuthService {
     await toast.present();
   }
 
-  private setAuthentication(user: User, refresh: string, access: string): boolean {
+  private setAuthentication(user: User, refresh: string, access: string): boolean { // Método para establecer la autenticación
     this._currentUser.set(user);
     this._authStatus.set(AuthStatus.authenticated);
     localStorage.setItem('refresh', refresh);
@@ -67,7 +69,7 @@ export class AuthService {
     return true;
   }
 
-  login(user: User): Observable<boolean> {
+  login(user: User): Observable<boolean> { // Método para iniciar sesión
     return this.http.post<AuthResponse>(`${this.baseUrl}/auth/get`, user).pipe(
       map(({ correo, refresh, access }) => {
         console.log('Respuesta del servidor:', { correo, refresh, access });
@@ -81,7 +83,7 @@ export class AuthService {
     );
   }
 
-  updateToken(refreshToken: string): Observable<void> {
+  updateToken(refreshToken: string): Observable<void> { // Método para actualizar el token
     return this.http.post<any>(`${this.baseUrl}/auth/refresh`, { refreshToken })
       .pipe(
         tap(response => {
@@ -99,7 +101,7 @@ export class AuthService {
       );
   }
   
-  validateToken(): Observable<boolean> {
+  validateToken(): Observable<boolean> { // Método para validar el token
     const token = localStorage.getItem('access');
     if (!token) {
       this.logout();
@@ -122,7 +124,7 @@ export class AuthService {
         }),
         catchError((error) => {
           if (error.status === 401 && error.error?.detail) {
-            console.log('Error 401 recibido:', error.error.detail); // Imprimir el detalle del error
+            console.log('Error 401 recibido:', error.error.detail); 
             const refresh = localStorage.getItem('refresh');
             console.log('Intentando obtener el token de actualización del localStorage:', refresh);
             if (refresh) {
@@ -146,14 +148,14 @@ export class AuthService {
       );
   }
 
-  infoUser(): Observable<InfoUserResponse> {
+  infoUser(): Observable<InfoUserResponse> { // Método para obtener la información del usuario
     const accessToken = localStorage.getItem('access');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${accessToken}`);
 
     return this.http.post<InfoUserResponse>(`${this.baseUrl}/auth/perfil`, {}, { headers });
   }
 
-  logout() {
+  logout() { // Método para cerrar sesión
     console.log('Cerrando sesión...');
     localStorage.clear();
     this._currentUser.set(null);

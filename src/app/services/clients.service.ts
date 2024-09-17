@@ -41,12 +41,12 @@ export class ClientsService {
     return this.http.post<ClientResponseAdd>(`${this.baseUrl}/clientes`,{ dataClient }, { headers: this.headers })
   }
 
-  get accessToken(): string | null {
+  get accessToken(): string | null { // Método para obtener el token de acceso
     return localStorage.getItem('access');
   }
 
-  setClienteID(clienteID: number) {
+  setClienteID(clienteID: number) { // Método para establecer el valor de clienteID
     this.clienteID.next(clienteID);
-    return clienteID; // Retornar el valor de clienteID
+    return clienteID; 
   }
 }

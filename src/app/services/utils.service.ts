@@ -10,7 +10,7 @@ export class UtilsService {
 
   loadingCtrl = inject(LoadingController);
 
-  loading() {
+  loading() { // Método para mostrar un spinner de carga
     return this.loadingCtrl.create({ spinner: 'crescent'})
   }
 }

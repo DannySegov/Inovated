@@ -1,9 +1,10 @@
 import { Component, inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ClientsService } from 'src/app/services/clients.service';
-import { ServiceRequerimentsService } from 'src/app/services/service-requeriments.service';
-import { ServiceRequeriments } from 'src/app/shared/interfaces/services';
 import { formatDate } from '@angular/common';
+import { ServiceRequerimentsService } from 'src/app/services/service-requeriments.service';
+import { ClientsService } from 'src/app/services/clients.service';
+import { ServiceRequeriments } from 'src/app/shared/interfaces/services';
+
 
 @Component({
   selector: 'app-service-request',
@@ -12,14 +13,16 @@ import { formatDate } from '@angular/common';
 })
 export class ServiceRequestPage implements OnInit {
 
+  @ViewChild('dateModal') dateModal: any;
+  @ViewChild('timeModal') timeModal: any;
+
   private serviceRequeriment = inject(ServiceRequerimentsService);
   private clientService = inject(ClientsService);
   private fb = inject(FormBuilder);
+  
   public services: any;
-  @ViewChild('dateModal') dateModal: any;
-  @ViewChild('timeModal') timeModal: any;
   public selectedDate: string = 'dd / mm / aaaa';
-  public selectedTime: string = '12:00 pm'; // Valor inicial
+  public selectedTime: string = '12:00 pm'; 
   public clienteID: number = 0;
 
   public serviceRequestForm: FormGroup = this.fb.group({
@@ -36,10 +39,10 @@ export class ServiceRequestPage implements OnInit {
     this.getClientID();
   }
 
-  serviceRequeriments(): void {
+  serviceRequeriments(): void { // Método para obtener los servicios
     this.serviceRequeriment.getServiceRequeriments().subscribe({
       next: (response) => {
-        this.services = response; // Guardar la respuesta en la variable services
+        this.services = response; 
         console.log(response);
       },
       error: (error) => {
@@ -48,7 +51,7 @@ export class ServiceRequestPage implements OnInit {
     });
   }
 
-  onDateChange(event: any) {
+  onDateChange(event: any) { // Método para cambiar la fecha
     const selectedDate = new Date(event.detail.value);
     const formattedDate = formatDate(selectedDate, 'yyyy-MM-dd', 'en-US');
     this.serviceRequestForm.patchValue({ fecha: formattedDate });
@@ -56,9 +59,7 @@ export class ServiceRequestPage implements OnInit {
     this.dateModal.dismiss();
   }
 
-
-
-  onTimeChange(event: any) {
+  onTimeChange(event: any) { // Método para cambiar la hora
     const dateValue = event.detail.value;
     if (dateValue) {
         const date = new Date(dateValue);
@@ -79,22 +80,20 @@ export class ServiceRequestPage implements OnInit {
     }
 }
 
-saveTime() {
-    // Aquí puedes agregar lógica adicional si es necesario
+saveTime() { // Método para guardar la hora seleccionada
     console.log('Hora guardada:', this.selectedTime);
     this.serviceRequestForm.patchValue({ hora: this.selectedTime });
     this.timeModal.dismiss();
 }
 
-  getClientID(){
-    // Aquí puedes agregar lógica adicional si es necesario
+  getClientID(){ // Método para obtener el ID del cliente
     this.clientService.clienteID$.subscribe(clienteID => {
       this.clienteID = clienteID;
       console.log('Cliente ID recibido en otro componente:', this.clienteID);
     });
   }
 
-  sendRequest() {
+  sendRequest() { // Método para enviar la solicitud de servicio
     const request: ServiceRequeriments = this.serviceRequestForm.value;
     this.serviceRequeriment.addServiceRequeriments(this.clienteID, request).subscribe({
       next: (response) => {
@@ -107,7 +106,7 @@ saveTime() {
     });
   }
 
-  logFormValues() {
+  logFormValues() { // Método para imprimir en consola los valores del formulario
     console.log(this.serviceRequestForm.value);
   }
 

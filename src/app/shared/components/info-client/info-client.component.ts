@@ -14,7 +14,11 @@ export class InfoClientComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.clientsService.currentClient.subscribe(client => {
+    this.currentClient();
+  }
+
+  currentClient() { // Método para obtener el cliente actual
+    this.clientsService.currentClient.subscribe(client => { 
       this.client = client;
       if (client) {
         console.log('Info Cliente', client);

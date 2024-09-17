@@ -7,20 +7,8 @@ import { IonTabs } from '@ionic/angular';
   styleUrls: ['./menu-tab.page.scss'],
 })
 export class MenuTabPage implements OnInit {
-
-  selectTab: any;
   @ViewChild('tabs') tabs!: IonTabs;
-  
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-  setCurrentTab(event: any) {
-    console.log(event);    
-    this.selectTab = this.tabs.getSelected();
-  }
-
+  selectTab: any;
 
   pages = [
     { Url: '/main/uprisings', Icon: 'levantamiento' },
@@ -28,4 +16,14 @@ export class MenuTabPage implements OnInit {
     { Url: '/main/services', Icon: 'servicios' },
     { Url: '/main/reports', Icon: 'solicitud' },
   ];
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+  setCurrentTab(event: any) { // Método para establecer la pestaña actual
+    console.log(event);    
+    this.selectTab = this.tabs.getSelected();
+  }
 }

@@ -67,8 +67,8 @@ ion-item.custom-textarea {
 }
 
 ion-label.option {
-  flex-grow: 1; /* Ocupa el espacio restante */
-  margin-left: 10px; /* Espacio entre el icono y el texto */
+  flex-grow: 1;
+  margin-left: 10px;
 }
 
 .profile {
@@ -116,13 +116,13 @@ ion-avatar {
     align-items: center;
     transform: translateY(30%);
     margin-left: -8px;
-    //height: 100%; /* Asegúrate de que el contenedor ocupe toda la altura del padre */
+    //height: 100%; 
   }
 
   ion-card.name-user {
     height: 12%;
-    display: flex; /* Añadir flexbox */ /* Centrar horizontalmente */
-    align-items: center; /* Centrar verticalmente */
+    display: flex; 
+    align-items: center;
   }
 
   ion-card.menu {

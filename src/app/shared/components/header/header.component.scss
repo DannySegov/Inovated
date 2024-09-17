@@ -11,7 +11,7 @@ ion-header {
 
   ion-toolbar {
     display: flex;
-    align-items: center; /* Centra verticalmente el contenido */
+    align-items: center; 
     border-radius: 0 0 30px 30px;
     overflow: hidden;
     background-color: white; 
@@ -23,18 +23,17 @@ ion-img {
   margin: auto;
 }
 
-
 /* Estilos específicos para modo escritorio */
 @media (min-width: 768px) {
   .custom-toolbar-color {
-    height: 70px; /* Reduce la altura de la barra de herramientas */
+    height: 70px; 
   }
 
   ion-header ion-toolbar {
-    border-radius: 0 0 50px 50px; /* Hace los bordes inferiores más curvos */
+    border-radius: 0 0 50px 50px; 
     display: flex; 
-    align-items: center; /* Centra verticalmente el contenido, incluyendo el icono del menú */
-    justify-content: center; /* Centra horizontalmente el contenido, si es necesario */
+    align-items: center;
+    justify-content: center; 
   }
 
   ion-img {
@@ -44,6 +43,6 @@ ion-img {
 
   ion-buttons {
     margin: 0; 
-    align-self: center; /* Centra verticalmente el icono del menú dentro de su contenedor */
+    align-self: center;
   }
 }

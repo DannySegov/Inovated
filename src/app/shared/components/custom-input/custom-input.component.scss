@@ -3,16 +3,16 @@ ion-input {
 }
 
 .input-data {
-    height: 40px; // Permitir que el contenedor se ajuste automáticamente
-    display: flex; // Asegurar que el contenido se alinee correctamente
-    align-items: center; // Centrar verticalmente el contenido
-    border: 1px solid #219cdb; // Añadir un borde de 1px de color gris claro
+    height: 40px; 
+    display: flex;
+    align-items: center;
+    border: 1px solid #219cdb;
     border-radius: 8px;
 }
 
 .custom-height {
     font-size: 14px !important;
-    min-height: 20px !important; // Ajustar la altura mínima
-    height: 20px !important; // Ajustar la altura
-    width: 100%; // Asegurar que el input ocupe todo el ancho del contenedor
+    min-height: 20px !important; 
+    height: 20px !important; 
+    width: 100%; 
 }
