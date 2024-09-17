@@ -5,7 +5,7 @@
 
 .card-options-icon {
   position: absolute;
-  top: 13px; 
+  top: 13px;
   right: 3px;
   padding: 15px;
 }
@@ -13,10 +13,11 @@
 .card-content {
   display: flex;
   align-items: center;
-  height: 40px; 
-  transform: translateY(20%);
+  height: 40px;
+  /*transform: translateY(20%);*/
+  margin-top: 32px;
   z-index: 1;
-  margin-left: 5px;
+  margin-left: 10px;
 }
 
 .info {
@@ -25,22 +26,21 @@
 }
 
 .name-client {
-  font-size: 20px; 
+  font-size: 20px;
   font-weight: bold;
 }
 
 .icon-container {
   display: flex;
   flex-direction: column;
-  transform: translateY(40%);
+  transform: translateY(7%);
   margin-left: 20px;
 }
 
 .content-icon {
-  //display: flex;
+  display: flex;
   align-items: center;
-  height: 30px; 
-  //margin-left: 5px;
+  height: 30px;
 }
 
 .icon-black:before {
@@ -49,7 +49,7 @@
 }
 
 .address-client {
-  font-size: 13px; 
+  font-size: 13px;
   font-family: Arial, Helvetica, sans-serif;
   margin-left: 13px;
 }
@@ -57,13 +57,12 @@
 ion-label {
   display: inline-flex;
   align-items: center;
-  //margin-left: 5px;
 }
 
 
 .content-button {
   position: absolute;
-  bottom: -60%;
+  bottom: -30%;
   right: 40px;
 
   ion-button {
@@ -76,7 +75,7 @@ ion-label {
 }
 
 .large-icon {
-  font-size: 1.5em; 
+  font-size: 1.5em;
   color: white !important;
 }
 
@@ -86,13 +85,13 @@ ion-label {
   --border-radius: 35px;
 }
 
-.content-button-request  {
+.content-button-request {
   position: relative;
   bottom: -80%;
   right: -40%;
   display: flex;
   flex-direction: row;
-  gap: 10px; 
+  gap: 10px;
 }
 
 .label-modal ion-label {
@@ -107,19 +106,17 @@ ion-label {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 10px; /* Ajusta el margen según sea necesario */
+  margin-bottom: 10px;
 }
 
 .button-container ion-label {
-  margin-top: 5px; /* Ajusta el margen según sea necesario */
+  margin-top: 5px;
   font-weight: bold;
   font-size: 10px;
 }
-/*
-.no-hover ion-button {
-  pointer-events: none;
+
+
+
+@media (min-width: 300px) {
+  
 }
-  */
-
-
-

@@ -1,3 +1,4 @@
+//getClients
 export interface ClientResponse {
     estatus: boolean;
     mensaje: string;
@@ -23,8 +24,8 @@ export interface Client {
     observaciones: string;
     direccion: Direccion;
     contactosAdicionales: any[];
-    informacionFiscal: informacionFiscal;
-    color?: string; 
+    informacionFiscal: InformacionFiscal;
+    color?: string;
 }
 
 export interface Direccion {
@@ -37,10 +38,34 @@ export interface Direccion {
     numeroInterior: string;
 }
 
-export interface informacionFiscal {
+export interface InformacionFiscal {
     rfc: string;
     razonSocial: string;
     informacionID: number;
     tipoPersona: number;
     direccion: Direccion;
+}
+
+//addClient
+export interface DataClient {
+    nombre: string;
+    telefono: string;
+    correo: string;
+    observaciones: string;
+    direccion: Direccion;
+    contactosAdicionales: string[];
+    informacionFiscal: InfoFiscalAddClient;
+}
+
+export interface InfoFiscalAddClient {
+    rfc: string;
+    razonSocial: string;
+    tipoPersona: number;
+    direccion: Direccion;
+}
+
+export interface ClientResponseAdd {
+    estatus: boolean;
+    mensaje: string;
+    datos: string;
 }

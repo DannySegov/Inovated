@@ -5,6 +5,12 @@
     box-shadow: none;
 }
 
+.content-home {
+    align-items: center;
+    height: 40px;
+    z-index: 1;
+}
+
 ion-card-title {
     font-size: 20px;
     transform: translateY(-37%);

@@ -55,6 +55,13 @@ app-custom-input {
     margin-bottom: 15px;
 }
 
+.title-section-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 35px;
+}
+
 .custom-input {
     height: auto; 
     display: flex;
@@ -138,6 +145,37 @@ ion-modal#example-modal .hour {
     --border-radius: 25px;
 }
 
+//Select
+.select-data {
+    height: 40px; // Permitir que el contenedor se ajuste automáticamente
+    display: flex; // Asegurar que el contenido se alinee correctamente
+    align-items: center; // Centrar verticalmente el contenido
+    border: 1px solid #219cdb; // Añadir un borde de 1px de color gris claro
+    border-radius: 8px;
+}
+
+ion-select {
+    --placeholder-color: #219cdb;
+    --placeholder-opacity: 1;
+    width: 100%;
+    justify-content: center;
+}
+
+ion-select::part(placeholder),
+ion-select::part(text) {
+    flex: 0 0 auto;
+}
+
+
+ion-select::part(icon) {
+    color: #219cdb;
+    opacity: 1;
+}
+
+.custom-label::part(label) {
+    color: #219cdb; 
+}
+
 ion-datetime {
     --wheel-highlight-background: white;
     --wheel-highlight-border-radius: 8px;
@@ -148,11 +186,6 @@ ion-datetime::part(wheel-item) {
     color: rgb(0, 0, 0);
 }
 
-ion-datetime::part(wheel-item active) {
-    color: rgb(128, 30, 171);
-}
-
-/* Creamos tres cuadros fijos */
 ion-datetime::part(wheel-item)::before {
     content: '';
     position: absolute;
@@ -163,4 +196,10 @@ ion-datetime::part(wheel-item)::before {
     pointer-events: none;
     left: 10%;
     top: 40%;
-}   
+    z-index: 2;
+}  
+
+.black-text {
+    color: black;
+  }
+

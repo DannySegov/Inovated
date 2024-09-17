@@ -5,14 +5,16 @@ import { Observable, of, throwError, BehaviorSubject } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { User, AuthResponse, AuthStatus, InfoUserResponse, RefreshResponse } from '../shared/interfaces/auth';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
-  private readonly baseUrl: string = environment.baseUrl;
   private http = inject(HttpClient);
+  private router = inject(Router);
+  
+  private readonly baseUrl: string = environment.baseUrl;
   private userSubject = new BehaviorSubject<InfoUserResponse | null>(null);
   public user$ = this.userSubject.asObservable();
 
@@ -79,23 +81,24 @@ export class AuthService {
     );
   }
 
-  updateToken(refresh: string): Observable<boolean> {
-    console.log('Token de actualización:', refresh);
-  
-    return this.http.post<RefreshResponse>(`${this.baseUrl}/auth/actualizar`, { refresh }).pipe(
-      map(({ refresh, access }) => {
-        console.log('Respuesta del servidor:', { refresh, access });
-        localStorage.setItem('refresh', refresh);
-        localStorage.setItem('access', access);
-        return true;
-      }),
-      catchError(err => {
-        console.error('Error en updateToken:', err);
-        return of(false);
-      })
-    );
+  updateToken(refreshToken: string): Observable<void> {
+    return this.http.post<any>(`${this.baseUrl}/auth/refresh`, { refreshToken })
+      .pipe(
+        tap(response => {
+          if (response && response.accessToken) {
+            localStorage.setItem('access', response.accessToken);
+          } else {
+            this.logout();
+            throw new Error('Token de actualización ha expirado');
+          }
+        }),
+        catchError(error => {
+          this.logout();
+          return throwError(() => error);
+        })
+      );
   }
-
+  
   validateToken(): Observable<boolean> {
     const token = localStorage.getItem('access');
     if (!token) {
@@ -124,15 +127,20 @@ export class AuthService {
             console.log('Intentando obtener el token de actualización del localStorage:', refresh);
             if (refresh) {
               console.log('Token de actualización encontrado, llamando a updateToken...');
-              this.updateToken(refresh).subscribe(() => {
-                console.log('updateToken se ha ejecutado.');
-              });
-              console.log('Token de actualización:', refresh);
+              return this.updateToken(refresh).pipe(
+                switchMap(() => this.validateToken()),
+                catchError(() => {
+                  this.logout();
+                  return of(false);
+                })
+              );
             } else {
               console.error('No se encontró el token de actualización en localStorage');
+              this.logout();
+              return of(false);
             }
-            return of(false);
           }
+          this.logout();
           return throwError(() => error);
         })
       );
@@ -141,16 +149,17 @@ export class AuthService {
   infoUser(): Observable<InfoUserResponse> {
     const accessToken = localStorage.getItem('access');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${accessToken}`);
-    
+
     return this.http.post<InfoUserResponse>(`${this.baseUrl}/auth/perfil`, {}, { headers });
-}
-  
+  }
+
   logout() {
     console.log('Cerrando sesión...');
     localStorage.clear();
     this._currentUser.set(null);
     this._authStatus.set(AuthStatus.notAuthenticated);
     this.userSubject.next(null);
+    this.router.navigate(['/auth'])
     console.log('Sesión cerrada.');
   }
 }
