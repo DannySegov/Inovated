@@ -6,9 +6,9 @@ import { ClientsService } from '../../../services/clients.service';
   templateUrl: './info-client.component.html',
   styleUrls: ['./info-client.component.scss'],
 })
-export class InfoClientComponent  implements OnInit {
+export class InfoClientComponent implements OnInit {
 
-  private clientsService = inject (ClientsService);
+  private clientsService = inject(ClientsService);
   client: any;
 
   constructor() { }
@@ -18,6 +18,8 @@ export class InfoClientComponent  implements OnInit {
       this.client = client;
       if (client) {
         console.log('Info Cliente', client);
+        this.clientsService.setClienteID(client.clienteID);
+        console.log('ID Cliente',  this.clientsService.setClienteID(client.clienteID));  
       }
     });
   }

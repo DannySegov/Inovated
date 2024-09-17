@@ -1,17 +1,23 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { BehaviorSubject, catchError, Observable, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, Observable, Subject, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { ClientResponse } from '../shared/interfaces/clients';
+import { ClientResponse, ClientResponseAdd, DataClient } from '../shared/interfaces/clients';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ClientsService {
-  private readonly baseUrl: string = environment.baseUrl;
   private http = inject(HttpClient);
+
+  private readonly baseUrl: string = environment.baseUrl;
+  private readonly headers: HttpHeaders = new HttpHeaders().set('Authorization', `Bearer ${this.accessToken}`);
+
   private clientSource = new BehaviorSubject<any>(null); // null es el valor inicial
   public currentClient = this.clientSource.asObservable();
+  
+  public clienteID = new Subject<number>();
+  clienteID$ = this.clienteID.asObservable();
 
   constructor() { }
 
@@ -19,17 +25,9 @@ export class ClientsService {
     this.clientSource.next(client);
   }
 
-  /*
+  //Obtener Clientes
   getClients(elementos: number, pagina: number): Observable<ClientResponse[]> {
-    return this.http.get<ClientResponse[]>(`${this.baseUrl}/clientes?elementos=${elementos}&pagina=${pagina}`);
-  }
-    */
-
-  getClients(elementos: number, pagina: number): Observable<ClientResponse[]> {
-    const accessToken = localStorage.getItem('access');
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${accessToken}`);
-    
-    return this.http.get<ClientResponse[]>(`http://localhost:8000/api/v1/rest/clientes?elementos=${elementos}&pagina=${pagina}`, { headers })
+    return this.http.get<ClientResponse[]>(`${this.baseUrl}/clientes?elementos=${elementos}&pagina=${pagina}`, { headers: this.headers })
       .pipe(
         catchError(err => {
           console.error('Error en la llamada al servicio de clientes:', err);
@@ -38,7 +36,17 @@ export class ClientsService {
       );
   }
 
+  //Crear Cliente
+  addClients(dataClient: DataClient): Observable<ClientResponseAdd> {
+    return this.http.post<ClientResponseAdd>(`${this.baseUrl}/clientes`,{ dataClient }, { headers: this.headers })
+  }
+
   get accessToken(): string | null {
     return localStorage.getItem('access');
+  }
+
+  setClienteID(clienteID: number) {
+    this.clienteID.next(clienteID);
+    return clienteID; // Retornar el valor de clienteID
   }
 }

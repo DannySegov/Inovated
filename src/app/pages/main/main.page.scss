@@ -49,6 +49,12 @@ ion-item {
   --inner-padding-end: 0;
 }
 
+ion-item.custom-textarea {
+  ion-textarea {
+    width: 100%;
+  }
+}
+
 .icon-salir {
   margin-right: 10px;
 }

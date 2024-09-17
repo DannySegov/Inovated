@@ -13,7 +13,4 @@ export class CustomSelectComponent  implements OnInit {
 
   ngOnInit() {}
 
-  services = [
-    { id: 1, name: 'Instalación de camaran' },
-  ]
 }

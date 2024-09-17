@@ -17,6 +17,6 @@ import { SharedModule } from 'src/app/shared/shared.module';
     ServiceRequestPageRoutingModule,
     SharedModule
   ],
-  declarations: [ServiceRequestPage]
+  declarations: [ServiceRequestPage],
 })
 export class ServiceRequestPageModule {}

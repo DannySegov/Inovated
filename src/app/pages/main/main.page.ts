@@ -29,6 +29,10 @@ export class MainPage implements OnInit {
   ];
 
   ngOnInit(): void {
+    this.getInfoUser();
+  }
+
+  getInfoUser() {
     this.authService.infoUser().subscribe(
       (response) => {
         this.userData = response.datos;

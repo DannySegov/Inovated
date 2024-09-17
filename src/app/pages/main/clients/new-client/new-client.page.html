@@ -3,7 +3,7 @@
 </div>
 
 <ion-content [fullscreen]="true">
-  <form [formGroup]="form" class="form">
+  <form [formGroup]="newClientForm" class="form">
     <div class="title-section">
       <ion-text>
         <h6>
@@ -14,7 +14,7 @@
     </div>
 
     <p>Nombre:</p>
-    <app-custom-input type="text" label="Nombre Completo"></app-custom-input>
+    <app-custom-input type="text" label="Nombre Completo" formControlName="nombre"></app-custom-input>
 
     <p>Teléfono:</p>
     <app-custom-input type="number" label="10 Digitos"></app-custom-input>

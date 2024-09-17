@@ -12,11 +12,13 @@ export class HomePage implements OnInit {
   private authService = inject(AuthService);
 
   public user: Signal<User | null> = computed(() => this.authService.currentUser());
+  public name: string = ''; 
 
   constructor() { }
 
   ngOnInit() {
     this.checkUserAuthentication();
+    this.getnameUser();
   }
 
   private checkUserAuthentication() {
@@ -29,5 +31,16 @@ export class HomePage implements OnInit {
         this.user = computed(() => null);
       }
     });
+  }
+
+  getnameUser() {
+    this.authService.infoUser().subscribe(
+      (response) => {
+        this.name = response.datos.nombre;
+      },
+      (error) => {
+        console.error('Error en la llamada al traer info:', error);
+      }
+    );
   }
 }
