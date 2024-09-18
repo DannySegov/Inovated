@@ -42,7 +42,8 @@
     <p>Hora:</p>
     <ion-button mode="ios" id="open-custom-hour" class="custom-button" size="small"
       style="display: flex; align-items: center; justify-content: space-between;">
-      <span [ngClass]="{'black-text': selectedTime !== '12:00 pm'}" style="margin-right: auto;">{{ selectedTime }}</span>
+      <span [ngClass]="{'black-text': selectedTime !== '12:00 pm'}" style="margin-right: auto;">{{ selectedTime
+        }}</span>
       <ion-icon name="time-outline" style="margin-left: auto; color: #219cdb;"></ion-icon>
     </ion-button>
 
@@ -58,18 +59,44 @@
       </ng-template>
     </ion-modal>
 
-    <ion-modal id="example-modal" #timeModal trigger="open-custom-hour" class="glass-content custom-modal-width">
-  <ng-template>
-    <div class="hour">
-      <ion-datetime presentation="time" [preferWheel]="true" formControlName="hora" (ionChange)="onTimeChange($event)"></ion-datetime>
-      <ion-button mode="ios" class="save" type="button" size="small" (click)="saveTime()">
-        <strong>Guardar</strong>
-      </ion-button>
-    </div>
-  </ng-template>
-</ion-modal>
+    <!--ion-modal id="example-modal" #timeModal trigger="open-custom-hour" class="glass-content custom-modal-width">
+      <ng-template>
+        <div class="hour">
+          <ion-datetime presentation="time" [preferWheel]="true" formControlName="hora"
+            (ionChange)="onTimeChange($event)"></ion-datetime>
+          <ion-button mode="ios" class="save" type="button" size="small" (click)="saveTime()">
+            <strong>Guardar</strong>
+          </ion-button>
+        </div>
+      </ng-template>
+    </!--ion-modal-->
+    <ion-modal id="example-modal" #timeModal trigger="open-custom-hour" class="glass-content">
+      <ng-template style="border-radius: 150px;">
+      <div class="contain-time">
+        <div class="time-picker">
+          <div class="time-box">
+            <ion-button (click)="incrementHour()">↑</ion-button>
+            <div class="input-container">
+              <ion-input type="text" [(ngModel)]="hour" [ngModelOptions]="{standalone: true}" placeholder="{{ hour }}"></ion-input>
+            </div>
+            <ion-button (click)="decrementHour()">↓</ion-button>
+          </div>
+          <div class="time-box">
+            <ion-button (click)="incrementMinute()">↑</ion-button>
+            <div>{{ minute }}</div>
+            <ion-button (click)="decrementMinute()">↓</ion-button>
+          </div>
+          <div class="time-box">
+            <ion-button (click)="toggleAmPm()">↑</ion-button>
+            <div>{{ amPm }}</div>
+            <ion-button (click)="toggleAmPm()">↓</ion-button>
+          </div>
+        </div>
+      </div>
+      </ng-template>
+    </ion-modal>
 
-<pre>
+    <pre>
   {{ serviceRequestForm.value | json }}
 </pre>
 
