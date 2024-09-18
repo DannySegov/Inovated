@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Observable, of, throwError, BehaviorSubject } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
 
-import { ToastController } from '@ionic/angular';
+
 import { User, AuthResponse, AuthStatus, InfoUserResponse, RefreshResponse } from '../shared/interfaces/auth';
 import { environment } from 'src/environments/environment';
 
@@ -29,8 +29,6 @@ export class AuthService {
   public currentUser = computed(() => this._currentUser());
   public authStatus = computed(() => this._authStatus());
 
-  private toastController = inject(ToastController);
-
   private loadUserFromLocalStorage() { // Método para cargar el usuario desde el localStorage
     const user = localStorage.getItem('user');
     const refresh = localStorage.getItem('refresh');
@@ -48,17 +46,7 @@ export class AuthService {
     }
   }
 
-  // Método para mostrar un mensaje emergente
-  public async presentToast(message: string, position: 'top' | 'middle' | 'bottom', color: 'primary' | 'secondary' | 'tertiary' | 'success' | 'warning' | 'danger' | 'light' | 'medium' | 'dark') {
-    const toast = await this.toastController.create({
-      message: message,
-      duration: 2000,
-      position: position,
-      color: color,
-      mode: 'ios'
-    });
-    await toast.present();
-  }
+
 
   private setAuthentication(user: User, refresh: string, access: string): boolean { // Método para establecer la autenticación
     this._currentUser.set(user);

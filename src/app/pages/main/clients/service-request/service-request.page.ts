@@ -4,6 +4,7 @@ import { formatDate } from '@angular/common';
 import { ServiceRequerimentsService } from 'src/app/services/service-requeriments.service';
 import { ClientsService } from 'src/app/services/clients.service';
 import { ServiceRequeriments } from 'src/app/shared/interfaces/services';
+import { NotificationService } from 'src/app/services/notification.service';
 
 
 @Component({
@@ -18,12 +19,15 @@ export class ServiceRequestPage implements OnInit {
 
   private serviceRequeriment = inject(ServiceRequerimentsService);
   private clientService = inject(ClientsService);
+  private notification = inject(NotificationService);
   private fb = inject(FormBuilder);
   
   public services: any;
   public selectedDate: string = 'dd / mm / aaaa';
   public selectedTime: string = '12:00 pm'; 
   public clienteID: number = 0;
+
+  timeValue!: Date;
 
   public serviceRequestForm: FormGroup = this.fb.group({
     descripcion: ['', [Validators.required]],
@@ -32,7 +36,9 @@ export class ServiceRequestPage implements OnInit {
     servicioOfreceID: ['0', [Validators.required, Validators.pattern(/^(?!0$).*$/)]],
   });
 
-  constructor() { }
+  constructor() { 
+    this.timeValue = new Date();
+  }
 
   ngOnInit() {
     this.serviceRequeriments();
@@ -98,7 +104,8 @@ saveTime() { // Método para guardar la hora seleccionada
     this.serviceRequeriment.addServiceRequeriments(this.clienteID, request).subscribe({
       next: (response) => {
         console.log(response);
-        console.log('Formulario enviado');
+        this.notification.presentToast('Solicitud de servicio enviada', 'bottom', 'success');
+        this.serviceRequestForm.reset();
       },
       error: (error) => {
         console.error(error);
@@ -110,4 +117,51 @@ saveTime() { // Método para guardar la hora seleccionada
     console.log(this.serviceRequestForm.value);
   }
 
+
+
+
+
+
+
+
+
+  hour: number = 12;
+  minute: number = 0;
+  amPm: string = 'AM';
+
+  incrementHour() {
+    if (this.hour < 12) {
+      this.hour++;
+    } else {
+      this.hour = 1;
+    }
+  }
+
+  decrementHour() {
+    if (this.hour > 1) {
+      this.hour--;
+    } else {
+      this.hour = 12;
+    }
+  }
+
+  incrementMinute() {
+    if (this.minute < 59) {
+      this.minute++;
+    } else {
+      this.minute = 0;
+    }
+  }
+
+  decrementMinute() {
+    if (this.minute > 0) {
+      this.minute--;
+    } else {
+      this.minute = 59;
+    }
+  }
+
+  toggleAmPm() {
+    this.amPm = this.amPm === 'AM' ? 'PM' : 'AM';
+  }
 }
