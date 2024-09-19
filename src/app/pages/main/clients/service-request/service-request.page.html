@@ -72,27 +72,34 @@
     </!--ion-modal-->
     <ion-modal id="example-modal" #timeModal trigger="open-custom-hour" class="glass-content">
       <ng-template style="border-radius: 150px;">
-      <div class="contain-time">
-        <div class="time-picker">
-          <div class="time-box">
-            <ion-button (click)="incrementHour()">↑</ion-button>
-            <div class="input-container">
-              <ion-input type="text" [(ngModel)]="hour" [ngModelOptions]="{standalone: true}" placeholder="{{ hour }}"></ion-input>
+        <div class="contain-time">
+          <div class="time-picker">
+            <div class="time-box">
+              <ion-icon class="icon" name="chevron-up-outline" style="color: #74bc52;"
+                (click)="incrementHour()"></ion-icon>
+              <div class="input-container">
+                <ion-input type="text" [(ngModel)]="hour" [ngModelOptions]="{standalone: true}"
+                  placeholder="{{ hour }}"></ion-input>
+              </div>
+              <ion-icon name="chevron-down-outline" style="color: #74bc52;" (click)="decrementHour()"></ion-icon>
             </div>
-            <ion-button (click)="decrementHour()">↓</ion-button>
-          </div>
-          <div class="time-box">
-            <ion-button (click)="incrementMinute()">↑</ion-button>
-            <div>{{ minute }}</div>
-            <ion-button (click)="decrementMinute()">↓</ion-button>
-          </div>
-          <div class="time-box">
-            <ion-button (click)="toggleAmPm()">↑</ion-button>
-            <div>{{ amPm }}</div>
-            <ion-button (click)="toggleAmPm()">↓</ion-button>
+            <div class="time-box">
+              <ion-icon name="chevron-up-outline" style="color: #74bc52;" (click)="incrementMinute()"></ion-icon>
+              <div class="input-container">
+                <ion-input type="text" [(ngModel)]="minute" [ngModelOptions]="{standalone: true}"
+                  placeholder="{{ minute }}"></ion-input>
+              </div>
+              <ion-icon name="chevron-down-outline" style="color: #74bc52;" (click)="decrementMinute()"></ion-icon>
+            </div>
+            <div class="time-box">
+              <ion-icon name="chevron-up-outline" style="color: #74bc52;" (click)="toggleAmPm()"></ion-icon>
+              <div class="input-container">
+                <div>{{ amPm }}</div>
+              </div>
+              <ion-icon name="chevron-down-outline" style="color: #74bc52;" (click)="toggleAmPm()"></ion-icon>
+            </div>
           </div>
         </div>
-      </div>
       </ng-template>
     </ion-modal>
 
@@ -102,6 +109,3 @@
 
   </form>
 </ion-content>
-
-
-

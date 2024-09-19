@@ -9,6 +9,14 @@ ion-textarea {
     --placeholder-color: #219cdb;
 }
 
+.line {
+    flex-grow: 1;
+    border: .5px solid #288bd6;
+    background-color: #288bd6;
+    transform: translateY(20%) !important;
+    border-radius: 10px;
+}
+
 .add {
     width: 100%;
     --background: #219cdb;
@@ -18,6 +26,16 @@ ion-textarea {
     font-size: 14px;
     margin-top: 12px;
     margin-bottom: 0px !important;
+}
+
+.title-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+}
+
+.title-section + p {
+    margin-top: 0; 
 }
 
 .form {
@@ -33,12 +51,12 @@ ion-textarea {
         transform: translateY(-50%);
     }
 
-    margin-bottom: 0 !important;
+    margin-bottom: 0 !important; /* Ajusta el margen inferior del formulario a 0 */
     padding-bottom: 0 !important; 
 }
 
 app-custom-input {
-    height: 5px !important; 
+    height: 5px !important; /* Ajusta el alto de los inputs */
     margin: 0;
 }
 
@@ -60,17 +78,17 @@ app-custom-input {
 
 
 .custom-input {
-    //height: 120px; // Permitir que el contenedor se ajuste automáticamente
+    height: 120px; // Permitir que el contenedor se ajuste automáticamente
     display: flex; // Asegurar que el contenido se alinee correctamente
     align-items: center; // Centrar verticalmente el contenido
-    --border-radius: 8px; 
+    --border-radius: 8px; // Añadir un borde redondeado
 }
 
 ion-textarea {
     font-size: 14px !important;
-    min-height: 100px !important;
-    height: 100px !important; 
-    width: 100%; 
+    min-height: 100px !important; // Ajustar la altura mínima
+    height: 100px !important; // Ajustar la altura
+    width: 100%; // Asegurar que el input ocupe todo el ancho del contenedor
 }
 
 ion-content {
