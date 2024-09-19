@@ -208,7 +208,11 @@ ion-select::part(icon) {
 .input-container {
     display: flex;
     align-items: center;
+    text-align: center;
     justify-content: center;
-    height: 100%;
-    width: 20px;
+    height: 50%;
+    width: 55px;
+    border-radius: 8px;
+    border: 1px solid #74bc52;
 }
+
