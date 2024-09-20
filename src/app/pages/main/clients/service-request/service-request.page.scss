@@ -95,7 +95,7 @@ ion-modal#example-modal {
     --width: fit-content;
     --min-width: 250px;
     --height: fit-content;
-    --border-radius: 6px;
+    --border-radius: 20px;
     --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
 }
 
@@ -104,10 +104,10 @@ ion-modal#example-modal h1 {
 }
 
 ion-modal#example-modal ion-icon {
-    margin-right: 6px;
-    width: 48px;
+    //margin-right: 6px;
+    width: 30px;
     height: 48px;
-    padding: 4px 0;
+    //padding: 4px 0;
     color: #aaaaaa;
 }
 
@@ -140,9 +140,10 @@ ion-modal#example-modal .hour {
 .save {
     --background: #74bc52;
     --color: white;
-    font-size: 15px;
-    border-radius: 10px;
     --border-radius: 25px;
+    position: relative;
+    width: 90px;
+    margin: 3% 70%;
 }
 
 //Select
@@ -166,7 +167,6 @@ ion-select::part(text) {
     flex: 0 0 auto;
 }
 
-
 ion-select::part(icon) {
     color: #219cdb;
     opacity: 1;
@@ -176,35 +176,29 @@ ion-select::part(icon) {
     color: #219cdb;
 }
 
-
 .black-text {
     color: black;
 }
 
-
-
-
-
-
-
-
 .modal-time {
     width: 350px;
-    border-radius: 150px; /* Añade esta línea para el borde redondeado */
+    border-radius: 150px;
 }
 
 .time-picker {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     width: 350px;
+    transform: translateY(10px);
 }
-  
+
 .time-box {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 0 4px;
 }
-  
+
 .input-container {
     display: flex;
     align-items: center;
@@ -214,5 +208,18 @@ ion-select::part(icon) {
     width: 55px;
     border-radius: 8px;
     border: 1px solid #74bc52;
+    font-weight: bold;
+    font-size: 32px;
+    --highlight-color-focused: transparent;
 }
 
+.separator-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.separator {
+    font-size: 50px;
+    margin-bottom: 8px;
+}
