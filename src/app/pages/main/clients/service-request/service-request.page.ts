@@ -6,7 +6,6 @@ import { ClientsService } from 'src/app/services/clients.service';
 import { ServiceRequeriments } from 'src/app/shared/interfaces/services';
 import { NotificationService } from 'src/app/services/notification.service';
 
-
 @Component({
   selector: 'app-service-request',
   templateUrl: './service-request.page.html',
@@ -117,16 +116,10 @@ saveTime() { // Método para guardar la hora seleccionada
     console.log(this.serviceRequestForm.value);
   }
 
-
-
-
-
-
-
-
-
   hour: number = 12;
+  formattedHour: string = '12';
   minute: number = 0;
+  formattedMinute: string = '00';
   amPm: string = 'AM';
 
   incrementHour() {
@@ -135,6 +128,8 @@ saveTime() { // Método para guardar la hora seleccionada
     } else {
       this.hour = 1;
     }
+    this.formattedHour = this.formatHour(this.hour);
+    console.log('Hour:', this.formattedHour);
   }
 
   decrementHour() {
@@ -143,6 +138,8 @@ saveTime() { // Método para guardar la hora seleccionada
     } else {
       this.hour = 12;
     }
+    this.formattedHour = this.formatHour(this.hour);
+    console.log('Hour:', this.formattedHour);
   }
 
   incrementMinute() {
@@ -151,6 +148,8 @@ saveTime() { // Método para guardar la hora seleccionada
     } else {
       this.minute = 0;
     }
+    this.formattedMinute = this.formatMinute(this.minute);
+    console.log('Minute:', this.formattedMinute);
   }
 
   decrementMinute() {
@@ -159,9 +158,19 @@ saveTime() { // Método para guardar la hora seleccionada
     } else {
       this.minute = 59;
     }
+    this.formattedMinute = this.formatMinute(this.minute);
+    console.log('Minute:', this.formattedMinute);
   }
 
   toggleAmPm() {
     this.amPm = this.amPm === 'AM' ? 'PM' : 'AM';
+  }
+
+  formatHour(hour: number): string {
+    return hour < 10 ? '0' + hour : hour.toString();
+  }
+
+  formatMinute(minute: number): string {
+    return minute < 10 ? '0' + minute : minute.toString();
   }
 }
