@@ -74,6 +74,10 @@ export class ModalInfoComponent implements OnInit {
     this.deleteModal.present();
   }
 
+  cancel() {
+    this.deleteModal.dismiss();
+  }
+
   deleteClient() {
     const clienteID = this.client.clienteID;
     this.clientsService.deleteClient(clienteID).subscribe( response => {

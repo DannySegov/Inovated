@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, inject, OnInit, ViewChild } from '@angular/core';
+import { RequestsService } from 'src/app/services/requests.service';
 import { ModalInfoComponent } from 'src/app/shared/components/modal-info/modal-info.component';
 @Component({
   selector: 'app-requests',
@@ -7,7 +8,9 @@ import { ModalInfoComponent } from 'src/app/shared/components/modal-info/modal-i
 })
 export class RequestsPage implements OnInit {
   
+  private requestsService = inject(RequestsService);
   @ViewChild(ModalInfoComponent) modalInfoComponent!: ModalInfoComponent;
+  public requests: Request[] = [];
 
   clients = [
     { id: 1, name: 'Obed Jimenez Mendoza', address: 'Paseo de los Gavilanes #132-A', color: '#b9cb2d' },
@@ -21,6 +24,23 @@ export class RequestsPage implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.getRequests();
+  }
+
+  getRequests() { // Método para obtener las solicitudes de servicio
+    this.requestsService.getRequests(10, 1).subscribe({
+      next: (response: any) => {
+       if (response.estatus) {
+        this.requests = response.datos;
+        console.log('Request',response);
+        } else {
+          console.error('Error al recuperar los datos de los clientes:', response.mensaje);
+        }
+      },
+      error: (error) => {
+        console.error('Error en la llamada al servicio de clientes:', error);
+      }
+    });
   }
 
   onCardClick(client: any) { // Método para abrir el modal de información del cliente 
