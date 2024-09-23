@@ -50,9 +50,6 @@ export class ClientsPage implements OnInit {
       },
       error: (error) => {
         console.error('Error en la llamada al servicio de clientes:', error);
-      },
-      complete: () => {
-        console.log('Llamada al servicio de clientes completada');
       }
     });
   }
