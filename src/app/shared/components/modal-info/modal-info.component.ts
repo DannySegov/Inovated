@@ -1,6 +1,8 @@
 import { Component, EventEmitter, inject, OnInit, Output, ViewChild } from '@angular/core';
 import { IonModal } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { ClientsService } from 'src/app/services/clients.service';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-modal-info',
@@ -12,9 +14,12 @@ export class ModalInfoComponent implements OnInit {
   @ViewChild(IonModal) modal!: IonModal;
   @ViewChild('modalRequest', { static: true }) modalRequest!: IonModal;
   @ViewChild('modalClient', { static: true }) modalClient!: IonModal;
+  @ViewChild('deleteModal', { static: true }) deleteModal!: IonModal;
   @Output() close = new EventEmitter<void>();
 
   private router = inject(Router);
+  private clientsService = inject(ClientsService);
+  private notificationService = inject(NotificationService);
 
   client: any;
 
@@ -22,7 +27,6 @@ export class ModalInfoComponent implements OnInit {
     { Icon: 'cotizar', Url: '/main/clients/service-request' },
     { Icon: 'historial', Url: '/quote' },
     { Icon: 'editar', Url: '/quote' },
-    { Icon: 'eliminar', Url: '/quote' },
   ];
 
   buttonsRequest = [
@@ -35,13 +39,6 @@ export class ModalInfoComponent implements OnInit {
 
   }
 
-  /*
-  openModal() {
-    if (this.modal) {
-      this.modal.present();
-    }
-  }
-    */
   closeModal() { // Método para cerrar el modal
     if (this.modal) {
       this.modal.dismiss().then(() => {
@@ -64,8 +61,29 @@ export class ModalInfoComponent implements OnInit {
     this.modalRequest.present();
   }
 
-  openClientModal(client: any) { // Método para abrir el modal de clientes
-    this.client = client;
-    this.modalClient.present();
+  openClientModal(clienteID: number) { // Método para abrir el modal de clientes
+    this.clientsService.getClientById(clienteID).subscribe(client => {
+      this.client = client.datos;
+      console.log('Cliente:', this.client);
+      this.modalClient.present();
+    });
   }
+
+  openDeleteModal() {
+    this.modalClient.dismiss();
+    this.deleteModal.present();
+  }
+
+  deleteClient() {
+    const clienteID = this.client.clienteID;
+    this.clientsService.deleteClient(clienteID).subscribe( response => {
+      if (response.estatus) {
+        this.notificationService.presentToast(response.mensaje, 'top', 'success');
+        this.deleteModal.dismiss();
+        this.clientsService.updateClientsList();
+        this.router.navigate(['/main/clients']);
+      }
+    })
+  }
+  
 }

@@ -12,3 +12,5 @@ export interface ServiceRequeriments {
     hora: string;
     servicioOfreceID: number;
 }
+
+

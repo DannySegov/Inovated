@@ -18,7 +18,7 @@ export class ServiceRequestPage implements OnInit {
 
   private serviceRequeriment = inject(ServiceRequerimentsService);
   private clientService = inject(ClientsService);
-  private notification = inject(NotificationService);
+  private notificationService = inject(NotificationService);
   private fb = inject(FormBuilder);
   
   public services: any;
@@ -48,7 +48,6 @@ export class ServiceRequestPage implements OnInit {
     this.serviceRequeriment.getServiceRequeriments().subscribe({
       next: (response) => {
         this.services = response; 
-        console.log(response);
       },
       error: (error) => {
         console.error(error);
@@ -69,14 +68,14 @@ export class ServiceRequestPage implements OnInit {
     if (dateValue) {
         const date = new Date(dateValue);
         if (!isNaN(date.getTime())) {
-            const hours = String(date.getUTCHours()).padStart(2, '0');
-            const minutes = String(date.getUTCMinutes()).padStart(2, '0');
-            const seconds = String(date.getUTCSeconds()).padStart(2, '0');
-            const milliseconds = String(date.getUTCMilliseconds()).padStart(3, '0');
+            const hours = String(date.getHours()).padStart(2, '0');
+            const minutes = String(date.getMinutes()).padStart(2, '0');
+            const seconds = String(date.getSeconds()).padStart(2, '0');
+            const milliseconds = String(date.getMilliseconds()).padStart(3, '0');
             const formattedTime = `${hours}:${minutes}:${seconds}.${milliseconds}`;
             
             this.serviceRequestForm.patchValue({ hora: formattedTime });
-            this.selectedTime = formattedTime;
+            this.selectedTime = this.formatDisplayTime(date.getHours(), date.getMinutes());
         } else {
             console.error('Fecha inválida:', this.selectedTime);
         }
@@ -86,35 +85,39 @@ export class ServiceRequestPage implements OnInit {
 }
 
 saveTime() { // Método para guardar la hora seleccionada
-    console.log('Hora guardada:', this.selectedTime);
-    this.serviceRequestForm.patchValue({ hora: this.selectedTime });
+    const date = new Date();
+    date.setHours(this.hour, this.minute, 0, 0);
+    const formattedTime = this.formatTime(date);
+    this.serviceRequestForm.patchValue({ hora: formattedTime });
+    this.selectedTime = this.formatDisplayTime(this.hour, this.minute);
     this.timeModal.dismiss();
 }
 
   getClientID(){ // Método para obtener el ID del cliente
     this.clientService.clienteID$.subscribe(clienteID => {
       this.clienteID = clienteID;
-      console.log('Cliente ID recibido en otro componente:', this.clienteID);
     });
   }
 
   sendRequest() { // Método para enviar la solicitud de servicio
-    const request: ServiceRequeriments = this.serviceRequestForm.value;
-    this.serviceRequeriment.addServiceRequeriments(this.clienteID, request).subscribe({
-      next: (response) => {
-        console.log(response);
-        this.notification.presentToast('Solicitud de servicio enviada', 'bottom', 'success');
-        this.serviceRequestForm.reset();
-      },
-      error: (error) => {
-        console.error(error);
-      }
-    });
+    if (this.serviceRequestForm.valid) {
+      const request: ServiceRequeriments = this.serviceRequestForm.value;
+      this.serviceRequeriment.addServiceRequeriments(this.clienteID, request).subscribe({
+        next: (response) => {
+          this.notificationService.presentToast(response.mensaje, 'top', 'success');
+          this.serviceRequestForm.reset();
+          this.selectedDate = 'dd / mm / aaaa';
+          this.selectedTime = '12:00 pm';
+        },
+        error: (error) => {
+          console.error(error);
+        }
+      });
+    } else {
+      this.notificationService.presentToast('Formulario inválido, por favor completa todos los campos.', 'top', 'danger');
+    }
   }
 
-  logFormValues() { // Método para imprimir en consola los valores del formulario
-    console.log(this.serviceRequestForm.value);
-  }
 
   hour: number = 12;
   formattedHour: string = '12';
@@ -129,7 +132,7 @@ saveTime() { // Método para guardar la hora seleccionada
       this.hour = 1;
     }
     this.formattedHour = this.formatHour(this.hour);
-    console.log('Hour:', this.formattedHour);
+    this.updateSelectedTime();
   }
 
   decrementHour() {
@@ -139,7 +142,7 @@ saveTime() { // Método para guardar la hora seleccionada
       this.hour = 12;
     }
     this.formattedHour = this.formatHour(this.hour);
-    console.log('Hour:', this.formattedHour);
+    this.updateSelectedTime();
   }
 
   incrementMinute() {
@@ -149,7 +152,7 @@ saveTime() { // Método para guardar la hora seleccionada
       this.minute = 0;
     }
     this.formattedMinute = this.formatMinute(this.minute);
-    console.log('Minute:', this.formattedMinute);
+    this.updateSelectedTime();
   }
 
   decrementMinute() {
@@ -159,11 +162,12 @@ saveTime() { // Método para guardar la hora seleccionada
       this.minute = 59;
     }
     this.formattedMinute = this.formatMinute(this.minute);
-    console.log('Minute:', this.formattedMinute);
+    this.updateSelectedTime();
   }
 
   toggleAmPm() {
     this.amPm = this.amPm === 'AM' ? 'PM' : 'AM';
+    this.updateSelectedTime();
   }
 
   formatHour(hour: number): string {
@@ -172,5 +176,71 @@ saveTime() { // Método para guardar la hora seleccionada
 
   formatMinute(minute: number): string {
     return minute < 10 ? '0' + minute : minute.toString();
+  }
+
+  validateHour() {
+    let hour = parseInt(this.formattedHour, 10);
+    if (isNaN(hour) || hour < 1 || hour > 12) {
+      hour = 12;
+    }
+    this.hour = hour;
+    this.formattedHour = this.formatHour(this.hour);
+    this.updateSelectedTime();
+  }
+
+  validateMinute() {
+    let minute = parseInt(this.formattedMinute, 10);
+    if (isNaN(minute) || minute < 0 || minute > 59) {
+      minute = 0;
+    }
+    this.minute = minute;
+    this.formattedMinute = this.formatMinute(this.minute);
+    this.updateSelectedTime();
+  }
+
+  updateSelectedTime() {
+    let hours = this.hour;
+    if (this.amPm === 'PM' && this.hour !== 12) {
+      hours += 12;
+    } else if (this.amPm === 'AM' && this.hour === 12) {
+      hours = 0;
+    }
+    const date = new Date();
+    date.setHours(hours, this.minute, 0, 0);
+    const formattedTime = this.formatTime(date);
+    this.selectedTime = this.formatDisplayTime(this.hour, this.minute);
+    this.serviceRequestForm.patchValue({ hora: formattedTime });
+  }
+
+  formatTime(date: Date): string {
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    const seconds = String(date.getSeconds()).padStart(2, '0');
+    const milliseconds = String(date.getMilliseconds()).padStart(3, '0');
+    return `${hours}:${minutes}:${seconds}.${milliseconds}`;
+  }
+
+  formatDisplayTime(hour: number, minute: number): string {
+    const formattedHour = hour < 10 ? '0' + hour : hour.toString();
+    const formattedMinute = minute < 10 ? '0' + minute : minute.toString();
+    const amPm = this.amPm;
+    return `${formattedHour}:${formattedMinute} ${amPm}`;
+  }
+
+  updateTime() {
+    const hour = this.formattedHour;
+    const minute = this.formattedMinute;
+    const amPm = this.amPm;
+
+    // Convierte la hora y minuto a formato de 24 horas si es necesario
+    let hour24 = parseInt(hour, 10);
+    if (amPm === 'PM' && hour24 < 12) {
+      hour24 += 12;
+    } else if (amPm === 'AM' && hour24 === 12) {
+      hour24 = 0;
+    }
+    this.serviceRequestForm.patchValue({
+      hora: `${hour24}:${minute}:00.000`
+    });
   }
 }

@@ -231,6 +231,31 @@ ion-fab-button {
     font-size: 15px;
 }
 
+//New client
+.input-data {
+    height: 40px; 
+    display: flex;
+    align-items: center;
+    border: 1px solid #219cdb;
+    border-radius: 8px;
+}
+
+.custom-height {
+    font-size: 14px !important;
+    min-height: 20px !important; 
+    height: 20px !important; 
+    width: 100%; 
+}
+
+//Select
+.select-data {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #219cdb;
+    border-radius: 8px;
+}
+
 @media (min-width: 369px) {
     .auth-form {
         width: 500px;

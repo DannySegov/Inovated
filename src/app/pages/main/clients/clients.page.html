@@ -2,7 +2,7 @@
   <app-header [showMenu]="true" [icon]="'icon-cliente'" [cardText]="'Mis Clientes'"></app-header>
 </div>
 
-<ion-content [fullscreen]="true" (ionScroll)="onScroll($event)">
+<ion-content [fullscreen]="true" > <!--(ionScroll)="onScroll($event)"-->
   <ion-card *ngFor="let client of clients" mode="ios" class="client">
     <ion-card-content id="open-modal" (click)="onCardClick(client)">
       <ion-icon name="ellipsis-vertical" class="card-options-icon"></ion-icon>

@@ -9,8 +9,16 @@ import { Client } from '../../interfaces/clients';
 export class NameClientComponent  implements OnInit {
 
   constructor() { }
-  
-  @Input() client!: any; //TODO: Cambiar a Client
-  ngOnInit() {}
+  @Input() client: any; //TODO: Cambiar a Client
+  ngOnInit() {
+    console.log('Cliente name', this.client);
+  }
+
+  getInitials(name: string): string {
+    if (!name) return '';
+    const nameParts = name.split(' ');
+    if (nameParts.length < 2) return nameParts[0][0];
+    return nameParts[0][0] + nameParts[1][0];
+  }
 
 }

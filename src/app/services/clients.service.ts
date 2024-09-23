@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, Observable, Subject, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { ClientResponse, ClientResponseAdd, DataClient } from '../shared/interfaces/clients';
+import { ClientResponse, ResponseAdd, DataClient, ClientIDResponse } from '../shared/interfaces/clients';
 
 @Injectable({
   providedIn: 'root'
@@ -13,40 +13,67 @@ export class ClientsService {
   private readonly baseUrl: string = environment.baseUrl;
   private readonly headers: HttpHeaders = new HttpHeaders().set('Authorization', `Bearer ${this.accessToken}`);
 
-  private clientSource = new BehaviorSubject<any>(null); // null es el valor inicial
-  public currentClient = this.clientSource.asObservable();
-  
+  private clientsSource = new BehaviorSubject<any[]>([]); // Lista de clientes inicializada vacía
+  public clients$ = this.clientsSource.asObservable();
+
   public clienteID = new Subject<number>();
   clienteID$ = this.clienteID.asObservable();
 
   constructor() { }
 
-  changeClient(client: any) { //Este método actualiza el valor de clientSource llamando a next(client), lo que a su vez notifica a todos los suscriptores de currentClient con el nuevo valor.
-    this.clientSource.next(client);
-  }
-
-  //Obtener Clientes
-  getClients(elementos: number, pagina: number): Observable<ClientResponse[]> {
-    return this.http.get<ClientResponse[]>(`${this.baseUrl}/clientes?elementos=${elementos}&pagina=${pagina}`, { headers: this.headers })
+  // Obtener Clientes
+  getClients(elementos: number, pagina: number): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/clientes?elementos=${elementos}&pagina=${pagina}`, { headers: this.headers })
       .pipe(
-        catchError(err => {
-          console.error('Error en la llamada al servicio de clientes:', err);
-          return throwError(err);
-        })
+        catchError(this.handleError)
       );
   }
 
-  //Crear Cliente
-  addClients(dataClient: DataClient): Observable<ClientResponseAdd> {
-    return this.http.post<ClientResponseAdd>(`${this.baseUrl}/clientes`,{ dataClient }, { headers: this.headers })
+  // Crear Cliente
+  addClients(dataClient: DataClient): Observable<ResponseAdd> {
+    return this.http.post<ResponseAdd>(`${this.baseUrl}/clientes`, dataClient, { headers: this.headers })
+      .pipe(
+        catchError(this.handleError)
+      );
   }
 
-  get accessToken(): string | null { // Método para obtener el token de acceso
+  // Obtener Cliente por ID
+  getClientById(clienteID: number): Observable<ClientIDResponse> {
+    return this.http.get<ClientIDResponse>(`${this.baseUrl}/clientes/info/${clienteID}`, { headers: this.headers })
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  // Eliminar Cliente
+  deleteClient(clienteID: number): Observable<ResponseAdd> {
+    return this.http.delete<ResponseAdd>(`${this.baseUrl}/clientes/eliminar/${clienteID}`, { headers: this.headers })
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  // Método para obtener el token de acceso
+  get accessToken(): string | null {
     return localStorage.getItem('access');
   }
 
-  setClienteID(clienteID: number) { // Método para establecer el valor de clienteID
+  // Método para establecer el valor de clienteID
+  setClienteID(clienteID: number) {
     this.clienteID.next(clienteID);
     return clienteID; 
+  }
+
+  // Método para manejar errores
+  private handleError(error: any): Observable<never> {
+    console.error('An error occurred', error);
+    return throwError(error);
+  }
+
+  // Método para actualizar la lista de clientes
+  updateClientsList() {
+    this.getClients(10, 1).subscribe(response => {
+      this.clientsSource.next(response.datos); // Actualizar la lista de clientes
+    });
   }
 }

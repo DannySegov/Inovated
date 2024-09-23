@@ -76,6 +76,9 @@ app-custom-input {
     margin-bottom: 15px;
 }
 
+ion-input {
+    --placeholder-color: #219cdb;
+}
 
 .custom-input {
     height: 120px; // Permitir que el contenedor se ajuste automáticamente
