@@ -8,7 +8,7 @@
         <ion-card-content id="modal-request" (click)="onCardClick(client)">
             <ion-icon name="ellipsis-vertical" class="card-options-icon"></ion-icon>
             <div class="card-content">
-                <app-name-client [client]="client"></app-name-client>
+                <app-name-client></app-name-client> <!-- [client]="client"-->
                 <div class="info">
                     <ion-card-title class="name-client">{{ client.name }}</ion-card-title>
                     <ion-label class="profile">{{ client.address }}</ion-label>

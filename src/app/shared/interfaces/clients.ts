@@ -3,7 +3,7 @@ export interface ClientResponse {
     estatus: boolean;
     mensaje: string;
     paginador: Paginador;
-    datos: Client[];
+    datos: Client;
     catalogos: any;
 }
 
@@ -60,12 +60,20 @@ export interface DataClient {
 export interface InfoFiscalAddClient {
     rfc: string;
     razonSocial: string;
+    informacionID?: number;
     tipoPersona: number;
     direccion: Direccion;
 }
 
-export interface ClientResponseAdd {
+export interface ResponseAdd {
     estatus: boolean;
     mensaje: string;
     datos: string;
+}
+
+//getClientById
+export interface ClientIDResponse {
+    estatus: boolean;
+    mensaje: string;
+    datos: DataClient;
 }

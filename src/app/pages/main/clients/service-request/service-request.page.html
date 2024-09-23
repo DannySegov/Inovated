@@ -59,37 +59,25 @@
       </ng-template>
     </ion-modal>
 
-    <!--ion-modal id="example-modal" #timeModal trigger="open-custom-hour" class="glass-content custom-modal-width">
-      <ng-template>
-        <div class="hour">
-          <ion-datetime presentation="time" [preferWheel]="true" formControlName="hora"
-            (ionChange)="onTimeChange($event)"></ion-datetime>
-          <ion-button mode="ios" class="save" type="button" size="small" (click)="saveTime()">
-            <strong>Guardar</strong>
-          </ion-button>
-        </div>
-      </ng-template>
-    </!--ion-modal-->
-    <ion-modal id="example-modal" #timeModal trigger="open-custom-hour" class="glass-content">
+    <ion-modal id="delete-modal" #timeModal trigger="open-custom-hour" class="glass-content">
       <ng-template style="border-radius: 150px;">
         <div class="contain-time">
           <div class="time-picker">
             <div class="time-box">
               <ion-icon class="icon" name="chevron-up-outline" style="color: #74bc52;" (click)="incrementHour()"></ion-icon>
               <div class="input-container">
-                <ion-input type="text" [(ngModel)]="formattedHour" [ngModelOptions]="{standalone: true}"></ion-input>
+                <ion-input mode="ios" type="text" [(ngModel)]="formattedHour" [ngModelOptions]="{standalone: true}" (ionBlur)="validateHour()" class="no-bottom-line"></ion-input>
               </div>
               <ion-icon name="chevron-down-outline" style="color: #74bc52;" (click)="decrementHour()"></ion-icon>
             </div>
-    
+
             <div class="time-box separator-container">
               <div class="separator">:</div>
             </div>
-    
             <div class="time-box">
               <ion-icon name="chevron-up-outline" style="color: #74bc52;" (click)="incrementMinute()"></ion-icon>
               <div class="input-container">
-                <ion-input type="text" [(ngModel)]="formattedMinute" [ngModelOptions]="{standalone: true}"></ion-input>
+                <ion-input mode="ios" type="text" [(ngModel)]="formattedMinute" [ngModelOptions]="{standalone: true}" (ionBlur)="validateMinute()" class="no-bottom-line"></ion-input>
               </div>
               <ion-icon name="chevron-down-outline" style="color: #74bc52;" (click)="decrementMinute()"></ion-icon>
             </div>
@@ -107,6 +95,7 @@
         </div>
       </ng-template>
     </ion-modal>
-   
+
+    <pre>{{ serviceRequestForm.value | json }}</pre>
   </form>
 </ion-content>

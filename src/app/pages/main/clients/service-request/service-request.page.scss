@@ -84,12 +84,14 @@ ion-content {
     --padding-bottom: 0px !important;
 }
 
+/*
 .select-data {
     height: 40px;
     display: flex;
     align-items: center;
     border: 1px solid #219cdb;
 }
+    */
 
 ion-modal#example-modal {
     --width: fit-content;
@@ -144,15 +146,6 @@ ion-modal#example-modal .hour {
     position: relative;
     width: 90px;
     margin: 3% 70%;
-}
-
-//Select
-.select-data {
-    height: 40px;
-    display: flex;
-    align-items: center;
-    border: 1px solid #219cdb;
-    border-radius: 8px;
 }
 
 ion-select {
@@ -223,3 +216,6 @@ ion-select::part(icon) {
     font-size: 50px;
     margin-bottom: 8px;
 }
+
+
+

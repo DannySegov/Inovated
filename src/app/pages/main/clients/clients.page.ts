@@ -20,12 +20,17 @@ export class ClientsPage implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.getClients();
+    this.clientsService.clients$.subscribe(clientes => {
+      this.clients = clientes;
+    });
+
+    // Actualizar la lista de clientes al iniciar el componente
+    this.clientsService.updateClientsList();
   }
 
   getClients(page: number = 1) { // Método para obtener los clientes
-    this.clientsService.getClients(10, page).subscribe(
-      (resp: any) => {
+    this.clientsService.getClients(10, 1).subscribe({
+      next: (resp: any) => {
         if (resp.estatus) {
           this.clients = resp.datos.map((client: Client) => {
             const storedColor = localStorage.getItem(`client-color-${client.clienteID}`);
@@ -39,15 +44,17 @@ export class ClientsPage implements OnInit {
           });
           this.totalPages = Math.ceil(resp.paginador.total / resp.paginador.limite);
           this.currentPage = resp.paginador.pagina;
-          console.log('Clientes', this.clients);
         } else {
           console.error('Error al recuperar los datos de los clientes:', resp.mensaje);
         }
       },
-      (error) => {
+      error: (error) => {
         console.error('Error en la llamada al servicio de clientes:', error);
+      },
+      complete: () => {
+        console.log('Llamada al servicio de clientes completada');
       }
-    );
+    });
   }
 
 
@@ -56,21 +63,16 @@ export class ClientsPage implements OnInit {
 
 
 
-
+/*
   onCardClick(client: any) {
     this.modalInfoComponent.openClientModal(client);
     this.clientsService.changeClient(client);
   }
-
-  onScroll(event: any) {
-    const scrollElement = event.target;
-    const threshold = 150; // Umbral para cargar más datos antes de llegar al final
-
-    if (scrollElement.scrollHeight - scrollElement.scrollTop <= scrollElement.clientHeight + threshold) {
-      if (this.currentPage < this.totalPages) {
-        this.getClients(this.currentPage + 1);
-      }
-    }
+    */
+  onCardClick(client: Client) {
+    this.modalInfoComponent.openClientModal(client.clienteID);
+    console.log('Cliente seleccionado:', client.clienteID);
+     console.log('Color del cliente:', client.color); // Imprimir el color del cliente
   }
 
   getRandomColor(): string {

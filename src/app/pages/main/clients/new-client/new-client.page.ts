@@ -1,6 +1,8 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ClientsService } from 'src/app/services/clients.service';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-new-client',
@@ -10,44 +12,75 @@ import { Router } from '@angular/router';
 export class NewClientPage implements OnInit {
 
   private fb = inject(FormBuilder);
+  //public newClientForm!: FormGroup;
+  private clientService = inject(ClientsService);
+  private notificationService = inject(NotificationService);
+
+  constructor(private router: Router) { }
+
 
   public newClientForm: FormGroup = this.fb.group({
-    nombre: ['', [Validators.required]],
-    telefono: ['', [Validators.required]],
-    correo: ['', [Validators.required, Validators.email]],
-    observaciones: ['', [Validators.required]],
+    nombre: ['Roberto García', [Validators.required]],
+    telefono: ['5512349876', [Validators.required]],
+    correo: ['roberto.garcia@email.com', [Validators.required, Validators.email]],
+    observaciones: ['Interesado en mantenimiento de cámaras en un edificio comercial', [Validators.required]],
     direccion: this.fb.group({
-      calle: ['', [Validators.required]],
-      numeroExterior: ['', [Validators.required]],
-      colonia: ['', [Validators.required]],
-      codigoPostal: ['', [Validators.required]],
-      ciudad: ['', [Validators.required]],
-      estado: ['', [Validators.required]],
-      numeroInterior: ['', [Validators.required]]
+      calle: ['Av. Reforma Norte', [Validators.required]],
+      numeroExterior: ['1500', [Validators.required]],
+      numeroInterior: ['101', [Validators.required]],
+      colonia: ['Polanco', [Validators.required]],
+      codigoPostal: ['11560', [Validators.required]],
+      ciudad: ['Ciudad de México', [Validators.required]],
+      estado: ['CDMX', [Validators.required]]
     }),
-    contactosAdicionales: this.fb.array([]),
+    contactosAdicionales: this.fb.array([]), // Inicializa como un array vacío
     informacionFiscal: this.fb.group({
-      rfc: ['', [Validators.required]],
-      razonSocial: ['', [Validators.required]],
-      tipoPersona: [0, [Validators.required]],
+      rfc: ['ROGA750620XXX', [Validators.required]],
+      razonSocial: ['Servicios Comerciales García S.A. de C.V.', [Validators.required]],
+      tipoPersona: [2, [Validators.required]],  // Persona moral
       direccion: this.fb.group({
-        calle: ['', [Validators.required]],
-        numeroExterior: ['', [Validators.required]],
-        colonia: ['', [Validators.required]],
-        codigoPostal: ['', [Validators.required]],
-        ciudad: ['', [Validators.required]],
-        estado: ['', [Validators.required]],
-        numeroInterior: ['', [Validators.required]]
+        calle: ['Av. Insurgentes Sur', [Validators.required]],
+        numeroExterior: ['2200', [Validators.required]],
+        colonia: ['Nápoles', [Validators.required]],
+        codigoPostal: ['03810', [Validators.required]],
+        ciudad: ['Ciudad de México', [Validators.required]],
+        estado: ['CDMX', [Validators.required]],
+        numeroInterior: ['300', [Validators.required]]
       })
     })
   });
+  
+  
+  
+  
+  
+  
+  get contactosAdicionales(): FormArray {
+    return this.newClientForm.get('contactosAdicionales') as FormArray;
+  }
 
-  constructor(private router: Router) { }
+  createContactoAdicional(): FormGroup {
+    return this.fb.group({
+      nombre: ['', [Validators.required]],
+      telefono: ['', [Validators.required]],
+      correo: ['', [Validators.required, Validators.email]]
+    });
+  }
+
+  addContactoAdicional() {
+    this.contactosAdicionales.push(this.createContactoAdicional());
+  }
+  
 
   ngOnInit() {
   }
 
-  navigateToClients() { // Método para navegar a la lista de clientes
-    this.router.navigate(['/main/clients']);
+  addClient() {
+    const dataClient = this.newClientForm.value;
+    this.clientService.addClients(dataClient).subscribe(response => {
+      this.notificationService.presentToast(response.mensaje,'top','success');
+      this.clientService.updateClientsList();
+      this.router.navigate(['/main/clients']);
+    })
   }
 }
