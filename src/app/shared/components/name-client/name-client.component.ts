@@ -10,6 +10,7 @@ export class NameClientComponent  implements OnInit {
 
   constructor() { }
   @Input() client: any; //TODO: Cambiar a Client
+  @Input() request: any; 
   ngOnInit() {
     console.log('Cliente name', this.client);
   }

@@ -96,6 +96,7 @@ saveTime() { // Método para guardar la hora seleccionada
   getClientID(){ // Método para obtener el ID del cliente
     this.clientService.clienteID$.subscribe(clienteID => {
       this.clienteID = clienteID;
+      console.log('ID del cliente:', this.clienteID); 
     });
   }
 

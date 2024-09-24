@@ -2,29 +2,30 @@
     <app-header [showMenu]="true" [icon]="'icon-solicitud'" [cardText]="'Solicitudes pendientes'"></app-header>
 </div>
 
-<ion-content [fullscreen]="true">
-    @for(request of requests; track request) {
-    <ion-card mode="ios" class="client">
-        <ion-card-content id="modal-request" (click)="onCardClick(request)">
+<ion-content [fullscreen]="true"> <!--(ionScroll)="onScroll($event)"-->
+    <ion-card *ngFor="let request of requests" mode="ios" class="client">
+        <ion-card-content id="open-modal" (click)="openRequestModal(request)">
             <ion-icon name="ellipsis-vertical" class="card-options-icon"></ion-icon>
-            <div class="card-content">
-                <app-name-client></app-name-client> <!-- [client]="client"-->
-                <!--div class="info">
-                    <ion-card-title class="name-client">{{ request.perfil. }}</ion-card-title>
-                    <ion-label class="profile">{{  }}</ion-label>
-                </!--div-->
+            <div class="list-client">
+                <app-name-client [request]="request"></app-name-client>
+                <div class="info">
+                    <ion-card-title class="name-client">{{ request.perfil.nombre }}</ion-card-title>
+                    <ion-label class="profile">{{ request.perfil.direccion.calle }}, #{{ request.perfil.direccion.numeroExterior }},
+                        {{ request.perfil.direccion.colonia }},
+                        C.P: {{ request.perfil.direccion.codigoPostal }}, {{ request.perfil.direccion.ciudad }}, {{ request.perfil.direccion.estado }}.
+                    </ion-label>
+                </div>
             </div>
         </ion-card-content>
     </ion-card>
-    }
 
     <ion-fab mode="md" horizontal="end" vertical="bottom" slot="fixed">
-        <ion-fab-button routerLink="/main/clients/customer-detail">
+        <ion-fab-button routerLink="/main/clients/service-request">
             <ion-icon name="add"></ion-icon>
         </ion-fab-button>
     </ion-fab>
-
-    <app-modal-info></app-modal-info>
 </ion-content>
+
+<app-modal-info-request></app-modal-info-request>
 
 <app-menu-tab></app-menu-tab>

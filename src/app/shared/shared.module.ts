@@ -11,6 +11,7 @@ import { ModalInfoComponent } from './components/modal-info/modal-info.component
 import { NameClientComponent } from './components/name-client/name-client.component';
 import { InfoClientComponent } from './components/info-client/info-client.component';
 import { CustomSelectComponent } from './components/custom-select/custom-select.component';
+import { ModalInfoRequestComponent } from './components/modal-info-request/modal-info-request.component';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { CustomSelectComponent } from './components/custom-select/custom-select.
     ModalInfoComponent,
     NameClientComponent,
     InfoClientComponent,
+    ModalInfoRequestComponent,
   ],
   exports: [
     //Components
@@ -36,6 +38,7 @@ import { CustomSelectComponent } from './components/custom-select/custom-select.
     ModalInfoComponent,
     NameClientComponent,
     InfoClientComponent,
+    ModalInfoRequestComponent,
     //Modules
     ReactiveFormsModule,
   ],
