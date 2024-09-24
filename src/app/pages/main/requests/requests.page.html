@@ -2,7 +2,7 @@
     <app-header [showMenu]="true" [icon]="'icon-solicitud'" [cardText]="'Solicitudes pendientes'"></app-header>
 </div>
 
-<ion-content [fullscreen]="true"> <!--(ionScroll)="onScroll($event)"-->
+<ion-content [fullscreen]="true"> 
     <ion-card *ngFor="let request of requests" mode="ios" class="client">
         <ion-card-content id="open-modal" (click)="openRequestModal(request)">
             <ion-icon name="ellipsis-vertical" class="card-options-icon"></ion-icon>
