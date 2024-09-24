@@ -9,8 +9,7 @@ import { RequestsService } from 'src/app/services/requests.service';
   templateUrl: './modal-info-request.component.html',
   styleUrls: ['./modal-info-request.component.scss'],
 })
-export class ModalInfoRequestComponent  implements OnInit {
-
+export class ModalInfoRequestComponent implements OnInit {
   @ViewChild(IonModal) modal!: IonModal;
   @ViewChild('modalRequest', { static: true }) modalRequest!: IonModal;
   @ViewChild('deleteModal', { static: true }) deleteModal!: IonModal;
@@ -23,17 +22,14 @@ export class ModalInfoRequestComponent  implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-   
-  }
+  ngOnInit() {}
 
   buttonsRequest = [
     { icon: 'asignar', label: "Asignar", url: '/main/clients/service-request' },
     { icon: 'editar', label: "Editar", url: '/quote' },
   ];
-  
 
-  openRequestModal(servicioID: number) { // Método para abrir el modal de solicitudes
+  openRequestModal(servicioID: number) {
     this.requestsService.getRequestById(servicioID).subscribe(request => {
       this.request = request.datos;
       this.modalRequest.present();
@@ -50,15 +46,15 @@ export class ModalInfoRequestComponent  implements OnInit {
   }
 
   deleteRequest() {
+    console.log('Delete', this.request); 
     const servicioID = this.request.servicioID;
-    this.requestsService.deleteRequest(servicioID).subscribe( response => {
+    this.requestsService.deleteRequest(servicioID).subscribe(response => {
       if (response.estatus) {
         this.notificationService.presentToast(response.mensaje, 'top', 'success');
         this.deleteModal.dismiss();
         this.requestsService.updateRequestsList();
         this.router.navigate(['/main/requests']);
       } 
-    })
+    });
   }
 }
-//this.modalRequest.present();
