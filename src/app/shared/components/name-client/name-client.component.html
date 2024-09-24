@@ -1,5 +1,12 @@
-<ion-avatar>
+<!-- name-client.component.html -->
+<ion-avatar *ngIf="client">
   <div class="user-initials" [ngStyle]="{'background-color': client.color}">
     {{ client.nombre.split(' ')[0][0] + client.nombre.split(' ')[1][0] }}
+  </div>
+</ion-avatar>
+
+<ion-avatar *ngIf="request">
+  <div class="user-initials" [ngStyle]="{'background-color': request?.perfil?.color}">
+    {{ request?.perfil?.nombre?.split(' ')[0][0] + request?.perfil?.nombre?.split(' ')[1][0] }}
   </div>
 </ion-avatar>

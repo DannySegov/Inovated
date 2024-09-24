@@ -29,12 +29,6 @@ export class ModalInfoComponent implements OnInit {
     { Icon: 'editar', Url: '/quote' },
   ];
 
-  buttonsRequest = [
-    { icon: 'asignar', label: "Asignar", url: '/main/clients/service-request' },
-    { icon: 'editar', label: "Editar", url: '/quote' },
-    { icon: 'eliminar', label: "Eliminar", url: '/quote' },
-  ];
-
   ngOnInit() {
 
   }

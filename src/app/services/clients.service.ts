@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, Observable, Subject, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { ClientResponse, ResponseAdd, DataClient, ClientIDResponse } from '../shared/interfaces/clients';
+import { ResponseAdd, DataClient, ClientIDResponse } from '../shared/interfaces/clients';
 
 @Injectable({
   providedIn: 'root'
@@ -15,11 +15,13 @@ export class ClientsService {
 
   private clientsSource = new BehaviorSubject<any[]>([]); // Lista de clientes inicializada vacía
   public clients$ = this.clientsSource.asObservable();
+  
 
   public clienteID = new Subject<number>();
   clienteID$ = this.clienteID.asObservable();
 
   constructor() { }
+
 
   // Obtener Clientes
   getClients(elementos: number, pagina: number): Observable<any> {
