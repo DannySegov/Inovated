@@ -4,7 +4,7 @@
     <ng-template>
       <ion-card-content id="modal-request">
 
-        <ion-card mode="ios" class="card-info-client">
+        <!--ion-card mode="ios" class="card-info-client">
           <ion-card-content>
             <div class="card-content">
               <app-name-client [client]="request.nombre"></app-name-client>
@@ -30,7 +30,13 @@
               </div>
             </div>
           </ion-card-content>
-        </ion-card>
+        </!--ion-card-->
+        <app-info-client 
+        [nombre]="request.perfil.nombre" 
+        [direccion]="request.perfil.direccion" 
+        [telefono]="request.perfil.telefono" 
+        [correo]="request.perfil.correo">
+      </app-info-client>
 
 
 
@@ -71,7 +77,7 @@
           <ng-container *ngFor="let button of buttonsRequest; let i = index">
             <div class="button-container">
               <ion-button mode="ios" shape="round" size="large"
-                [style.--background]="i < 3 ? request.color : (i === 3 ? 'red' : '')">
+                [style.--background]="i < 3 ? request.color : (i === 3 ? 'red' : '')" (click)="onQuote()">
                 <ion-icon slot="icon-only" class="{{ 'icon-' + button.icon }} icon-white large-icon"></ion-icon>
               </ion-button>
               <ion-label>{{ button.label }}</ion-label>

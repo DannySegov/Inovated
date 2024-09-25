@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, Input, OnInit } from '@angular/core';
 import { ClientsService } from '../../../services/clients.service';
 
 @Component({
@@ -10,6 +10,10 @@ export class InfoClientComponent implements OnInit {
 
   private clientsService = inject(ClientsService);
   client: any;
+  @Input() nombre!: string;
+  @Input() direccion: any;
+  @Input() telefono!: string;
+  @Input() correo!: string;
 
   constructor() { }
 

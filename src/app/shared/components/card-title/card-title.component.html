@@ -1,7 +1,8 @@
 <ion-card mode="ios" class="card-title fixed">
   <ion-card-header>
     <div class="card-content">
-      <ng-container *ngIf="isCustomerDetailPage || isServiceRequestPage; else defaultTitle">
+      <!-- Caso para la pantalla de clientes -->
+      <ng-container *ngIf="isNewClientPage || isServiceRequestPage; else userAssignmentTitle">
         <ion-text class="title-module">
           <ng-content select="ion-icon"></ng-content>
           <ion-icon name="arrow-back-outline" (click)="navigateTo('/main/clients')"></ion-icon>
@@ -9,6 +10,20 @@
           <span id="icon-title-right" class="{{ icon }}" ></span>
         </ion-text>
       </ng-container>
+
+      <!-- Caso para la pantalla de asignación de usuarios -->
+      <ng-template #userAssignmentTitle>
+        <ng-container *ngIf="isUserAssignmentPage || isServiceRequestPage; else defaultTitle">
+          <ion-text class="title-module">
+            <ng-content select="ion-icon"></ng-content>
+            <ion-icon name="arrow-back-outline" (click)="navigateTo('/main/user-assignment')"></ion-icon>
+            <span class="small-font">{{ cardText }}</span>
+            <span id="icon-title-right" class="{{ icon }}" ></span>
+          </ion-text>
+        </ng-container>
+      </ng-template>
+
+      <!-- Título por defecto -->
       <ng-template #defaultTitle>
         <ion-card-title class="title-module">
           <ng-content select="ion-icon"></ng-content>

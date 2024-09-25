@@ -9,6 +9,7 @@ import { RequestsPageRoutingModule } from './requests-routing.module';
 import { RequestsPage } from './requests.page';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MenuTabPageModule } from '../menu-tab/menu-tab.module';
+import { UserAssigmentPageModule } from './user-assigment/user-assigment.module';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { MenuTabPageModule } from '../menu-tab/menu-tab.module';
     IonicModule,
     RequestsPageRoutingModule,
     SharedModule,
-    MenuTabPageModule
+    MenuTabPageModule,
+    UserAssigmentPageModule
   ],
   declarations: [RequestsPage]
 })
