@@ -8,6 +8,10 @@ const routes: Routes = [
     path: '',
     component: RequestsPage
   },
+  {
+    path: 'user-assigment',
+    loadChildren: () => import('./user-assigment/user-assigment.module').then( m => m.UserAssigmentPageModule)
+  }
 
 ];
 

@@ -1,24 +1,24 @@
 <ion-card mode="ios" class="card-info-client">
   <ion-card-content>
     <div class="card-content">
-      <!--app-name-client [client]="client" ></!--app-name-client-->
+      <app-name-client *ngIf="client" [client]="client"></app-name-client>
       <div class="info">
-        <ion-card-title class="name-client">{{ client.nombre }}</ion-card-title>
+        <ion-card-title class="name-client">{{ nombre }}</ion-card-title>
       </div>
     </div>
     <div class="icon-container">
       <div class="content-icon">
         <span class="icon-direccion icon-black"></span>
-        <ion-label class="address-client">{{ client.direccion.calle }}, #{{ client.direccion.numeroExterior }}, {{ client.direccion.colonia }}, 
-          C.P: {{ client.direccion.codigoPostal }}, {{ client.direccion.ciudad }}, {{ client.direccion.estado }}.</ion-label>
+        <ion-label class="address-client">{{ direccion.calle }}, #{{ direccion.numeroExterior }}, {{ direccion.colonia }}, 
+          C.P: {{ direccion.codigoPostal }}, {{ direccion.ciudad }}, {{ direccion.estado }}.</ion-label>
       </div>
       <div class="content-icon">
         <span class="icon-telefono icon-black"></span>
-        <ion-label class="address-client">{{ client.telefono }}</ion-label>
+        <ion-label class="address-client">{{ telefono }}</ion-label>
       </div>
       <div class="content-icon">
         <span class="icon-correo icon-black"></span>
-        <ion-label class="address-client">{{ client.correo }}</ion-label>
+        <ion-label class="address-client">{{ correo }}</ion-label>
       </div>
     </div>
   </ion-card-content>

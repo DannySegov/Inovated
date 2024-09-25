@@ -10,6 +10,7 @@ import { RequestsService } from 'src/app/services/requests.service';
   styleUrls: ['./modal-info-request.component.scss'],
 })
 export class ModalInfoRequestComponent implements OnInit {
+  
   @ViewChild(IonModal) modal!: IonModal;
   @ViewChild('modalRequest', { static: true }) modalRequest!: IonModal;
   @ViewChild('deleteModal', { static: true }) deleteModal!: IonModal;
@@ -25,7 +26,7 @@ export class ModalInfoRequestComponent implements OnInit {
   ngOnInit() {}
 
   buttonsRequest = [
-    { icon: 'asignar', label: "Asignar", url: '/main/clients/service-request' },
+    { icon: 'asignar', label: "Asignar", url: '/main/requests/user-assigment' },
     { icon: 'editar', label: "Editar", url: '/quote' },
   ];
 
@@ -34,6 +35,11 @@ export class ModalInfoRequestComponent implements OnInit {
       this.request = request.datos;
       this.modalRequest.present();
     });
+  }
+
+  onQuote() { 
+    this.router.navigate(['/main/requests/user-assigment']);
+    this.modalRequest.dismiss();
   }
 
   openDeleteModal() {

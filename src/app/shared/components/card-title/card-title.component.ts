@@ -14,12 +14,14 @@ export class CardTitleComponent  implements OnInit {
   @Input() icon: string = ''; 
   @Input() iconPosition: 'left' | 'right' = 'left';
 
-  isCustomerDetailPage!: boolean;
+  isNewClientPage!: boolean;
   isServiceRequestPage!: boolean; 
+  isUserAssignmentPage!: boolean;
 
   ngOnInit() {
-    this.isCustomerDetailPage = this.router.url.includes('main/clients/new-client');
+    this.isNewClientPage = this.router.url.includes('main/clients/new-client');
     this.isServiceRequestPage = this.router.url.includes('main/clients/service-request');
+    this.isUserAssignmentPage = this.router.url.includes('main/requests/user-assigment');
   }
 
   navigateTo(url: string) {
