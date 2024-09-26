@@ -1,4 +1,4 @@
-<ion-card mode="ios" class="card-info-client">
+<ion-card mode="ios" class="card-info-client" [ngStyle]="{'background-color': backgroundColor}">
   <ion-card-content>
     <div class="card-content">
       <app-name-client *ngIf="client" [client]="client"></app-name-client>

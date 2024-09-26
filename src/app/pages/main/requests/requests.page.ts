@@ -44,6 +44,7 @@ export class RequestsPage implements OnInit {
 
   openRequestModal(request: any) { // Método para abrir el modal de información del cliente 
     this.modalInfoRequestComponent.openRequestModal(request.servicioID);
+    this.requestsService.changeRequest(request);
     console.log('Solicitud seleccionada:', request.servicioID);
   }
 }

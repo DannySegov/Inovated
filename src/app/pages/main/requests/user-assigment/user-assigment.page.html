@@ -4,7 +4,7 @@
 
 <ion-content [fullscreen]="true">
   <form [formGroup]="userAssigmentForm" class="form">
-    <div class="title-section">
+    <div class="title-section general">
       <ion-text>
         <h6>
           Información general
@@ -13,162 +13,72 @@
       <hr class="line">
     </div>
 
-    <app-info-client   [nombre]="request.perfil.nombre" 
+    <app-info-client [nombre]="request.perfil.nombre" 
     [direccion]="request.perfil.direccion" 
     [telefono]="request.perfil.telefono" 
-    [correo]="request.perfil.correo">
+    [correo]="request.perfil.correo"
+    [backgroundColor]="'white'">
   </app-info-client>
 
-    <div class="title-section">
+    <div class="title-section request">
       <ion-text>
         <h6>
-          Dirección
+          Información de la solicitud
         </h6>
       </ion-text>
       <hr class="line">
     </div>
 
-    <div>
-      <p>Calle:</p>
+    <div class="info-request">
+      <p>Servicio:</p>
       <ion-item class="input-data" lines="none">
         <ion-input class="custom-height" type="text" autocomplete="autocomplete" placeholder="Calle"></ion-input>
       </ion-item>
 
-      <p>Número exterior:</p>
+      <p>Clave:</p>
       <ion-item class="input-data" lines="none">
-        <ion-input class="custom-height" type="number" autocomplete="autocomplete" placeholder="ext."></ion-input>
+        <ion-input class="custom-height" type="text" autocomplete="autocomplete" placeholder="ext."></ion-input>
       </ion-item>
 
-      <p>Número interior:</p>
+      <p>Categoria:</p>
       <ion-item class="input-data" lines="none">
-        <ion-input class="custom-height" type="number" autocomplete="autocomplete" placeholder="Opcional"></ion-input>
+        <ion-input class="custom-height" type="text" autocomplete="autocomplete" placeholder="Opcional"></ion-input>
       </ion-item>
 
-      <p>Colonia:</p>
+      <p>Fecha:</p>
       <ion-item class="input-data" lines="none">
         <ion-input class="custom-height" type="text" autocomplete="autocomplete" placeholder="Colonia"></ion-input>
       </ion-item>
 
-      <p>Código Postal:</p>
+      <p>Hora:</p>
       <ion-item class="input-data" lines="none">
-        <ion-input class="custom-height" type="number" autocomplete="autocomplete" placeholder="CP"></ion-input>
+        <ion-input class="custom-height" type="text" autocomplete="autocomplete" placeholder="CP"></ion-input>
       </ion-item>
 
-      <p>Ciudad:</p>
-      <ion-item class="input-data" lines="none">
-        <ion-input class="custom-height" type="text" autocomplete="autocomplete" placeholder="Delegación o Municipio"></ion-input>
-      </ion-item>
-
-      <p>Estado:</p>
-      <ion-item class="input-data" lines="none">
-        <ion-input class="custom-height" type="text" autocomplete="autocomplete" placeholder="Entidad Federativa"></ion-input>
+      <p>Descripción:</p>
+      <ion-item class="custom-input" lines="none" size="large">
+        <ion-textarea type="text" placeholder="Opcional"></ion-textarea>
       </ion-item>
     </div>
 
-    <div class="title-section">
+    <div class="title-section request">
       <ion-text>
         <h6>
-          Contactos adicionales
+          Asignar personal
         </h6>
       </ion-text>
       <hr class="line">
     </div>
-    <!--div>
-      <div *ngFor="let contacto of contactosAdicionales.controls; let i = index">
-        <p>Nombre:</p>
-        <ion-item class="input-data" lines="none">
-          <ion-input class="custom-height" type="text" autocomplete="autocomplete" placeholder="Nombre Completo"></ion-input>
-        </ion-item>
 
-        <p>Teléfono:</p>
-        <ion-item class="input-data" lines="none">
-          <ion-input class="custom-height" type="number" autocomplete="autocomplete" placeholder="10 Dígitos"></ion-input>
-        </ion-item>
-
-        <p>Correo:</p>
-        <ion-item class="input-data" lines="none">
-          <ion-input class="custom-height" type="email" autocomplete="autocomplete" placeholder="Correo Electrónico"></ion-input>
-        </ion-item>
-      </div>
-      <ion-button mode="ios" class="add" type="button" size="small" (click)="addContactoAdicional()">
-        <strong>Agregar</strong>
-      </ion-button>
-    </!--div-->
-  
-    <div class="title-section">
-      <ion-text>
-        <h6>
-          Información Fiscal
-        </h6>
-      </ion-text>
-      <hr class="line">
-    </div>
-    <div>
-      <p>Persona Fisica/Moral:</p>
-      <ion-item mode="ios" lines="none" class="select-data">
-        <ion-select justify="space-between" label="Selecciona una opción" class="custom-label">
-          <ion-select-option value="1">Persona Física</ion-select-option>
-          <ion-select-option value="2">Persona Moral</ion-select-option>
-        </ion-select>
-      </ion-item>
-
-      <p>Razón Social:</p>
-      <ion-item class="input-data" lines="none">
-        <ion-input class="custom-height" type="text" autocomplete="autocomplete" placeholder="Razón Social"></ion-input>
-      </ion-item>
-
-      <p>RFC:</p>
-      <ion-item class="input-data" lines="none">
-        <ion-input class="custom-height" type="text" autocomplete="autocomplete" placeholder="13 Dígitos"></ion-input>
-      </ion-item>
-
-      <div class="title-section">
-        <strong class="title1">Dirección de facturación</strong>
-        <strong class="title">Igual que dirección</strong>
-      </div>
-
-      <div>
-        <p>Calle:</p>
-        <ion-item class="input-data" lines="none">
-          <ion-input class="custom-height" type="text" autocomplete="autocomplete" placeholder="Calle"></ion-input>
-        </ion-item>
-
-        <p>Número exterior:</p>
-        <ion-item class="input-data" lines="none">
-          <ion-input class="custom-height" type="number" autocomplete="autocomplete" placeholder="ext."></ion-input>
-        </ion-item>
-
-        <p>Número interior:</p>
-        <ion-item class="input-data" lines="none">
-          <ion-input class="custom-height" type="number" autocomplete="autocomplete" placeholder="Opcional"></ion-input>
-        </ion-item>
-
-        <p>Colonia:</p>
-        <ion-item class="input-data" lines="none">
-          <ion-input class="custom-height" type="text" autocomplete="autocomplete" placeholder="Colonia"></ion-input>
-        </ion-item>
-
-        <p>Código Postal:</p>
-        <ion-item class="input-data" lines="none">
-          <ion-input class="custom-height" type="number" autocomplete="autocomplete" placeholder="CP"></ion-input>
-        </ion-item>
-
-        <p>Ciudad:</p>
-        <ion-item class="input-data" lines="none">
-          <ion-input class="custom-height" type="text" autocomplete="autocomplete" placeholder="Delegación o Municipio"></ion-input>
-        </ion-item>
-
-        <p>Estado:</p>
-        <ion-item class="input-data" lines="none">
-          <ion-input class="custom-height" type="text" autocomplete="autocomplete" placeholder="Entidad Federativa"></ion-input>
-        </ion-item>
-      </div>
-    </div>
-
-    <p>Observaciones generales:</p>
-    <ion-item class="custom-input" lines="none" size="large">
-      <ion-textarea type="text" placeholder="Opcional"></ion-textarea>
-    </ion-item>
+    <p>Colaborador:</p>
+    <!--ion-item mode="ios" lines="none" class="select-data">
+      <ion-select justify="space-between" label="Selecciona una opción" class="custom-label"
+        formControlName="servicioOfreceID">
+        <ion-select-option>
+          selecciona
+        </ion-select-option>
+      </ion-select>
+    </!--ion-item-->
 
     <ion-button mode="ios" class="add" type="submit" size="small" >
       <strong>Guardar cliente</strong>

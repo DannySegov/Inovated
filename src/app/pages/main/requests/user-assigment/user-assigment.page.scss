@@ -1,3 +1,10 @@
+app-info-client {
+    display: flex;
+    transform: translateX(-20px);
+    height: 165px;
+    width: 112%;
+}
+
 ion-text {
     margin-right: 10px;
     height: 50px !important;
@@ -20,7 +27,7 @@ ion-textarea {
 .add {
     width: 100%;
     --background: #219cdb;
-    --background-hover: #219cdb;    
+    --background-hover: #219cdb;
     --background-activated: #1d85b9;
     --border-radius: 11px;
     font-size: 14px;
@@ -31,18 +38,22 @@ ion-textarea {
 .title-section {
     display: flex;
     align-items: center;
-    justify-content: space-between; 
+    justify-content: space-between;
 }
 
-.title-section + p {
-    margin-top: 0; 
+.title-section.general {
+    transform: translateY(-60px);
+}
+
+.title-section.request {
+    transform: translateY(-10px);
 }
 
 .form {
     width: 100%;
     text-align: center;
     padding: 20px;
-    transform: translateY(-3.5%);
+    /*transform: translateY(-3.5%);*/
 
     p {
         text-align: left;
@@ -50,13 +61,19 @@ ion-textarea {
         font-size: small;
         transform: translateY(-50%);
     }
+}
 
-    margin-bottom: 0 !important; /* Ajusta el margen inferior del formulario a 0 */
-    padding-bottom: 0 !important; 
+.info-request {
+    transform: translateY(-4%);
+}
+
+.input-data {
+    margin-top: 0; /* Ajusta el margen superior a 0 */
 }
 
 app-custom-input {
-    height: 5px !important; /* Ajusta el alto de los inputs */
+    height: 5px !important;
+    /* Ajusta el alto de los inputs */
     margin: 0;
 }
 
@@ -71,7 +88,8 @@ app-custom-input {
     margin-right: 10px;
 }
 
-.title, .title1 {
+.title,
+.title1 {
     margin-top: 8px;
     margin-bottom: 15px;
 }
@@ -97,8 +115,4 @@ ion-textarea {
 ion-content {
     --padding-bottom: 0px !important;
 }
-
-
-
-
 

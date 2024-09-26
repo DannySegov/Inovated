@@ -17,6 +17,9 @@ export class RequestsService {
   private requestsSource = new BehaviorSubject<any[]>([]); // Lista de clientes inicializada vacía
   public requests$ = this.requestsSource.asObservable();
 
+  private requestSource = new BehaviorSubject<any>(null);
+  currentRequest = this.requestSource.asObservable();
+
   constructor() { }
 
   // Obtener Solicitudes de Servicio
@@ -45,5 +48,9 @@ export class RequestsService {
   // Método para obtener el token de acceso
   get accessToken(): string | null {
     return localStorage.getItem('access');
+  }
+
+  changeRequest(request: any) {
+    this.requestSource.next(request);
   }
 }
