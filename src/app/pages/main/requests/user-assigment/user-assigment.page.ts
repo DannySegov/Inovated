@@ -21,9 +21,11 @@ export class UserAssigmentPage implements OnInit {
   })
 
   ngOnInit() {
-    const servicioID = this.request.servicioID;
-    this.requestsService.getRequestById(servicioID).subscribe(request => {
-      this.request = request.datos;
+    this.requestsService.currentRequest.subscribe(request => {
+      if (request) {
+        this.request = request;
+       console.log('Id recibido en user assigment:', request);
+      }
     });
   }
 
