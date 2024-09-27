@@ -69,6 +69,7 @@ ion-textarea {
 
 .input-data {
     margin-top: 0; /* Ajusta el margen superior a 0 */
+    --background: #f1f3f5;
 }
 
 app-custom-input {
@@ -103,6 +104,7 @@ ion-input {
     display: flex; // Asegurar que el contenido se alinee correctamente
     align-items: center; // Centrar verticalmente el contenido
     --border-radius: 8px; // Añadir un borde redondeado
+    --background: #f1f3f5;
 }
 
 ion-textarea {
@@ -116,3 +118,12 @@ ion-content {
     --padding-bottom: 0px !important;
 }
 
+//Select 
+.custom-label::part(label) {
+    color: #219cdb;
+}
+
+.name-employee {
+    width: 100%;
+    transform: translateX(-10px);
+}

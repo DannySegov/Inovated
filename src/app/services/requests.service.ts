@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { RequestResponse } from '../shared/interfaces/requests';
+import { Employee, RequestResponse } from '../shared/interfaces/requests';
 import { ResponseAdd } from '../shared/interfaces/clients';
 
 @Injectable({
@@ -35,6 +35,11 @@ export class RequestsService {
   //Eliminar Solicitud de Servicio
   deleteRequest(servicioID: number): Observable<ResponseAdd> {
     return this.http.delete<ResponseAdd>(`${this.baseUrl}/solicitud-servicio/elimina/${servicioID}`, { headers: this.headers });
+  }
+
+  //Obtener Empleados
+  getEmployees(): Observable<Employee[]> {
+    return this.http.get<Employee[]>(`${this.baseUrl}/solicitud-servicio/empleados`, { headers: this.headers });
   }
 
   // Método para actualizar la lista de solicitudes de servicio
