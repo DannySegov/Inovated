@@ -6,7 +6,7 @@ export interface RequestResponse {
     catalogos: any | null;
 }
 
-interface Paginador {
+export interface Paginador {
     limite: number;
     offset: number;
     pagina: number;
@@ -15,7 +15,7 @@ interface Paginador {
     siguiente: number;
 }
 
-interface Request {
+export interface Request {
     descripcion: string;
     servicioID: number;
     infoServicio: InfoServicio;
@@ -26,7 +26,7 @@ interface Request {
     esAsignado: boolean;
 }
 
-interface InfoServicio {
+export interface InfoServicio {
     claveServicio: string;
     categoria: string;
     nombreServicio: string;
@@ -34,7 +34,7 @@ interface InfoServicio {
     servicioOfreceID: number;
 }
 
-interface Perfil {
+export interface Perfil {
     nombre: string;
     telefono: string;
     correo: string;
@@ -42,7 +42,7 @@ interface Perfil {
     direccion: Direccion;
 }
 
-interface Direccion {
+export interface Direccion {
     calle: string;
     numeroExterior: string;
     colonia: string;
@@ -50,4 +50,13 @@ interface Direccion {
     ciudad: string;
     estado: string;
     numeroInterior?: string;
+}
+
+export interface Employee {
+    id: number;
+    correo: string;
+    nombreCompleto: string;
+    empleadoID: number;
+    puestoID: number;
+    nombrePuesto: string;
 }

@@ -1,6 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { RequestsService } from 'src/app/services/requests.service';
+import { Employee } from 'src/app/shared/interfaces/requests';
 
 @Component({
   selector: 'app-user-assigment',
@@ -13,6 +14,7 @@ export class UserAssigmentPage implements OnInit {
   private requestsService = inject(RequestsService);
 
   public request: any; 
+  public employees: Employee[] = [];
   
   constructor() { }
 
@@ -21,10 +23,25 @@ export class UserAssigmentPage implements OnInit {
   })
 
   ngOnInit() {
+    this.getRequestById();
+    this.getEmployees();
+  }
+
+  getRequestById() {
     this.requestsService.currentRequest.subscribe(request => {
       if (request) {
         this.request = request;
        console.log('Id recibido en user assigment:', request);
+      }
+    });
+  }
+
+
+  getEmployees() {
+    this.requestsService.getEmployees().subscribe(response => {
+      if (response) {
+        this.employees = response;
+        console.log('Empleados:', this.employees);
       }
     });
   }

@@ -32,57 +32,76 @@
     <div class="info-request">
       <p>Servicio:</p>
       <ion-item class="input-data" lines="none">
-        <ion-input class="custom-height" type="text" autocomplete="autocomplete" placeholder="Calle"></ion-input>
+        <ion-input class="custom-height" type="text" autocomplete="autocomplete" placeholder="Servicio" disabled></ion-input>
       </ion-item>
 
       <p>Clave:</p>
       <ion-item class="input-data" lines="none">
-        <ion-input class="custom-height" type="text" autocomplete="autocomplete" placeholder="ext."></ion-input>
+        <ion-input class="custom-height" type="text" autocomplete="autocomplete" placeholder="Clave" disabled></ion-input>
       </ion-item>
 
       <p>Categoria:</p>
       <ion-item class="input-data" lines="none">
-        <ion-input class="custom-height" type="text" autocomplete="autocomplete" placeholder="Opcional"></ion-input>
+        <ion-input class="custom-height" type="text" autocomplete="autocomplete" placeholder="Categoria" disabled></ion-input>
       </ion-item>
 
       <p>Fecha:</p>
       <ion-item class="input-data" lines="none">
-        <ion-input class="custom-height" type="text" autocomplete="autocomplete" placeholder="Colonia"></ion-input>
+        <ion-input class="custom-height" type="text" autocomplete="autocomplete" placeholder="Fecha" disabled></ion-input>
       </ion-item>
 
       <p>Hora:</p>
       <ion-item class="input-data" lines="none">
-        <ion-input class="custom-height" type="text" autocomplete="autocomplete" placeholder="CP"></ion-input>
+        <ion-input class="custom-height" type="text" autocomplete="autocomplete" placeholder="Hora" disabled></ion-input>
       </ion-item>
 
       <p>Descripción:</p>
       <ion-item class="custom-input" lines="none" size="large">
-        <ion-textarea type="text" placeholder="Opcional"></ion-textarea>
+        <ion-textarea type="text" placeholder="Opcional" disabled></ion-textarea>
       </ion-item>
+
+      <div class="title-section request">
+        <ion-text>
+          <h6>
+            Asignar personal
+          </h6>
+        </ion-text>
+        <hr class="line">
+      </div>
+  
+      <p>Colaborador:</p>
+      <ion-item mode="ios" lines="none" class="select-data">
+        <ion-select justify="space-between" label="Selecciona una opción" class="custom-label">
+          <ion-select-option *ngFor="let employee of employees" [value]="employee.empleadoID">
+            {{ employee.nombreCompleto }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+  
+      <div class="title-section request">
+        <ion-text>
+          <h6>
+             Personal asignado
+          </h6>
+        </ion-text>
+        <hr class="line">
+      </div>
+  
+      
+        <ion-card class="name-employee">
+          <ion-card-content>
+              <!--app-name-client [client]="client"></!--app-name-clien-->
+                <ion-card-title>Nombre</ion-card-title>
+          </ion-card-content>
+        </ion-card>
+      
+  
+      <ion-button mode="ios" class="add" type="submit" size="small">
+        <strong>Asignar solicitud</strong>
+      </ion-button>
     </div>
 
-    <div class="title-section request">
-      <ion-text>
-        <h6>
-          Asignar personal
-        </h6>
-      </ion-text>
-      <hr class="line">
-    </div>
-
-    <p>Colaborador:</p>
-    <!--ion-item mode="ios" lines="none" class="select-data">
-      <ion-select justify="space-between" label="Selecciona una opción" class="custom-label"
-        formControlName="servicioOfreceID">
-        <ion-select-option>
-          selecciona
-        </ion-select-option>
-      </ion-select>
-    </!--ion-item-->
-
-    <ion-button mode="ios" class="add" type="submit" size="small" >
-      <strong>Guardar cliente</strong>
-    </ion-button>
+ 
   </form>
 </ion-content>
 
