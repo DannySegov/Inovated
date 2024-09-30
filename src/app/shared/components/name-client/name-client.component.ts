@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Client } from '../../interfaces/clients';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-name-client',
@@ -8,11 +9,18 @@ import { Client } from '../../interfaces/clients';
 })
 export class NameClientComponent  implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
   @Input() client: any; //TODO: Cambiar a Client
   @Input() request: any; 
+  @Input() employee!: boolean;
+
+  isUserAssignmentPage!: boolean;
+  isClientsPage!: boolean;
+
   ngOnInit() {
     console.log('Cliente name', this.client);
+    this.isUserAssignmentPage = this.router.url.includes('main/requests/user-assigment');
+    this.isClientsPage = this.router.url.includes('main/clients');
   }
 
   getInitials(name: string): string {

@@ -8,12 +8,23 @@
     align-items: center;
     font-size: 24px; 
     font-weight: bold;
-
-    //transform: translateY(-5px);
+    margin-right: 30px;
+    background-color: aquamarine;
 }
 
-ion-avatar {
-    margin-right: 30px; 
+
+.user-assigment {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    font-weight: bold;
+    margin-right: 8px;
+    background-color: #0d3d57;
 }
 
 .info {
@@ -22,15 +33,4 @@ ion-avatar {
 
 .name-client {
     font-size: 17px; 
-}
-
-/*
-.large-avatar .user-initials {
-    width: 68px; 
-    height: 68px; 
-    font-size: 26px; 
-}
-    */
-
-
-    
+}    

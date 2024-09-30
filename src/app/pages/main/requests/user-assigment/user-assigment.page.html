@@ -13,10 +13,10 @@
       <hr class="line">
     </div>
 
-    <app-info-client [nombre]="request.perfil.nombre" 
-    [direccion]="request.perfil.direccion" 
-    [telefono]="request.perfil.telefono" 
-    [correo]="request.perfil.correo"
+    <app-info-client [nombre]="request?.perfil?.nombre" 
+    [direccion]="request?.perfil?.direccion" 
+    [telefono]="request?.perfil?.telefono" 
+    [correo]="request?.perfil?.correo"
     [backgroundColor]="'white'">
   </app-info-client>
 
@@ -32,35 +32,35 @@
     <div class="info-request">
       <p>Servicio:</p>
       <ion-item class="input-data" lines="none">
-        <ion-input class="custom-height" type="text" autocomplete="autocomplete" placeholder="Servicio" disabled></ion-input>
+        <ion-input class="custom-height" type="text" [value]="userAssigmentForm.get('servicio')?.value" autocomplete="autocomplete" placeholder="Servicio" disabled></ion-input>
       </ion-item>
 
       <p>Clave:</p>
       <ion-item class="input-data" lines="none">
-        <ion-input class="custom-height" type="text" autocomplete="autocomplete" placeholder="Clave" disabled></ion-input>
+        <ion-input class="custom-height" type="text" [value]="userAssigmentForm.get('clave')?.value" autocomplete="autocomplete" placeholder="Clave" disabled></ion-input>
       </ion-item>
 
       <p>Categoria:</p>
       <ion-item class="input-data" lines="none">
-        <ion-input class="custom-height" type="text" autocomplete="autocomplete" placeholder="Categoria" disabled></ion-input>
+        <ion-input class="custom-height" type="text" [value]="userAssigmentForm.get('categoria')?.value" autocomplete="autocomplete" placeholder="Categoria" disabled></ion-input>
       </ion-item>
 
       <p>Fecha:</p>
       <ion-item class="input-data" lines="none">
-        <ion-input class="custom-height" type="text" autocomplete="autocomplete" placeholder="Fecha" disabled></ion-input>
+        <ion-input class="custom-height" type="text" [value]="userAssigmentForm.get('fecha')?.value" autocomplete="autocomplete" placeholder="Fecha" disabled></ion-input>
       </ion-item>
 
       <p>Hora:</p>
       <ion-item class="input-data" lines="none">
-        <ion-input class="custom-height" type="text" autocomplete="autocomplete" placeholder="Hora" disabled></ion-input>
+        <ion-input class="custom-height" type="text" [value]="userAssigmentForm.get('hora')?.value" autocomplete="autocomplete" placeholder="Hora" disabled></ion-input>
       </ion-item>
 
       <p>Descripción:</p>
       <ion-item class="custom-input" lines="none" size="large">
-        <ion-textarea type="text" placeholder="Opcional" disabled></ion-textarea>
+        <ion-textarea type="text" [value]="userAssigmentForm.get('descripcion')?.value" placeholder="Opcional" disabled></ion-textarea>
       </ion-item>
 
-      <div class="title-section request">
+      <div class="title-section assign">
         <ion-text>
           <h6>
             Asignar personal
@@ -69,39 +69,52 @@
         <hr class="line">
       </div>
   
-      <p>Colaborador:</p>
-      <ion-item mode="ios" lines="none" class="select-data">
-        <ion-select justify="space-between" label="Selecciona una opción" class="custom-label">
-          <ion-select-option *ngFor="let employee of employees" [value]="employee.empleadoID">
-            {{ employee.nombreCompleto }}
-          </ion-select-option>
-        </ion-select>
-      </ion-item>
-  
-      <div class="title-section request">
+      <p class="colab">Colaborador:</p>
+      <ion-button mode="ios" id="open-custom-dialog" class="custom-button select" size="small"
+        style="display: flex; align-items: center; justify-content: space-between;">
+        <span [ngClass]="{'black-text': selectedEmployeeName !== 'Selecciona una opción'}" style="margin-right: auto;">
+          {{ selectedEmployeeName }}
+        </span>
+        <span id="icon-drop" class="icon-drop"></span>
+      </ion-button>
+      
+      <ion-modal id="example-modal" #employeeModal trigger="open-custom-dialog" class="glass-content">
+        <ng-template>
+          <ion-list [inset]="true">
+            <ion-item *ngFor="let employee of employees" (click)="selectEmployee(employee)">
+              <ion-label>{{ employee.nombreCompleto }}</ion-label>
+            </ion-item>
+          </ion-list>
+        </ng-template>
+      </ion-modal>
+      
+      <div class="title-section employee">
         <ion-text>
           <h6>
-             Personal asignado
+            Personal asignado
           </h6>
         </ion-text>
         <hr class="line">
       </div>
-  
       
-        <ion-card class="name-employee">
-          <ion-card-content>
-              <!--app-name-client [client]="client"></!--app-name-clien-->
-                <ion-card-title>Nombre</ion-card-title>
-          </ion-card-content>
-        </ion-card>
+      <ion-card class="name-employee" *ngFor="let employee of selectedEmployees">
+        <ion-card-content class="name">
+          <app-name-client [employee]="true"></app-name-client>
+          <ion-card-title><strong>{{ employee.nombreCompleto }}</strong></ion-card-title>
+          <div class="button-container">
+            <ion-button  mode="ios" shape="round" size="small" class="delete" (click)="deleteEmployee()">
+              <ion-icon slot="icon-only" class="icon-eliminar icon-red large-icon centered-icon"></ion-icon>
+            </ion-button>
+          </div>
+        </ion-card-content>
+      </ion-card>
+
       
   
       <ion-button mode="ios" class="add" type="submit" size="small">
         <strong>Asignar solicitud</strong>
       </ion-button>
     </div>
-
- 
   </form>
 </ion-content>
 

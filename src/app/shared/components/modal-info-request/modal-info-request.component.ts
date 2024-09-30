@@ -52,7 +52,6 @@ export class ModalInfoRequestComponent implements OnInit {
   }
 
   deleteRequest() {
-    console.log('Delete', this.request); 
     const servicioID = this.request.servicioID;
     this.requestsService.deleteRequest(servicioID).subscribe(response => {
       if (response.estatus) {
