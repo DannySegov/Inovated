@@ -50,6 +50,11 @@ export class RequestsService {
     });
   }
 
+  //Asignar Empleado a Solicitud de Servicio
+  assignEmployeeToRequest(servicioID: number, empleadoID: number[]): Observable<ResponseAdd> {
+    return this.http.put<ResponseAdd>(`${this.baseUrl}/solicitud-servicio/asigna-empleados/${servicioID}`, { empleadoID }, { headers: this.headers });
+  }
+
   // Método para obtener el token de acceso
   get accessToken(): string | null {
     return localStorage.getItem('access');

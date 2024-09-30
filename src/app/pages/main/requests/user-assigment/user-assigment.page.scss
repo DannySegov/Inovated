@@ -1,8 +1,9 @@
 app-info-client {
     display: flex;
-    transform: translateX(-20px);
+    transform: translateX(-17px);
     height: 165px;
     width: 112%;
+    align-items: center;
 }
 
 ion-text {
@@ -42,39 +43,55 @@ ion-textarea {
 }
 
 .title-section.general {
-    transform: translateY(-60px);
+    transform: translateY(-57px);
+    padding: 5px;
 }
 
 .title-section.request {
-    transform: translateY(-10px);
+    transform: translateY(-45px);
+    padding: 5px;
+}
+
+.title-section.assign {
+    transform: translateY(-8px);
+}
+
+.colab {
+    transform: translateY(-25px);
+}
+
+.title-section.employee {
+    transform: translateY(-28px);
 }
 
 .form {
     width: 100%;
     text-align: center;
     padding: 20px;
-    /*transform: translateY(-3.5%);*/
 
     p {
         text-align: left;
-        margin-bottom: -7px;
+        margin-bottom: 0; // Eliminar margen inferior
         font-size: small;
-        transform: translateY(-50%);
+        //transform: translateY(-50%);
     }
+
+   //transform: translateY(-50%);
 }
 
 .info-request {
-    transform: translateY(-4%);
+    transform: translateY(-10%);
+    padding: 5px;
 }
 
 .input-data {
-    margin-top: 0; /* Ajusta el margen superior a 0 */
+    margin-top: 2px;
     --background: #f1f3f5;
+    height: 40px;
 }
 
 app-custom-input {
     height: 5px !important;
-    /* Ajusta el alto de los inputs */
     margin: 0;
 }
 
@@ -119,11 +136,102 @@ ion-content {
 }
 
 //Select 
+/*
 .custom-label::part(label) {
     color: #219cdb;
 }
+    */
+
+.custom-button .placeholder-text {
+    color: #288bd6; /* Color del placeholder */
+  }
+
+.select {
+    transform: translateY(-68%);
+}
+
+//Card employee
+.title-section.employee {
+    transform: translateY(-27px); // Ajusta la posición vertical
+    margin-bottom: 0; // Elimina el margen inferior
+    padding-bottom: 0; // Elimina el padding inferior
+}
 
 .name-employee {
+    transform: translateX(-15px) translateY(-25px); // Ajusta la posición horizontal y vertical
+    margin-top: 0; // Elimina el margen superior
+    padding-top: 0; // Elimina el padding superior
     width: 100%;
-    transform: translateX(-10px);
+    border-radius: 13px;
 }
+
+.name {
+    display: flex;
+    justify-content: space-between; // Asegura que el contenido se distribuya correctamente
+    align-items: center;
+    transform: translateX(-5px);
+    height: 65px; 
+}
+
+ion-button.delete {
+    --background: white;
+    color: #e60f2f;
+    outline: 6px solid #e60f2f; 
+    outline-offset: -4px;
+    border-radius: 50%; 
+    width: 30px; 
+    height: 30px; 
+    line-height: 30px; 
+    vertical-align: middle;
+    display: flex;
+    transform: translateX(10px);
+    align-self: flex-end; // Asegurar que el botón se alinee al final
+}
+
+.icon-red:before {
+    color: #e60f2f !important;
+    font-size: 24px; /* Ajusta el tamaño según sea necesario */
+}
+
+.large-icon {
+    font-size: 24px; /* Ajusta el tamaño según sea necesario */
+}
+
+.centered-icon {
+    margin-top: 5px;
+    width: 100%;
+    height: 100%;
+}
+
+//Modal 
+ion-modal#example-modal {
+    --width: fit-content;
+    --min-width: 250px;
+    --height: fit-content;
+    --border-radius: 6px;
+    --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
+  }
+  
+  ion-modal#example-modal h1 {
+    margin: 20px 20px 10px 20px;
+  }
+  
+  ion-modal#example-modal ion-icon {
+    margin-right: 6px;
+  
+    width: 48px;
+    height: 48px;
+  
+    padding: 4px 0;
+  
+    color: #a8328d;
+  }
+  
+  ion-modal#example-modal .wrapper {
+    margin-bottom: 10px;
+  }
+
+  //Lista empleados
+  ion-list {
+    cursor: pointer;
+  }
