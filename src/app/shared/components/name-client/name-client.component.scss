@@ -8,10 +8,24 @@
     align-items: center;
     font-size: 24px; 
     font-weight: bold;
-    margin-right: 30px;
+    margin-left: -8px;
     background-color: aquamarine;
 }
 
+.user-initials-modal {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px; 
+    font-weight: bold;
+    margin-left: -8px;
+    position: relative; /* Asegura que el elemento se posicione relativo a su contenedor */
+    background-color: rgb(255, 240, 127);
+}
 
 .user-assigment {
     width: 50px;

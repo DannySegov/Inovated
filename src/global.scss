@@ -207,11 +207,12 @@ ion-fab-button {
 }
 
 .name-client {
-    font-size: 17px;
+    font-size: 15px;
 }
 
 .info {
-    transform: translateY(20%);
+    margin: auto;
+    margin-left: 10px;
 }
 
 .client {
@@ -228,9 +229,9 @@ ion-fab-button {
     padding: 8px;
 }
 
-.profile {
+.address {
     color: #878787;
-    font-size: 15px;
+    font-size: 12px;
 }
 
 //Diseño del boton que despliega el modal el service-request y user-assigment

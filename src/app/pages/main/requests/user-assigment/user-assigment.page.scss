@@ -31,9 +31,10 @@ ion-textarea {
     --background-hover: #219cdb;
     --background-activated: #1d85b9;
     --border-radius: 11px;
-    font-size: 14px;
+    font-size: 15px;
     margin-top: 12px;
-    margin-bottom: 0px !important;
+    transform: translateY(-200px);
+    padding: 25px;
 }
 
 .title-section {
@@ -157,10 +158,18 @@ ion-content {
     padding-bottom: 0; // Elimina el padding inferior
 }
 
+.container-employee {
+    max-height: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+    transform: translateY(-115px);
+    padding: 25px;
+}
+
 .name-employee {
     transform: translateX(-15px) translateY(-25px); // Ajusta la posición horizontal y vertical
     margin-top: 0; // Elimina el margen superior
-    padding-top: 0; // Elimina el padding superior
+    margin-bottom: 10px;
     width: 100%;
     border-radius: 13px;
 }

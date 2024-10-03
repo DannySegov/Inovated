@@ -88,7 +88,7 @@
         </ng-template>
       </ion-modal>
       
-      <div class="title-section employee">
+      <div class="title-section employee" *ngIf="selectedEmployees.length > 0">
         <ion-text>
           <h6>
             Personal asignado
@@ -96,26 +96,26 @@
         </ion-text>
         <hr class="line">
       </div>
-      
-      <ion-card class="name-employee" *ngFor="let employee of selectedEmployees">
-        <ion-card-content class="name">
-          <app-name-client [employee]="true"></app-name-client>
-          <ion-card-title><strong>{{ employee.nombreCompleto }}</strong></ion-card-title>
-          <div class="button-container">
-            <ion-button  mode="ios" shape="round" size="small" class="delete" (click)="deleteEmployee()">
-              <ion-icon slot="icon-only" class="icon-eliminar icon-red large-icon centered-icon"></ion-icon>
-            </ion-button>
-          </div>
-        </ion-card-content>
-      </ion-card>
-
-      
-  
-      <ion-button mode="ios" class="add" type="submit" size="small">
-        <strong>Asignar solicitud</strong>
-      </ion-button>
     </div>
   </form>
+
+  <div class="container-employee">
+    <ion-card class="name-employee" *ngFor="let employee of selectedEmployees">
+      <ion-card-content class="name">
+        <app-name-client [employee]="true"></app-name-client>
+        <ion-card-title><strong>{{ employee.nombreCompleto }}</strong></ion-card-title>
+        <div class="button-container">
+          <ion-button mode="ios" shape="round" size="small" class="delete" (click)="deleteEmployee(employee)">
+            <ion-icon slot="icon-only" class="icon-eliminar icon-red large-icon centered-icon"></ion-icon>
+          </ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+  
+  <ion-button *ngIf="selectedEmployees.length > 0" mode="ios" class="add" type="submit" size="small" (click)="assignEmployeeToRequest(request.servicioID)">
+    <strong>Asignar solicitud</strong>
+  </ion-button>
 </ion-content>
 
 <app-menu-tab></app-menu-tab>

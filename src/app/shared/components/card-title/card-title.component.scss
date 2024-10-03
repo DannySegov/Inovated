@@ -15,9 +15,15 @@
 }
 
 .small-font {
+    /*
     font-size: 20px;
     color: black;
     margin-left: 8px;
+    */
+    font-size: 20px;
+    color: black;
+    margin-left: 8px;
+    transform: translateY(-3px);
 }
 
 .title-module {

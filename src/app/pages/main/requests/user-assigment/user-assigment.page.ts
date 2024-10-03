@@ -2,6 +2,8 @@ import { Component, inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { NotificationService } from 'src/app/services/notification.service';
 import { RequestsService } from 'src/app/services/requests.service';
+import { UsersService } from 'src/app/services/users.service';
+import { ResponseAdd } from 'src/app/shared/interfaces/clients';
 import { Employee } from 'src/app/shared/interfaces/requests';
 
 @Component({
@@ -13,6 +15,7 @@ export class UserAssigmentPage implements OnInit {
 
   private fb = inject(FormBuilder);
   private requestsService = inject(RequestsService);
+  private userService = inject(UsersService);
   private notificationService = inject(NotificationService);  
 
   @ViewChild('employeeModal') employeeModal: any;
@@ -21,6 +24,7 @@ export class UserAssigmentPage implements OnInit {
   public employees: Employee[] = [];
   public selectedEmployeeName: string = 'Selecciona una opción';
   public selectedEmployees: Employee[] = [];
+  public lastSelectedEmployee: Employee | null = null;
 
   public userAssigmentForm: FormGroup = this.fb.group({
     servicio: [{ value: '', disabled: true }],
@@ -75,6 +79,7 @@ export class UserAssigmentPage implements OnInit {
     } else {
       this.selectedEmployees.splice(index, 1);
     }
+    this.lastSelectedEmployee = employee;
     this.updateSelectedEmployeeName();
     this.employeeModal.dismiss();
     console.log('Empleado seleccionado ID:', employee.empleadoID);
@@ -82,23 +87,48 @@ export class UserAssigmentPage implements OnInit {
 
   // Método para actualizar el nombre del empleado seleccionado
   updateSelectedEmployeeName() {
-    if (this.selectedEmployees.length > 0) {
-      this.selectedEmployeeName = this.selectedEmployees.map(emp => emp.nombreCompleto).join(', ');
+    if (this.lastSelectedEmployee) {
+      this.selectedEmployeeName = this.lastSelectedEmployee.nombreCompleto;
     } else {
       this.selectedEmployeeName = 'Selecciona una opción';
     }
   }
 
-  deleteEmployee() {
-    const usuarioID = this.request.id;
-    this.requestsService.deleteRequest(usuarioID).subscribe(response => {
+  // Método para eliminar un empleado
+  deleteEmployee(employee: Employee) {
+    const usuarioID = employee.id;
+    console.log('ID Empleado a eliminar:', usuarioID);
+    this.userService.deleteUser(usuarioID).subscribe(response => {
       if (response.estatus) {
         this.notificationService.presentToast(response.mensaje, 'top', 'success');
-        //this.deleteModal.dismiss();
-        this.updateSelectedEmployeeName();
-        //this.router.navigate(['/main/requests']);
+        // Eliminar el empleado de la lista selectedEmployees
+        this.selectedEmployees = this.selectedEmployees.filter(e => e.id !== usuarioID);
+        this.selectedEmployeeName = 'Selecciona una opción';
       } 
     });
   }
-    
+
+// Método para asignar empleados a la solicitud de servicio
+assignEmployeeToRequest(servicioID: number): void {
+  const empleados = this.selectedEmployees.map(emp => emp.empleadoID); // Extrae los IDs de los empleados seleccionados
+
+  console.log('Servicio ID:', servicioID);
+  console.log('Empleados:', empleados);
+
+  if (empleados.length === 0) {
+    console.error('No hay empleados seleccionados.');
+    return;
+  }
+
+  this.requestsService.assignEmployeeToRequest(servicioID, empleados).subscribe({
+    next: (response: ResponseAdd) => {
+      console.log(response.mensaje);
+      this.notificationService.presentToast(response.mensaje, 'top', 'success');
+     //console.log('Empleados asignados exitosamente:', response);
+    },
+    error: (error) => {
+      console.error('Error al asignar empleados:', error);
+    }
+  });
+}
 }
