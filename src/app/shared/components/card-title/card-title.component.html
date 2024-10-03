@@ -5,7 +5,7 @@
       <ng-container *ngIf="isNewClientPage || isServiceRequestPage; else userAssignmentTitle">
         <ion-text class="title-module">
           <ng-content select="ion-icon"></ng-content>
-          <ion-icon name="icon-atras" (click)="navigateTo('/main/clients')"></ion-icon>
+          <span class="icon-atras" (click)="navigateTo('/main/clients')"></span>
           <span class="small-font">{{ cardText }}</span>
           <span id="icon-title-right" class="{{ icon }}" ></span>
         </ion-text>

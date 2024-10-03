@@ -10,7 +10,7 @@
                 <app-name-client [request]="request"></app-name-client>
                 <div class="info">
                     <ion-card-title class="name-client">{{ request.perfil.nombre }}</ion-card-title>
-                    <ion-label class="profile">{{ request.perfil.direccion.calle }}, #{{ request.perfil.direccion.numeroExterior }},
+                    <ion-label class="address">{{ request.perfil.direccion.calle }}, #{{ request.perfil.direccion.numeroExterior }},
                         {{ request.perfil.direccion.colonia }},
                         C.P: {{ request.perfil.direccion.codigoPostal }}, {{ request.perfil.direccion.ciudad }}, {{ request.perfil.direccion.estado }}.
                     </ion-label>

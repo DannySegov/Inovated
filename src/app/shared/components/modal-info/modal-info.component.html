@@ -4,7 +4,7 @@
       <ion-card-content id="open-modal">
         <ion-icon name="ellipsis-vertical" class="card-options-icon"></ion-icon>
         <div class="card-content">
-          <app-name-client [client]="client" ></app-name-client>
+          <app-name-client [isModal]="true" [client]="client" ></app-name-client>
           <div class="info">
             <ion-card-title class="name-client">{{ client.nombre }}</ion-card-title>
           </div>

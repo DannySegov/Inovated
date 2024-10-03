@@ -22,6 +22,11 @@ export class RequestsService {
 
   constructor() { }
 
+    //Obtener Empleados
+    getEmployees(): Observable<Employee[]> {
+      return this.http.get<Employee[]>(`${this.baseUrl}/solicitud-servicio/empleados`, { headers: this.headers });
+    }
+
   // Obtener Solicitudes de Servicio
   getRequests(elementos: number, pagina: number): Observable<RequestResponse> {
     return this.http.get<RequestResponse>(`${this.baseUrl}/solicitud-servicio`, { headers: this.headers });
@@ -37,23 +42,20 @@ export class RequestsService {
     return this.http.delete<ResponseAdd>(`${this.baseUrl}/solicitud-servicio/elimina/${servicioID}`, { headers: this.headers });
   }
 
-  //Obtener Empleados
-  getEmployees(): Observable<Employee[]> {
-    return this.http.get<Employee[]>(`${this.baseUrl}/solicitud-servicio/empleados`, { headers: this.headers });
+  //Asignar Empleado a Solicitud de Servicio
+  assignEmployeeToRequest(servicioID: number, empleados: number[]): Observable<ResponseAdd> {
+    return this.http.put<ResponseAdd>(`${this.baseUrl}/solicitud-servicio/asigna-empleados/${servicioID}`, empleados, { headers: this.headers });
   }
 
   // Método para actualizar la lista de solicitudes de servicio
   updateRequestsList() {
     this.getRequests(10, 1).subscribe(response => {
       this.requestsSource.next(response.datos); // Actualizar la lista de solicitudes de servicio
-      console.log('Solicitudes de servicio:', response.datos);  
+      console.log('Solicitudes de servicio:', response.datos);
     });
   }
 
-  //Asignar Empleado a Solicitud de Servicio
-  assignEmployeeToRequest(servicioID: number, empleadoID: number[]): Observable<ResponseAdd> {
-    return this.http.put<ResponseAdd>(`${this.baseUrl}/solicitud-servicio/asigna-empleados/${servicioID}`, { empleadoID }, { headers: this.headers });
-  }
+
 
   // Método para obtener el token de acceso
   get accessToken(): string | null {

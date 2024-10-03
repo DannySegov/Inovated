@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class NameClientComponent  implements OnInit {
 
   constructor(private router: Router) { }
+  @Input() isModal: boolean = false;
   @Input() client: any; //TODO: Cambiar a Client
   @Input() request: any; 
   @Input() employee!: boolean;
