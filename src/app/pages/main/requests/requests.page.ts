@@ -8,9 +8,10 @@ import { ModalInfoRequestComponent } from 'src/app/shared/components/modal-info-
   styleUrls: ['./requests.page.scss'],
 })
 export class RequestsPage implements OnInit {
-
   private requestsService = inject(RequestsService);
+
   @ViewChild(ModalInfoRequestComponent) modalInfoRequestComponent!: ModalInfoRequestComponent;
+ 
   public requests: any[] = [];
 
   constructor() { }
@@ -24,14 +25,13 @@ export class RequestsPage implements OnInit {
     this.requestsService.updateRequestsList();
   }
 
-  getRequests() { // Método para obtener las solicitudes de servicio
+  // Método para obtener las solicitudes de servicio
+  getRequests() { 
     this.requestsService.getRequests(10, 1).subscribe({
       next: (response: any) => {
         if (response.estatus) {
-          this.requests = response.datos.map((request: any) => {
-            console.log('Request', request);
-            return request;
-          });
+          this.requests = response.datos;
+          console.log('Requests', this.requests);
         } else {
           console.error('Error al recuperar los datos de los clientes:', response.mensaje);
         }
