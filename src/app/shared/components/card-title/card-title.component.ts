@@ -17,11 +17,13 @@ export class CardTitleComponent  implements OnInit {
   isNewClientPage!: boolean;
   isServiceRequestPage!: boolean; 
   isUserAssignmentPage!: boolean;
+  isUprisingPage!: boolean; 
 
   ngOnInit() {
     this.isNewClientPage = this.router.url.includes('main/clients/new-client');
     this.isServiceRequestPage = this.router.url.includes('main/clients/service-request');
     this.isUserAssignmentPage = this.router.url.includes('main/requests/user-assigment');
+    this.isUprisingPage = this.router.url.includes('main/uprisings/register-uprising');
   }
 
   navigateTo(url: string) {

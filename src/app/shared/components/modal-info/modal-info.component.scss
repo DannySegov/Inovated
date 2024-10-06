@@ -21,8 +21,7 @@
 }
 
 .info {
-  margin-left: -10px;
-  transform: translateY(20%);
+  margin-left: 20px;
 }
 
 .name-client {
@@ -33,7 +32,7 @@
 .icon-container {
   display: flex;
   flex-direction: column;
-  transform: translateY(7%);
+ // transform: translateY(7%);
   margin-left: 20px;
 }
 
@@ -41,6 +40,13 @@
   display: flex;
   align-items: center;
   height: 30px;
+ // margin-bottom: 10px; /* Añadir un margen inferior para separar los elementos */
+}
+
+.icon-black {
+  width: 24px; /* Ajusta el ancho del contenedor del icono */
+  display: inline-flex;
+  justify-content: center; /* Centra el icono horizontalmente */
 }
 
 .icon-black:before {
@@ -52,13 +58,13 @@
   font-size: 13px;
   font-family: Arial, Helvetica, sans-serif;
   margin-left: 13px;
+  flex: 1; /* Asegura que el texto ocupe el espacio restante */
 }
 
 ion-label {
   display: inline-flex;
   align-items: center;
 }
-
 
 .content-button {
   position: absolute;
@@ -119,14 +125,6 @@ ion-button.delete {
   --background: red;
 }
 
-
-
-
-
-
-
-
-
 .custom-modal {
   --width: 340px;
   --min-width: 20px;
@@ -134,8 +132,6 @@ ion-button.delete {
   --border-radius: 20px;
   --box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.1); /* Ajuste de la sombra para ser más difuminada */
   display: flex;
- 
- 
   align-items: center;
   justify-content: center;
 }

@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: UprisingsPage
+  },
+  {
+    path: 'register-uprising',
+    loadChildren: () => import('./register-uprising/register-uprising.module').then( m => m.RegisterUprisingPageModule)
   }
 ];
 

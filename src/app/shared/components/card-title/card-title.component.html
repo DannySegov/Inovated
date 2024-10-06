@@ -1,38 +1,40 @@
 <ion-card mode="ios" class="card-title fixed">
   <ion-card-header>
     <div class="card-content">
-      <!-- Caso para la pantalla de clientes -->
-      <ng-container *ngIf="isNewClientPage || isServiceRequestPage; else userAssignmentTitle">
-        <ion-text class="title-module">
+      <ng-container [ngSwitch]="true">
+        <!-- Caso para la pantalla de clientes -->
+        <ion-text *ngSwitchCase="isNewClientPage || isServiceRequestPage" class="title-module">
           <ng-content select="ion-icon"></ng-content>
           <span class="icon-atras" (click)="navigateTo('/main/clients')"></span>
           <span class="small-font">{{ cardText }}</span>
-          <span id="icon-title-right" class="{{ icon }}" ></span>
+          <span id="icon-title-right" class="{{ icon }}"></span>
         </ion-text>
-      </ng-container>
 
-      <!-- Caso para la pantalla de asignación de usuarios -->
-      <ng-template #userAssignmentTitle>
-        <ng-container *ngIf="isUserAssignmentPage || isServiceRequestPage; else defaultTitle">
-          <ion-text class="title-module">
-            <ng-content select="ion-icon"></ng-content>
-            <span class="icon-atras" (click)="navigateTo('/main/requests')"></span>
-            <span class="small-font">{{ cardText }}</span>
-            <span id="icon-title-right" class="{{ icon }}" ></span>
-          </ion-text>
-        </ng-container>
-      </ng-template>
+        <!-- Caso para la pantalla de asignación de usuarios -->
+        <ion-text *ngSwitchCase="isUserAssignmentPage" class="title-module">
+          <ng-content select="ion-icon"></ng-content>
+          <span class="icon-atras" (click)="navigateTo('/main/requests')"></span>
+          <span class="small-font">{{ cardText }}</span>
+          <span id="icon-title-right" class="{{ icon }}"></span>
+        </ion-text>
 
-      <!-- Título por defecto -->
-      <ng-template #defaultTitle>
-        <ion-card-title class="title-module">
+        <!-- Caso para la pantalla de registro de levantamientos  -->
+        <ion-text *ngSwitchCase="isUprisingPage" class="title-module">
+          <ng-content select="ion-icon"></ng-content>
+          <span class="icon-atras" (click)="navigateTo('/main/uprisings')"></span>
+          <span class="small-font">{{ cardText }}</span>
+          <span id="icon-title-right" class="{{ icon }}"></span>
+        </ion-text>
+
+        <!-- Título por defecto -->
+        <ion-card-title *ngSwitchDefault class="title-module">
           <ng-content select="ion-icon"></ng-content>
           <ng-container *ngIf="iconPosition === 'left'">
             <span id="icon-title" class="{{ icon }}"></span>
           </ng-container>
           {{ cardText }}
         </ion-card-title>
-      </ng-template>
+      </ng-container>
     </div>
   </ion-card-header>
 </ion-card>
