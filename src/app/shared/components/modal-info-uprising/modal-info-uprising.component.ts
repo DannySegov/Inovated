@@ -22,7 +22,7 @@ export class ModalInfoUprisingComponent  implements OnInit {
   private requestsService = inject(RequestsService);
   private notificationService = inject(NotificationService);
   public requests: any[] = [];
-  public request: any; 
+  public uprising: any; 
   
   constructor() { }
 
@@ -30,9 +30,14 @@ export class ModalInfoUprisingComponent  implements OnInit {
 
   openUprisingModal(servicioID: number) {
     this.requestsService.getRequestById(servicioID).subscribe(request => {
-      this.request = request.datos;
+      this.uprising = request.datos;
       this.modalUprising.present();
     });
+  }
+
+  onRegister() { 
+    this.router.navigate(['/main/uprisings/register-uprising']);
+    this.modalUprising.dismiss();
   }
 
 }

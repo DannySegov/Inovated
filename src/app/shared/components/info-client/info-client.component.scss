@@ -34,6 +34,19 @@
     margin-left: 5px;
 }
 
+.icon-black {
+    width: 24px; /* Ajusta el ancho del contenedor del icono */
+    display: inline-flex;
+    justify-content: center; /* Centra el icono horizontalmente */
+}
+
+.address-client {
+    font-size: 13px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 10px;
+    flex: 1; /* Asegura que el texto ocupe el espacio restante */
+}
+
 .info {
     margin-left: -5px;
     transform: translateY(20%);
@@ -42,10 +55,3 @@
 .name-client {
     font-size: 20px;
 }
-
-.address-client {
-    font-size: 13px;
-    font-family: Arial, Helvetica, sans-serif;
-    margin-left: 13px;
-}
-

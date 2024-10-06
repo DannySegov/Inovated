@@ -10,7 +10,7 @@
                 <div class="info">
                     <ion-card-title class="name-client">{{ uprising.descripcion }}</ion-card-title>
                     <ion-label class="address">{{ uprising.perfil.nombre}}</ion-label>
-                    <ion-label class="address">{{ uprising.fecha}}</ion-label>
+                    <ion-label class="address">{{ uprising.fecha | date:'dd / MMMM / yyyy' }}</ion-label>
                 </div>
             </div>
         </ion-card-content>
@@ -18,4 +18,5 @@
 </ion-content>
 
 <app-modal-info-uprising></app-modal-info-uprising>
+
 <app-menu-tab></app-menu-tab>

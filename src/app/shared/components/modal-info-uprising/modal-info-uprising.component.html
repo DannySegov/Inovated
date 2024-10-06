@@ -1,35 +1,35 @@
 <ion-content class="ion-padding">
-  <ion-modal #modalRequest class="glass-content modal-request" [initialBreakpoint]="1" [breakpoints]="[0, 1]">
+  <ion-modal #modalUprising class="glass-content modal-request" [initialBreakpoint]="1" [breakpoints]="[0, 1]">
     <ng-template>
       <ion-card-content id="modal-request">
 
         <app-info-client 
-          [nombre]="request.perfil.nombre" 
-          [direccion]="request.perfil.direccion" 
-          [telefono]="request.perfil.telefono" 
-          [correo]="request.perfil.correo">
+          [nombre]="uprising.perfil.nombre" 
+          [direccion]="uprising.perfil.direccion" 
+          [telefono]="uprising.perfil.telefono" 
+          [correo]="uprising.perfil.correo">
         </app-info-client>
 
         <div class="label-modal" style="flex-direction: column;">
-          <h2><strong>{{ request.descripcion }}</strong></h2>
+          <h2><strong>{{ uprising.descripcion }}</strong></h2>
           <ion-label>Clave</ion-label>
-          <p>{{ request.infoServicio.claveServicio }}</p>
+          <p>{{ uprising.infoServicio.claveServicio }}</p>
           <ion-label>Categoria</ion-label>
-          <p>{{ request.infoServicio.categoria }}</p>
+          <p>{{ uprising.infoServicio.categoria }}</p>
           <ion-label>Fecha</ion-label>
-          <p>{{ request.fecha }}</p>
+          <p>{{ uprising.fecha }}</p>
           <ion-label>Hora</ion-label>
-          <p>{{ request.hora }}</p>
+          <p>{{ uprising.hora }}</p>
           <ion-label>Descripción</ion-label>
-          <p>{{ request.infoServicio.descripcion }}</p>
+          <p>{{ uprising.infoServicio.descripcion }}</p>
         </div>
 
         <div class="content-button no-hover">
           <div class="button-container">
-            <ion-button id="open-custom-delete" mode="ios" shape="round" size="large" class="delete"> 
-              <ion-icon slot="icon-only" class="icon-eliminar icon-white large-icon"></ion-icon>
+            <ion-button id="open-custom-delete" mode="ios" shape="round" size="large" class="delete" (click)="onRegister()"> 
+              <ion-icon slot="icon-only" class="icon-reg_levantamiento icon-white large-icon"></ion-icon>
             </ion-button>
-            <ion-label>Eliminar</ion-label>
+            <ion-label class="centered-label">Registrar</ion-label>
           </div>
         </div>
       </ion-card-content>

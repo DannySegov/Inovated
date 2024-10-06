@@ -1,0 +1,96 @@
+<div class="custom-card-border-radius">
+  <app-header [showMenu]="true" [icon]="'icon-reg_levantamiento'" [cardText]="'Levantamiento'"></app-header>
+</div>
+
+<ion-content [fullscreen]="true">
+  <form [formGroup]="registerUprisingForm" class="form">
+    <div class="title-section general">
+      <ion-text>
+        <h6>
+          Información general
+        </h6>
+      </ion-text>
+      <hr class="line">
+    </div>
+
+<app-info-client 
+    [nombre]="selectedUprising?.perfil?.nombre" 
+    [direccion]="selectedUprising?.perfil?.direccion" 
+    [telefono]="selectedUprising?.perfil?.telefono" 
+    [correo]="selectedUprising?.perfil?.correo"
+    [backgroundColor]="'white'">
+</app-info-client>
+
+    <div class="title-section request">
+      <ion-text>
+        <h6>
+          Información de la solicitud
+        </h6>
+      </ion-text>
+      <hr class="line">
+    </div>
+
+    <div class="info-request">
+      <p>Servicio:</p>
+      <ion-item class="input-data" lines="none">
+        <ion-input class="custom-height" type="text" [value]="registerUprisingForm.get('servicio')?.value" autocomplete="autocomplete" placeholder="Servicio" disabled></ion-input>
+      </ion-item>
+
+      <p>Clave:</p>
+      <ion-item class="input-data" lines="none">
+        <ion-input class="custom-height" type="text" [value]="registerUprisingForm.get('clave')?.value" autocomplete="autocomplete" placeholder="Clave" disabled></ion-input>
+      </ion-item>
+
+      <p>Categoria:</p>
+      <ion-item class="input-data" lines="none">
+        <ion-input class="custom-height" type="text" [value]="registerUprisingForm.get('categoria')?.value" autocomplete="autocomplete" placeholder="Categoria" disabled></ion-input>
+      </ion-item>
+
+      <p>Fecha:</p>
+      <ion-item class="input-data" lines="none">
+        <ion-input class="custom-height" type="text" [value]="registerUprisingForm.get('fecha')?.value" autocomplete="autocomplete" placeholder="Fecha" disabled></ion-input>
+      </ion-item>
+
+      <p>Hora:</p>
+      <ion-item class="input-data" lines="none">
+        <ion-input class="custom-height" type="text" [value]="registerUprisingForm.get('hora')?.value" autocomplete="autocomplete" placeholder="Hora" disabled></ion-input>
+      </ion-item>
+
+      <p>Descripción:</p>
+      <ion-item class="custom-input" lines="none" size="large">
+        <ion-textarea type="text" [value]="registerUprisingForm.get('descripcion')?.value" placeholder="Opcional" disabled></ion-textarea>
+      </ion-item>
+
+      <div class="title-section assign">
+        <ion-text>
+          <h6>
+            Asignar personal
+          </h6>
+        </ion-text>
+        <hr class="line">
+      </div>
+  
+
+    </div>
+  </form>
+
+  <!--div class="container-employee">
+    <ion-card class="name-employee" *ngFor="let employee of selectedEmployees">
+      <ion-card-content class="name">
+        <app-name-client [employee]="true"></app-name-client>
+        <ion-card-title><strong>{{ employee.nombreCompleto }}</strong></ion-card-title>
+        <div class="button-container">
+          <ion-button mode="ios" shape="round" size="small" class="delete" (click)="deleteEmployee(employee)">
+            <ion-icon slot="icon-only" class="icon-eliminar icon-red large-icon centered-icon"></ion-icon>
+          </ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </!--div-->
+  
+  <!--ion-button *ngIf="selectedEmployees.length > 0" mode="ios" class="add" type="submit" size="small" (click)="assignEmployeeToRequest(request.servicioID)">
+    <strong>Asignar solicitud</strong>
+  </!--ion-button-->
+</ion-content>
+
+<!--app-menu-tab></!--app-menu-tab-->

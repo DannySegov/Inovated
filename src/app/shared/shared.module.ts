@@ -14,7 +14,6 @@ import { CustomSelectComponent } from './components/custom-select/custom-select.
 import { ModalInfoRequestComponent } from './components/modal-info-request/modal-info-request.component';
 import { ModalInfoUprisingComponent } from './components/modal-info-uprising/modal-info-uprising.component';
 
-
 @NgModule({
   declarations: [
     HeaderComponent,

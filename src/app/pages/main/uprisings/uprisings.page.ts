@@ -10,17 +10,17 @@ import { Request } from 'src/app/shared/interfaces/requests';
 })
 export class UprisingsPage implements OnInit {
   private uprisingsService = inject(UprisingsService);
-
+  
   @ViewChild(ModalInfoUprisingComponent) modalInfoUprisingComponent!: ModalInfoUprisingComponent;
   
   public uprisings: Request[] = [];
+  
   constructor() { }
 
   ngOnInit() {
     this.getUprisings();
   }
 
-  // Método para obtener los levantamientos
   getUprisings() {
     this.uprisingsService.getUprisings(10, 1).subscribe({
       next: (resp: any) => {
@@ -37,10 +37,9 @@ export class UprisingsPage implements OnInit {
     })
   }
 
-  openRequestModal(uprising: any) { // Método para abrir el modal de información del cliente 
+  openRequestModal(uprising: any) {
     this.modalInfoUprisingComponent.openUprisingModal(uprising.servicioID);
-   // this.uprisingsService.changeRequest(uprising);
+    this.uprisingsService.changeData(uprising); // Enviar datos al servicio
     console.log('Levantamiento seleccionada:', uprising.servicioID);
   }
-
 }

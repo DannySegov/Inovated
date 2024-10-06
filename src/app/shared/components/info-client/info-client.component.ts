@@ -10,6 +10,7 @@ export class InfoClientComponent implements OnInit {
 
   private clientsService = inject(ClientsService);
   client: any;
+  @Input() uprising: any;
   @Input() nombre!: string;
   @Input() direccion: any;
   @Input() telefono!: string;

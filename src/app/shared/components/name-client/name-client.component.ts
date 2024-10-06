@@ -13,6 +13,7 @@ export class NameClientComponent  implements OnInit {
   @Input() isModal: boolean = false;
   @Input() client: any; //TODO: Cambiar a Client
   @Input() request: any; 
+  @Input() uprising: any;
   @Input() employee!: boolean;
 
   isUserAssignmentPage!: boolean;
