@@ -66,7 +66,8 @@ ion-button {
     align-items: center;
 }
 
-.custom-input {
+.custom-input, 
+.inp-descrip {
     --border-color: #219cdb;
     --border-radius: 15px;
     --border-style: solid;
@@ -208,6 +209,13 @@ ion-fab-button {
 
 .name-client {
     font-size: 15px;
+}
+
+.user-initials {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    color: white;
 }
 
 .info {

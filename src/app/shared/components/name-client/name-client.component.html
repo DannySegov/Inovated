@@ -1,4 +1,4 @@
-<ng-container *ngIf="isClientsPage; else userAssignmentTitle">
+<ng-container *ngIf="isClientsPage">
   <ion-avatar *ngIf="client">
     <div [ngClass]="{'user-initials': !isModal, 'user-initials-modal': isModal}" [ngStyle]="{'background-color': client.color}">
       {{ client.nombre.split(' ')[0][0] + client.nombre.split(' ')[1][0] }}
@@ -11,11 +11,3 @@
     {{ request?.perfil?.nombre?.split(' ')[0][0] + request?.perfil?.nombre?.split(' ')[1][0] }}
   </div>
 </ion-avatar>
-
-<ng-template #userAssignmentTitle>
-  <ion-avatar class="user-assigment" *ngIf="isUserAssignmentPage">
-    <div>
-      {{ 'Juan Perez'.split(' ')[0][0] + 'Juan Perez'.split(' ')[1][0] }}
-    </div>
-  </ion-avatar>
-</ng-template>

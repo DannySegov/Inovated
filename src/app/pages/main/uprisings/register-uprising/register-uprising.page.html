@@ -1,27 +1,24 @@
 <div class="custom-card-border-radius">
-  <app-header [showMenu]="true" [icon]="'icon-reg_levantamiento'" [cardText]="'Levantamiento'"></app-header>
+  <app-header [showMenu]="true" [icon]="'icon-levantamiento'" [cardText]="'Levantamiento'"></app-header>
 </div>
 
 <ion-content [fullscreen]="true">
-  <form [formGroup]="registerUprisingForm" class="form">
-    <div class="title-section general">
-      <ion-text>
-        <h6>
-          Información general
-        </h6>
-      </ion-text>
-      <hr class="line">
-    </div>
+  <div class="title-info-general">
+    <ion-text>
+      <h6>
+        Información general
+      </h6>
+    </ion-text>
+    <hr class="line">
+  </div>
 
-<app-info-client 
-    [nombre]="selectedUprising?.perfil?.nombre" 
-    [direccion]="selectedUprising?.perfil?.direccion" 
-    [telefono]="selectedUprising?.perfil?.telefono" 
-    [correo]="selectedUprising?.perfil?.correo"
+  <app-info-client [nombre]="selectedUprising?.perfil?.nombre" [direccion]="selectedUprising?.perfil?.direccion"
+    [telefono]="selectedUprising?.perfil?.telefono" [correo]="selectedUprising?.perfil?.correo"
     [backgroundColor]="'white'">
-</app-info-client>
-
-    <div class="title-section request">
+  </app-info-client>
+z
+  <form [formGroup]="registerUprisingForm" class="form">
+    <div class="title-section-info">
       <ion-text>
         <h6>
           Información de la solicitud
@@ -30,67 +27,177 @@
       <hr class="line">
     </div>
 
-    <div class="info-request">
-      <p>Servicio:</p>
-      <ion-item class="input-data" lines="none">
-        <ion-input class="custom-height" type="text" [value]="registerUprisingForm.get('servicio')?.value" autocomplete="autocomplete" placeholder="Servicio" disabled></ion-input>
-      </ion-item>
+    <p>Servicio:</p>
+    <ion-item class="input-data" lines="none">
+      <ion-input class="custom-height" type="text" [value]="registerUprisingForm.get('servicio')?.value"
+        autocomplete="autocomplete" placeholder="Servicio" disabled></ion-input>
+    </ion-item>
 
-      <p>Clave:</p>
-      <ion-item class="input-data" lines="none">
-        <ion-input class="custom-height" type="text" [value]="registerUprisingForm.get('clave')?.value" autocomplete="autocomplete" placeholder="Clave" disabled></ion-input>
-      </ion-item>
+    <p>Clave:</p>
+    <ion-item class="input-data" lines="none">
+      <ion-input class="custom-height" type="text" [value]="registerUprisingForm.get('clave')?.value"
+        autocomplete="autocomplete" placeholder="Clave" disabled></ion-input>
+    </ion-item>
 
-      <p>Categoria:</p>
-      <ion-item class="input-data" lines="none">
-        <ion-input class="custom-height" type="text" [value]="registerUprisingForm.get('categoria')?.value" autocomplete="autocomplete" placeholder="Categoria" disabled></ion-input>
-      </ion-item>
+    <p>Categoria:</p>
+    <ion-item class="input-data" lines="none">
+      <ion-input class="custom-height" type="text" [value]="registerUprisingForm.get('categoria')?.value"
+        autocomplete="autocomplete" placeholder="Categoria" disabled></ion-input>
+    </ion-item>
 
-      <p>Fecha:</p>
-      <ion-item class="input-data" lines="none">
-        <ion-input class="custom-height" type="text" [value]="registerUprisingForm.get('fecha')?.value" autocomplete="autocomplete" placeholder="Fecha" disabled></ion-input>
-      </ion-item>
+    <p>Fecha:</p>
+    <ion-item class="input-data" lines="none">
+      <ion-input class="custom-height" type="text" [value]="registerUprisingForm.get('fecha')?.value"
+        autocomplete="autocomplete" placeholder="Fecha" disabled></ion-input>
+    </ion-item>
 
-      <p>Hora:</p>
-      <ion-item class="input-data" lines="none">
-        <ion-input class="custom-height" type="text" [value]="registerUprisingForm.get('hora')?.value" autocomplete="autocomplete" placeholder="Hora" disabled></ion-input>
-      </ion-item>
+    <p>Hora:</p>
+    <ion-item class="input-data" lines="none">
+      <ion-input class="custom-height" type="text" [value]="registerUprisingForm.get('hora')?.value"
+        autocomplete="autocomplete" placeholder="Hora" disabled></ion-input>
+    </ion-item>
 
-      <p>Descripción:</p>
-      <ion-item class="custom-input" lines="none" size="large">
-        <ion-textarea type="text" [value]="registerUprisingForm.get('descripcion')?.value" placeholder="Opcional" disabled></ion-textarea>
-      </ion-item>
+    <p>Descripción:</p>
+    <ion-item class="inp-descrip" lines="none" size="large">
+      <ion-textarea type="text" [value]="registerUprisingForm.get('descripcion')?.value" placeholder="Opcional"
+        disabled></ion-textarea>
+    </ion-item>
 
-      <div class="title-section assign">
-        <ion-text>
-          <h6>
-            Asignar personal
-          </h6>
-        </ion-text>
-        <hr class="line">
-      </div>
-  
-
+    <div class="title-section uprising">
+      <ion-text>
+        <h6>
+          Levantamiento
+        </h6>
+      </ion-text>
+      <hr class="line">
     </div>
-  </form>
 
-  <!--div class="container-employee">
-    <ion-card class="name-employee" *ngFor="let employee of selectedEmployees">
-      <ion-card-content class="name">
-        <app-name-client [employee]="true"></app-name-client>
-        <ion-card-title><strong>{{ employee.nombreCompleto }}</strong></ion-card-title>
-        <div class="button-container">
-          <ion-button mode="ios" shape="round" size="small" class="delete" (click)="deleteEmployee(employee)">
-            <ion-icon slot="icon-only" class="icon-eliminar icon-red large-icon centered-icon"></ion-icon>
+    <p>Fecha de instalación solicitada:</p>
+    <ion-button mode="ios" id="open-custom-date" class="custom-button" size="small"
+      style="display: flex; align-items: center; justify-content: space-between;">
+      <span [ngClass]="{'black-text': selectedDate !== 'dd / mm / aaaa'}" style="margin-right: auto;">
+        {{ selectedDate }}
+      </span>
+      <span class="icon-calendario" style="margin-left: auto;"></span>
+    </ion-button>
+
+    <p>Hora de instalación solicitada:</p>
+    <ion-button mode="ios" id="open-custom-hour" class="custom-button hour" size="small"
+      style="display: flex; align-items: center; justify-content: space-between;">
+      <span [ngClass]="{'black-text': selectedTime !== '12:00 pm'}" style="margin-right: auto;">{{ selectedTime
+        }}</span>
+      <span class="icon-reloj" style="margin-left: auto;"></span>
+    </ion-button>
+
+    <p>Resumen de levantamiento:</p>
+    <ion-item class="custom-input" lines="none" size="large">
+      <ion-textarea type="text" placeholder="Escriba aqui las especificaciones necesarias para la instalación.">
+      </ion-textarea>
+    </ion-item>
+
+    <div class="title-section image">
+      <ion-text>
+        <h6>
+          Fotografias del sitio
+        </h6>
+      </ion-text>
+      <hr class="line">
+    </div>
+
+    <ion-card mode="ios" class="upload-image">
+      <ion-card-content>
+        <div class="card-content">
+          <ion-img *ngIf="selectedFiles.length === 0" class="responsive-img" src="/assets/icon/upload.png"
+            alt="Upload"></ion-img>
+          <div class="scroll-container" *ngIf="selectedFiles.length > 0">
+            <ion-list lines="none">
+              <ion-item *ngFor="let file of selectedFiles; let i = index" class="file-preview custom-item">
+                <ion-thumbnail class="preview-img">
+                  <img alt="Preview" [src]="file.url" />
+                </ion-thumbnail>
+                <ion-label>{{ file.name }}</ion-label>
+                <ion-button id="open-custom-dialog-{{i}}" expand="block" class="eye" shape="round" size="medium" (click)="openImageModal(file.url)">
+                  <ion-icon slot="icon-only" name="eye-outline"></ion-icon>
+                </ion-button>
+                <ion-button class="delete" shape="round" size="medium" (click)="deleteFile(file)">
+                  <ion-icon slot="icon-only" name="icon-eliminar" class="icon-eliminar"></ion-icon>
+                </ion-button>
+              </ion-item>
+            </ion-list>
+          </div>
+
+          <ion-button id="uploadButton" mode="ios" class="upload" size="small" (click)="triggerFileInput()">
+            <strong>Subir fotografias</strong>
           </ion-button>
+
+          <input type="file" id="fileInput" style="display: none;" (change)="onFileSelected($event)" multiple>
         </div>
       </ion-card-content>
     </ion-card>
-  </!--div-->
-  
-  <!--ion-button *ngIf="selectedEmployees.length > 0" mode="ios" class="add" type="submit" size="small" (click)="assignEmployeeToRequest(request.servicioID)">
-    <strong>Asignar solicitud</strong>
-  </!--ion-button-->
+
+    <p>Observaciones adicionales:</p>
+    <ion-item class="custom-input" lines="none" size="large">
+      <ion-textarea type="text" placeholder="Si tiene alguna observación adicional escribala aquí."></ion-textarea>
+    </ion-item>
+
+    <ion-button mode="ios" class="add" type="submit" size="small">
+      <strong>Enviar</strong>
+    </ion-button>
+
+    <ion-modal id="example-modal-date" #dateModal trigger="open-custom-date" class="glass-content">
+      <ng-template>
+        <div class="wrapper">
+          <ion-datetime presentation="date" formControlName="fecha" (ionChange)="onDateChange($event)"></ion-datetime>
+        </div>
+      </ng-template>
+    </ion-modal>
+
+    <ion-modal id="example-modal-hour" #timeModal trigger="open-custom-hour" class="glass-content">
+      <ng-template>
+        <div class="contain-time">
+          <div class="time-picker">
+            <div class="time-box">
+              <ion-icon class="icon" name="chevron-up-outline" style="color: #74bc52;"
+                (click)="incrementHour()"></ion-icon>
+              <div class="input-container">
+                <ion-input mode="ios" type="text" [(ngModel)]="formattedHour" [ngModelOptions]="{standalone: true}"
+                  (ionBlur)="validateHour()" class="no-bottom-line"></ion-input>
+              </div>
+              <ion-icon name="chevron-down-outline" style="color: #74bc52;" (click)="decrementHour()"></ion-icon>
+            </div>
+
+            <div class="time-box separator-container">
+              <div class="separator">:</div>
+            </div>
+            <div class="time-box">
+              <ion-icon name="chevron-up-outline" style="color: #74bc52;" (click)="incrementMinute()"></ion-icon>
+              <div class="input-container">
+                <ion-input mode="ios" type="text" [(ngModel)]="formattedMinute" [ngModelOptions]="{standalone: true}"
+                  (ionBlur)="validateMinute()" class="no-bottom-line"></ion-input>
+              </div>
+              <ion-icon name="chevron-down-outline" style="color: #74bc52;" (click)="decrementMinute()"></ion-icon>
+            </div>
+            <div class="time-box">
+              <ion-icon name="chevron-up-outline" style="color: #74bc52;" (click)="toggleAmPm()"></ion-icon>
+              <div class="input-container">
+                <div>{{ amPm }}</div>
+              </div>
+              <ion-icon name="chevron-down-outline" style="color: #74bc52;" (click)="toggleAmPm()"></ion-icon>
+            </div>
+          </div>
+          <ion-button mode="ios" class="save" type="button" size="small" (click)="saveTime()">
+            <strong>Guardar</strong>
+          </ion-button>
+        </div>
+      </ng-template>
+    </ion-modal>
+
+    <ion-modal *ngFor="let file of selectedFiles; let i = index" id="modal-image" trigger="open-custom-dialog-{{i}}">
+      <ng-template>
+        <ion-img class="modal-image" [src]="selectedImage" alt="Preview"></ion-img>
+      </ng-template>
+    </ion-modal>
+  </form>
 </ion-content>
 
 <!--app-menu-tab></!--app-menu-tab-->

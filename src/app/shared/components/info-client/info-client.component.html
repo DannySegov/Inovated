@@ -1,7 +1,10 @@
 <ion-card mode="ios" class="card-info-client" [ngStyle]="{'background-color': backgroundColor}">
   <ion-card-content>
     <div class="card-content">
-      <app-name-client *ngIf="client" [client]="client"></app-name-client>
+      <!--app-name-client *ngIf="client" [client]="client"></!--app-name-client-->
+      <div class="user-initials">
+        {{ nombre.split(' ')[0][0] + nombre.split(' ')[1][0] }}
+      </div>
       <div class="info">
         <ion-card-title class="name-client">{{ nombre }}</ion-card-title>
       </div>

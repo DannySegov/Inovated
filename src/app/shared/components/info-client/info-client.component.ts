@@ -16,6 +16,7 @@ export class InfoClientComponent implements OnInit {
   @Input() telefono!: string;
   @Input() correo!: string;
 
+
   @Input() backgroundColor: string = '#f4f4f4';
 
   constructor() { }

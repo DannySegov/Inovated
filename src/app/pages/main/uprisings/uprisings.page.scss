@@ -10,36 +10,40 @@
     transform: translateY(-10px);
 }
     */
-    .info {
-        display: flex;
-        flex-direction: column;
-        margin-left: -4px;
-        transform: translateY(-10px);
-    }
-    
-    .address {
-        margin-bottom: 0; /* Elimina cualquier margen inferior */
-        padding-bottom: 0; /* Elimina cualquier padding inferior */
-    }
-    
-    .ion-card-content {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start; /* Asegura que los elementos se alineen al inicio */
-        height: auto; /* Ajusta la altura automáticamente */
-    }
+.info {
+    display: flex;
+    flex-direction: column;
+    margin-left: -4px;
+    transform: translateY(-10px);
+}
 
-    .client {
+.address {
+    margin-bottom: 0;
+    /* Elimina cualquier margen inferior */
+    padding-bottom: 0;
+    /* Elimina cualquier padding inferior */
+}
+
+.ion-card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /* Asegura que los elementos se alineen al inicio */
+    height: auto;
+    /* Ajusta la altura automáticamente */
+}
+
+.client {
     border-radius: 15px;
     transform: translateY(-34%);
     margin-top: 1px;
     margin-bottom: 12px;
-    height: 10%;
-    }
+}
 
-    /* Media query para pantallas a partir de 300px */
+/* Media query para pantallas a partir de 300px */
 @media (max-width: 1000px) {
     .client {
-        height: auto; /* Ajusta la altura automáticamente */
+        height: auto;
+        /* Ajusta la altura automáticamente */
     }
 }

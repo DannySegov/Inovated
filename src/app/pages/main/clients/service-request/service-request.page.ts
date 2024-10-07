@@ -5,6 +5,7 @@ import { ServiceRequerimentsService } from 'src/app/services/service-requeriment
 import { ClientsService } from 'src/app/services/clients.service';
 import { ServiceRequeriments } from 'src/app/shared/interfaces/services';
 import { NotificationService } from 'src/app/services/notification.service';
+import { RequestsService } from 'src/app/services/requests.service'; // Importar RequestsService
 
 @Component({
   selector: 'app-service-request',
@@ -15,16 +16,22 @@ export class ServiceRequestPage implements OnInit {
 
   @ViewChild('dateModal') dateModal: any;
   @ViewChild('timeModal') timeModal: any;
+  @ViewChild('employeeModal') employeeModal: any; // Añadir referencia al modal de empleados
 
   private serviceRequeriment = inject(ServiceRequerimentsService);
   private clientService = inject(ClientsService);
   private notificationService = inject(NotificationService);
+  private requestsService = inject(RequestsService); // Inyectar RequestsService
   private fb = inject(FormBuilder);
   
   public services: any;
   public selectedDate: string = 'dd / mm / aaaa';
   public selectedTime: string = '12:00 pm'; 
+  public selectedServiceName: string = 'Selecciona una opción';
   public clienteID: number = 0;
+  public selectedRequest: any; // Variable para almacenar la solicitud seleccionada
+  public selectedServices: any[] = []; // Lista de servicios seleccionados
+  public lastSelectedService: any; // Último servicio seleccionado
 
   timeValue!: Date;
 
@@ -42,6 +49,14 @@ export class ServiceRequestPage implements OnInit {
   ngOnInit() {
     this.serviceRequeriments();
     this.getClientID();
+    this.requestsService.requests$.subscribe(requests => {
+      if (requests.length > 0) {
+        this.selectedRequest = requests[0]; // Selecciona la primera solicitud por defecto
+      }
+    });
+
+    // Actualizar la lista de solicitudes al iniciar el componente
+    this.requestsService.updateRequestsList();
   }
 
   serviceRequeriments(): void { // Método para obtener los servicios
@@ -119,6 +134,26 @@ saveTime() { // Método para guardar la hora seleccionada
     }
   }
 
+  selectService(service: any) { // Método para seleccionar un servicio
+    const index = this.selectedServices.findIndex(srv => srv.servicioOfreceID === service.servicioOfreceID);
+    if (index === -1) {
+      this.selectedServices.push(service);
+    } else {
+      this.selectedServices.splice(index, 1);
+    }
+    this.lastSelectedService = service;
+    this.updateSelectedServiceName();
+    this.employeeModal.dismiss();
+    console.log('Servicio seleccionado ID:', service.servicioOfreceID);
+  }
+
+  updateSelectedServiceName() { // Método para actualizar el nombre del servicio seleccionado
+    if (this.selectedServices.length > 0) {
+      this.selectedServiceName = this.selectedServices.map(srv => srv.nombreServicio).join(', ');
+    } else {
+      this.selectedServiceName = 'Selecciona una opción';
+    }
+  }
 
   hour: number = 12;
   formattedHour: string = '12';
