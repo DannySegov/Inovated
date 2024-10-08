@@ -16,7 +16,7 @@
     [telefono]="selectedUprising?.perfil?.telefono" [correo]="selectedUprising?.perfil?.correo"
     [backgroundColor]="'white'">
   </app-info-client>
-z
+
   <form [formGroup]="registerUprisingForm" class="form">
     <div class="title-section-info">
       <ion-text>
@@ -29,38 +29,37 @@ z
 
     <p>Servicio:</p>
     <ion-item class="input-data" lines="none">
-      <ion-input class="custom-height" type="text" [value]="registerUprisingForm.get('servicio')?.value"
+      <ion-input class="custom-height" type="text" [value]="selectedServicio"
         autocomplete="autocomplete" placeholder="Servicio" disabled></ion-input>
     </ion-item>
-
+    
     <p>Clave:</p>
     <ion-item class="input-data" lines="none">
-      <ion-input class="custom-height" type="text" [value]="registerUprisingForm.get('clave')?.value"
+      <ion-input class="custom-height" type="text" [value]="selectedClave"
         autocomplete="autocomplete" placeholder="Clave" disabled></ion-input>
     </ion-item>
-
+    
     <p>Categoria:</p>
     <ion-item class="input-data" lines="none">
-      <ion-input class="custom-height" type="text" [value]="registerUprisingForm.get('categoria')?.value"
+      <ion-input class="custom-height" type="text" [value]="selectedCategoria"
         autocomplete="autocomplete" placeholder="Categoria" disabled></ion-input>
     </ion-item>
-
+    
     <p>Fecha:</p>
     <ion-item class="input-data" lines="none">
-      <ion-input class="custom-height" type="text" [value]="registerUprisingForm.get('fecha')?.value"
+      <ion-input class="custom-height" type="text" [value]="selectedFecha"
         autocomplete="autocomplete" placeholder="Fecha" disabled></ion-input>
     </ion-item>
-
+    
     <p>Hora:</p>
     <ion-item class="input-data" lines="none">
-      <ion-input class="custom-height" type="text" [value]="registerUprisingForm.get('hora')?.value"
+      <ion-input class="custom-height" type="text" [value]="selectedHora"
         autocomplete="autocomplete" placeholder="Hora" disabled></ion-input>
     </ion-item>
-
+    
     <p>Descripción:</p>
     <ion-item class="inp-descrip" lines="none" size="large">
-      <ion-textarea type="text" [value]="registerUprisingForm.get('descripcion')?.value" placeholder="Opcional"
-        disabled></ion-textarea>
+      <ion-textarea type="text" [value]="selectedDescripcion" placeholder="Opcional" disabled></ion-textarea>
     </ion-item>
 
     <div class="title-section uprising">
@@ -91,7 +90,7 @@ z
 
     <p>Resumen de levantamiento:</p>
     <ion-item class="custom-input" lines="none" size="large">
-      <ion-textarea type="text" placeholder="Escriba aqui las especificaciones necesarias para la instalación.">
+      <ion-textarea type="text" placeholder="Escriba aqui las especificaciones necesarias para la instalación." formControlName="resumen">
       </ion-textarea>
     </ion-item>
 
@@ -137,14 +136,14 @@ z
 
     <p>Observaciones adicionales:</p>
     <ion-item class="custom-input" lines="none" size="large">
-      <ion-textarea type="text" placeholder="Si tiene alguna observación adicional escribala aquí."></ion-textarea>
+      <ion-textarea type="text" placeholder="Si tiene alguna observación adicional escribala aquí." formControlName="observaciones"></ion-textarea>
     </ion-item>
 
     <ion-button mode="ios" class="add" type="submit" size="small">
       <strong>Enviar</strong>
     </ion-button>
 
-    <ion-modal id="example-modal-date" #dateModal trigger="open-custom-date" class="glass-content">
+    <ion-modal id="example-modal" #dateModal trigger="open-custom-date" class="glass-content">
       <ng-template>
         <div class="wrapper">
           <ion-datetime presentation="date" formControlName="fecha" (ionChange)="onDateChange($event)"></ion-datetime>
@@ -152,7 +151,7 @@ z
       </ng-template>
     </ion-modal>
 
-    <ion-modal id="example-modal-hour" #timeModal trigger="open-custom-hour" class="glass-content">
+    <ion-modal id="example-modal" #timeModal trigger="open-custom-hour" class="glass-content">
       <ng-template>
         <div class="contain-time">
           <div class="time-picker">
@@ -197,6 +196,7 @@ z
         <ion-img class="modal-image" [src]="selectedImage" alt="Preview"></ion-img>
       </ng-template>
     </ion-modal>
+    <pre>{{ registerUprisingForm.value | json }}</pre>
   </form>
 </ion-content>
 

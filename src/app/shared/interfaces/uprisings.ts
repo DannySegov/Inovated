@@ -51,4 +51,10 @@
     numeroInterior?: string;
   }
     */
-  
+  export interface Uprising {
+    resumenLevantamiento: string;
+    observaciones: string;
+    fechaInstalacion: string;
+    horaInstalacion: string;
+    imagenes: string[];
+  }

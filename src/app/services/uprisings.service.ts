@@ -3,6 +3,8 @@ import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { RequestResponse } from '../shared/interfaces/requests';
+import { Uprising } from '../shared/interfaces/uprisings';
+import { ResponseAdd } from '../shared/interfaces/clients';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +23,11 @@ export class UprisingsService {
   //Obtener Levantamientos
   getUprisings(elementos: number, pagina: number): Observable<RequestResponse> {
     return this.http.get<RequestResponse>(`${this.baseUrl}/levantamientos`, { headers: this.headers });
+  }
+
+  //Agregar Levantamiento Servicio
+  addUprisingService(servicioID: number, uprising: Uprising): Observable<ResponseAdd> {
+    return this.http.post<ResponseAdd>(`${this.baseUrl}/levantamientos/agrega-levantamiento/${servicioID}`, uprising, { headers: this.headers });
   }
 
   // Método para obtener el token de acceso

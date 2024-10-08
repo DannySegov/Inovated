@@ -8,11 +8,6 @@ ion-label {
     right: 40px;
     transform: translateY(-60px);
     display: -webkit-inline-box;
-/*
-    ion-button {
-        margin-left: 15px;
-    }
-        */
 }
 
 .icon-white:before {
@@ -123,12 +118,12 @@ ion-button.delete {
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-  
-  .centered-label {
+}
+
+.centered-label {
     margin-top: 8px; /* Ajusta el margen según sea necesario */
     text-align: center;
-  }
+}
 
 .btn.delete {
     --background: #f22e3e;
@@ -137,8 +132,10 @@ ion-button.delete {
 app-info-client {
     display: flex;
     margin-top: 50px;
-    transform: translateX(-12px);
-    width: 108%;
+    width: calc(100% + 16px); /* Ajusta el ancho para compensar el padding del contenedor padre */
+    margin-left: -8px; /* Ajusta el margen izquierdo para compensar el padding del contenedor padre */
+    margin-right: -8px; /* Ajusta el margen derecho para compensar el padding del contenedor padre */
+    box-sizing: border-box; /* Asegura que el padding no afecte el width total */
 }
 
 .container {
@@ -146,7 +143,3 @@ app-info-client {
     flex-direction: column;
     gap: 20px; // Espacio entre los elementos
 }
-
-
-
-

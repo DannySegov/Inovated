@@ -1,8 +1,7 @@
 .card-info-client {
-    border-radius: 20px;
-    transform: translateY(-29%);
+    border-radius: 30px;
+    transform: translateY(-35%);
     height: 180px;
-    //width: 90%;
 }
 
 .card-content {
@@ -49,7 +48,7 @@
 
 .info {
     margin-left: -5px;
-    transform: translateY(20%);
+    transform: translateY(30%);
 }
 
 .name-client {
@@ -63,7 +62,7 @@
     font-size: 25px;
     font-weight: bold;
     position: static;
-    transform: translate(-10%, 10%);
-    background-color: rgb(255, 240, 127);
+    transform: translate(-10%, 15%);
+    background-color: #bacc2d;
     margin-right: 5px;
 }
