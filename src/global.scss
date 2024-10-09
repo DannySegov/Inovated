@@ -189,6 +189,11 @@ ion-fab-button {
     transform: translateY(20%) !important;
     border-radius: 10px;
 }
+//Modl Request
+.modal-request {
+    --height: 90%;
+    --border-radius: 35px 35px 0 0;
+}
 
 //Page clients y requests
 .card-content {

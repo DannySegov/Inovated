@@ -40,13 +40,11 @@ ion-img {
     --background-hover: #e10714;
 }
 
-
 .form {
     width: 100%;
     text-align: center;
     padding: 20px;
     transform: translateY(-130px);
-    //transform: translateY(-19%);
 
     p {
         text-align: left;
@@ -92,8 +90,6 @@ ion-img {
     justify-content: space-between;
     margin-top: 38px;
 }
-
-
 
 .inp-descrip {
     height: auto;
@@ -168,42 +164,12 @@ ion-content {
     --padding-bottom: 0px !important;
 }
 
-.custom-input {
-    height: auto;
-    display: flex;
-    align-items: center;
-    --border-radius: 8px;
-    width: 100%;
-}
-
-ion-textarea {
-    font-size: 14px !important;
-    min-height: 200px !important;
-    height: 200px !important;
-    --placeholder-color: #219cdb;
-    --placeholder-opacity: 1;
-    margin: 0;
-    border-radius: 8px;
-}
-
-ion-content {
-    --padding-bottom: 0px !important;
-}
-
-
 .upload-image {
     width: inherit;
     transform: translateX(-15px);
     height: 180px;
     border-radius: 20px;
 }
-
-
-
-
-
-
-
 
 .save {
     --background: #74bc52;
@@ -279,22 +245,6 @@ ion-select::part(icon) {
     margin-bottom: 8px;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ion-modal#modal-image {
     --width: fit-content;
     --min-width: 150px;
@@ -308,30 +258,16 @@ ion-modal#modal-image h1 {
 
 ion-modal#modal-image ion-img.modal-image {
     width: 100%;
-    /* Ajusta el ancho al 100% del contenedor */
     height: auto;
-    /* Mantiene la proporción de la imagen */
     max-width: 500px;
-    /* Tamaño máximo opcional */
     margin: auto;
-    /* Centra la imagen */
 }
-
-
-
-
-
-
-
-
 
 @media (min-width: 480px) {
     ion-img {
         width: 30%;
         max-width: 100px;
-        /* Tamaño máximo para pantallas medianas */
         margin: auto;
-        /* Aplica el margen automático */
     }
 
     .scroll-container {

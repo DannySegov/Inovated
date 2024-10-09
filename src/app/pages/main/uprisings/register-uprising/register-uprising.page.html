@@ -90,7 +90,7 @@
 
     <p>Resumen de levantamiento:</p>
     <ion-item class="custom-input" lines="none" size="large">
-      <ion-textarea type="text" placeholder="Escriba aqui las especificaciones necesarias para la instalación." formControlName="resumen">
+      <ion-textarea type="text" placeholder="Escriba aqui las especificaciones necesarias para la instalación." formControlName="resumenLevantamiento">
       </ion-textarea>
     </ion-item>
 
@@ -139,14 +139,14 @@
       <ion-textarea type="text" placeholder="Si tiene alguna observación adicional escribala aquí." formControlName="observaciones"></ion-textarea>
     </ion-item>
 
-    <ion-button mode="ios" class="add" type="submit" size="small">
+    <ion-button mode="ios" class="add" type="submit" size="small" (click)="sendUprising()">
       <strong>Enviar</strong>
     </ion-button>
 
     <ion-modal id="example-modal" #dateModal trigger="open-custom-date" class="glass-content">
       <ng-template>
         <div class="wrapper">
-          <ion-datetime presentation="date" formControlName="fecha" (ionChange)="onDateChange($event)"></ion-datetime>
+          <ion-datetime presentation="date" formControlName="fechaInstalacion" (ionChange)="onDateChange($event)"></ion-datetime>
         </div>
       </ng-template>
     </ion-modal>

@@ -4,6 +4,12 @@ import { UprisingsService } from 'src/app/services/uprisings.service';
 import { formatDate } from '@angular/common';
 import { NotificationService } from 'src/app/services/notification.service';
 
+interface Image {
+  url: string;
+  imagenID: null | number;
+  imagen: string; // Base64 string
+}
+
 @Component({
   selector: 'app-register-uprising',
   templateUrl: './register-uprising.page.html',
@@ -24,11 +30,11 @@ export class RegisterUprisingPage implements OnInit {
   public selectedTime: string = '12:00 pm'; 
 
   public registerUprisingForm: FormGroup = this.fb.group({
-    fecha: ['', Validators.required],
-    hora: ['', Validators.required],
-    resumen: ['', Validators.required],
-    
+    fechaInstalacion: ['', Validators.required],
+    horaInstalacion: ['', Validators.required],
+    resumenLevantamiento: ['', Validators.required],
     observaciones: ['', Validators.required],
+    imagenes: [[]], // Añadir campo para las imágenes
   });
 
   public selectedServicio: string = '';
@@ -72,9 +78,9 @@ export class RegisterUprisingPage implements OnInit {
 
   onDateChange(event: any) {
     const selectedDate = new Date(event.detail.value);
-    selectedDate.setMinutes(selectedDate.getMinutes() + selectedDate.getTimezoneOffset());
-    const formattedDate = formatDate(selectedDate, 'yyyy-MM-dd', 'en-US');
-    this.registerUprisingForm.patchValue({ fecha: formattedDate });
+    const localDate = new Date(selectedDate.getTime() + selectedDate.getTimezoneOffset() * 60000);
+    const formattedDate = formatDate(localDate, 'yyyy-MM-dd', 'en-US');
+    this.registerUprisingForm.patchValue({ fechaInstalacion: formattedDate });
     this.selectedDate = formattedDate;
     this.dateModal.dismiss();
   }
@@ -85,7 +91,7 @@ export class RegisterUprisingPage implements OnInit {
         const date = new Date(dateValue);
         if (!isNaN(date.getTime())) {
             const formattedTime = this.formatTime(date);
-            this.registerUprisingForm.patchValue({ hora: formattedTime });
+            this.registerUprisingForm.patchValue({ horaInstalacion: formattedTime });
             this.selectedTime = this.formatDisplayTime(date.getHours(), date.getMinutes());
         } else {
             console.error('Fecha inválida:', this.selectedTime);
@@ -99,7 +105,7 @@ export class RegisterUprisingPage implements OnInit {
     const date = new Date();
     date.setHours(this.hour, this.minute, 0, 0);
     const formattedTime = this.formatTime(date);
-    this.registerUprisingForm.patchValue({ hora: formattedTime });
+    this.registerUprisingForm.patchValue({ horaInstalacion: formattedTime });
     this.selectedTime = this.formatDisplayTime(this.hour, this.minute);
     this.timeModal.dismiss();
   }
@@ -157,7 +163,7 @@ export class RegisterUprisingPage implements OnInit {
     date.setHours(hours, this.minute, 0, 0);
     const formattedTime = this.formatTime(date);
     this.selectedTime = this.formatDisplayTime(this.hour, this.minute);
-    this.registerUprisingForm.patchValue({ hora: formattedTime });
+    this.registerUprisingForm.patchValue({ horaInstalacion: formattedTime });
   }
 
   formatHour(hour: number): string {
@@ -186,18 +192,27 @@ export class RegisterUprisingPage implements OnInit {
     let hour24 = parseInt(this.formattedHour, 10);
     if (this.amPm === 'PM' && hour24 < 12) hour24 += 12;
     else if (this.amPm === 'AM' && hour24 === 12) hour24 = 0;
-    this.registerUprisingForm.patchValue({ hora: `${hour24}:${this.formattedMinute}:00.000` });
+    this.registerUprisingForm.patchValue({ horaInstalacion: `${hour24}:${this.formattedMinute}:00.000` });
   }
+
+  base64: any;
 
   onFileSelected(event: any) {
     const files = event.target.files;
+    this.selectedFiles = []; // Asegurarse de limpiar la lista de archivos seleccionados
     for (let i = 0; i < files.length; i++) {
-      const file = files[i];
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        this.selectedFiles.push({ name: file.name, url: e.target.result });
-      };
-      reader.readAsDataURL(file);
+        const file = files[i];
+        const reader = new FileReader();
+        reader.onload = (e: any) => {
+            this.selectedFiles.push({ name: file.name, url: e.target.result, imagenID: null, imagen: e.target.result });
+            if (i === 0) { // Si es el primer archivo, asignar a base64
+                this.base64 = e.target.result;
+                console.log('Imagen en base64:', this.base64);
+            }
+            // Actualizar el formulario con las imágenes después de leer cada archivo
+            this.registerUprisingForm.patchValue({ imagenes: this.selectedFiles });
+        };
+        reader.readAsDataURL(file);
     }
   }
 
@@ -212,6 +227,7 @@ export class RegisterUprisingPage implements OnInit {
     if (this.selectedFiles.length < initialLength) {
       this.notificationService.presentToast(`La imagen ${fileToDelete.name} ha sido eliminada.`, 'top', 'success');
     }
+    this.registerUprisingForm.patchValue({ imagenes: this.selectedFiles }); // Actualizar el formulario con las imágenes restantes
   }
 
   openImageModal(imageUrl: string) {
@@ -219,6 +235,17 @@ export class RegisterUprisingPage implements OnInit {
   }
 
   sendUprising() {
-    // Implementar lógica para enviar levantamiento
+    const formData = this.registerUprisingForm.value;
+    const servicioID = this.selectedUprising.servicioID;
+
+    this.uprisingsService.addUprisingService(servicioID, formData).subscribe(response => {
+      if (response) {
+        console.log('Respuesta del servidor:', response); 
+        this.notificationService.presentToast('Levantamiento registrado exitosamente.', 'top', 'success');
+      } else {
+        this.notificationService.presentToast('Ocurrió un error al registrar el levantamiento.', 'top', 'danger');
+      }
+    })
+    console.log('Datos del levantamiento:', formData);
   }
 }
