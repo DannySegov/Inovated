@@ -26,6 +26,14 @@
           <span id="icon-title-right" class="{{ icon }}"></span>
         </ion-text>
 
+         <!-- Caso para la pantalla de Cotización  -->
+         <ion-text *ngSwitchCase="isQuotePage" class="title-module">
+          <ng-content select="ion-icon"></ng-content>
+          <span class="icon-atras" (click)="navigateTo('/main/quotes')"></span>
+          <span class="small-font">{{ cardText }}</span>
+          <span id="icon-title-right" class="{{ icon }}"></span>
+        </ion-text>
+
         <!-- Título por defecto -->
         <ion-card-title *ngSwitchDefault class="title-module">
           <ng-content select="ion-icon"></ng-content>

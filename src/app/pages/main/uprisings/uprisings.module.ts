@@ -7,9 +7,7 @@ import { UprisingsPageRoutingModule } from './uprisings-routing.module';
 
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MenuTabPageModule } from '../menu-tab/menu-tab.module';
-import { MenuTabPageRoutingModule } from '../menu-tab/menu-tab-routing.module';
 import { UprisingsPage } from './uprisings.page';
-import { RegisterUprisingPage } from './register-uprising/register-uprising.page';
 import { RegisterUprisingPageModule } from './register-uprising/register-uprising.module';
 
 @NgModule({

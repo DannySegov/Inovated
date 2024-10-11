@@ -56,5 +56,10 @@
     observaciones: string;
     fechaInstalacion: string;
     horaInstalacion: string;
-    imagenes: string[];
+    imagenes: Imagen[];
+  }
+
+  export interface Imagen {
+    imagenID: number; 
+    imagen: string; 
   }

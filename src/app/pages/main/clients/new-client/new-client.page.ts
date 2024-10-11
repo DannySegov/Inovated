@@ -12,11 +12,12 @@ import { NotificationService } from 'src/app/services/notification.service';
 export class NewClientPage implements OnInit {
 
   private fb = inject(FormBuilder);
+  private router = inject(Router);
   //public newClientForm!: FormGroup;
   private clientService = inject(ClientsService);
   private notificationService = inject(NotificationService);
 
-  constructor(private router: Router) { }
+  constructor() { }
 
 
   public newClientForm: FormGroup = this.fb.group({

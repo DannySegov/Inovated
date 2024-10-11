@@ -1,9 +1,9 @@
-export interface RequestResponse {
+export interface QuoteResponse {
     estatus: boolean;
     mensaje: string;
     paginador: Paginador;
-    datos: Request[];
-    catalogos: any | null;
+    datos: Quote;
+    catalogos: any;
 }
 
 export interface Paginador {
@@ -15,15 +15,15 @@ export interface Paginador {
     siguiente: number;
 }
 
-export interface Request {
+export interface Quote {
     descripcion: string;
     servicioID: number;
     infoServicio: InfoServicio;
     fecha: string;
     hora: string;
     perfil: Perfil;
-    empleadoID: number | null;
     esAsignado: boolean;
+    levantamiento: Levantamiento;
 }
 
 export interface InfoServicio {
@@ -49,24 +49,26 @@ export interface Direccion {
     codigoPostal: string;
     ciudad: string;
     estado: string;
-    numeroInterior?: string;
+    numeroInterior?: string; // Es opcional
 }
 
-export interface Employee {
-    id: number;
-    correo: string;
-    nombreCompleto: string;
-    empleadoID: number;
-    puestoID: number;
-    nombrePuesto: string;
+export interface Levantamiento {
+    observaciones: string;
+    resumenLevantamiento: string;
+    levantamientoID: number;
+    fechaInstalacion: string;
+    horaInstalacion: string;
+    imagenes: Image[]; // Array para almacenar las imágenes
+}
+
+
+export interface AddQuote {
+    folioCotizacion: string;
+    costoCotizado: number;
+    imagenes: Image[];
 }
 
 export interface Image {
     imagenID: number | null;
     imagen: string; // Base64 string
-}
-
-export interface ImageView extends Image {
-    url: string;
-    name: string;
 }
