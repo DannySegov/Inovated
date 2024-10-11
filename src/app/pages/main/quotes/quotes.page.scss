@@ -1,3 +1,46 @@
 ::ng-deep .custom-card-border-radius ion-card {
     border-radius: 50px;
 }
+
+.info-cli {
+    display: flex;
+    flex-direction: column;
+    margin-left: -4px;
+    margin-top: 10px;
+   //margin-bottom: 10px; /* Añadir margen inferior */
+}
+
+.address {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+ion-card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: auto;
+}
+
+.client {
+    border-radius: 15px;
+    transform: translateY(-34%);
+    margin-top: 1px;
+    margin-bottom: 20px; /* Ajustar margen inferior */
+    height: auto;
+    word-wrap: break-word; /* Permite que las palabras largas se dividan */
+}
+
+/* Media query para pantallas a partir de 400px */
+@media (max-width: 380px) {
+    .client {
+        margin-bottom: 20px; /* Ajustar margen inferior para pantallas medianas */
+    }
+}
+
+/* Media query para pantallas a partir de 640px */
+@media (min-width: 340px) {
+    .client {
+        margin-bottom: 16px; /* Ajustar margen inferior para pantallas más grandes */
+    }
+}

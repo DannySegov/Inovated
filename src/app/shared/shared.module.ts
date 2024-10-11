@@ -13,6 +13,7 @@ import { InfoClientComponent } from './components/info-client/info-client.compon
 import { CustomSelectComponent } from './components/custom-select/custom-select.component';
 import { ModalInfoRequestComponent } from './components/modal-info-request/modal-info-request.component';
 import { ModalInfoUprisingComponent } from './components/modal-info-uprising/modal-info-uprising.component';
+import { ModalInfoQuoteComponent } from './components/modal-info-quote/modal-info-quote.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { ModalInfoUprisingComponent } from './components/modal-info-uprising/mod
     InfoClientComponent,
     ModalInfoRequestComponent,
     ModalInfoUprisingComponent,
+    ModalInfoQuoteComponent,
   ],
   exports: [
     //Components
@@ -41,6 +43,7 @@ import { ModalInfoUprisingComponent } from './components/modal-info-uprising/mod
     InfoClientComponent,
     ModalInfoRequestComponent,
     ModalInfoUprisingComponent, 
+    ModalInfoQuoteComponent,
     //Modules
     ReactiveFormsModule,
   ],

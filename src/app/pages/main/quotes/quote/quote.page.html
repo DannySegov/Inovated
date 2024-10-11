@@ -1,0 +1,199 @@
+<div class="custom-card-border-radius">
+  <app-header [showMenu]="true" [icon]="'icon-cotizacion'" [cardText]="'Cotización'"></app-header>
+</div>
+
+<ion-content [fullscreen]="true">
+  <div class="title-info-general">
+    <ion-text>
+      <h6>
+        Información general
+      </h6>
+    </ion-text>
+    <hr class="line">
+  </div>
+
+  <app-info-client [nombre]="selectedQuote?.perfil?.nombre" [direccion]="selectedQuote?.perfil?.direccion"
+    [telefono]="selectedQuote?.perfil?.telefono" [correo]="selectedQuote?.perfil?.correo" [backgroundColor]="'white'">
+  </app-info-client>
+
+  <form [formGroup]="quoteForm" class="form">
+    <div class="title-section-info">
+      <ion-text>
+        <h6>
+          Información de la solicitud
+        </h6>
+      </ion-text>
+      <hr class="line">
+    </div>
+
+    <p>Servicio:</p>
+    <ion-item class="input-data" lines="none">
+      <ion-input class="custom-height" type="text" autocomplete="autocomplete" placeholder="Servicio"
+      [value]="Servicio" disabled></ion-input> 
+    </ion-item>
+
+    <p>Clave:</p>
+    <ion-item class="input-data" lines="none">
+      <ion-input class="custom-height" type="text" autocomplete="autocomplete" placeholder="Clave"
+      [value]="Clave" disabled></ion-input>
+    </ion-item>
+
+    <p>Categoria:</p>
+    <ion-item class="input-data" lines="none">
+      <ion-input class="custom-height" type="text" autocomplete="autocomplete" placeholder="Categoria"
+      [value]="Categoria" disabled></ion-input> 
+    </ion-item>
+
+    <p>Descripción:</p>
+    <ion-item class="inp-descrip" lines="none" size="large">
+      <ion-textarea type="text" placeholder="Opcional"[value]="Descripcion" disabled></ion-textarea>
+    </ion-item>
+
+    <div class="title-section uprising">
+      <ion-text>
+        <h6>
+          Levantamiento
+        </h6>
+      </ion-text>
+      <hr class="line">
+    </div>
+
+    <p>Fecha de levantamiento solicitada:</p>
+    <ion-item class="input-data" lines="none">
+      <ion-input class="custom-height" type="text" autocomplete="autocomplete" placeholder="Fecha" [value]="FechaLevantamiento" disabled></ion-input>
+    </ion-item>
+
+    <p>Hora de levantamiento solicitada:</p>
+    <ion-item class="input-data" lines="none">
+      <ion-input class="custom-height" type="text" autocomplete="autocomplete" placeholder="Hora" [value]="HoraLevantamiento" disabled></ion-input>
+    </ion-item>
+
+    <p>Información sobre el levantamiento:</p>
+    <ion-item class="inp-descrip" lines="none" size="large">
+      <ion-textarea type="text" placeholder="Opcional" [value]="InfoLevantamiento" disabled></ion-textarea>
+    </ion-item>
+
+    <div class="title-section image">
+      <ion-text>
+        <h6>
+          Fotografias del sitio
+        </h6>
+      </ion-text>
+      <hr class="line">
+    </div>
+
+    <ion-card mode="ios" class="view-images">
+      <ion-card-content>
+        <div class="card-content">
+          <div class="scroll-container">
+            <ion-list lines="none">
+              <ion-item *ngFor="let file of addedQuotes; let i = index" class="file-preview custom-item">
+                <ion-label>{{ file.name }}</ion-label>
+                <ion-button id="open-custom-dialog-{{i}}" expand="block" class="eye" shape="round" size="medium" (click)="openFileModal(file.url)">
+                  <ion-icon slot="icon-only" name="eye-outline"></ion-icon>
+                </ion-button>
+              </ion-item>
+            </ion-list>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <p>Observaciones adicionales:</p>
+    <ion-item class="inp-descrip" lines="none" size="large">
+      <ion-textarea type="text" placeholder="Opcional" [value]="ObservacionesAdic" disabled></ion-textarea>
+    </ion-item>
+
+    <div class="title-section uprising">
+      <ion-text>
+        <h6>
+          Cotización
+        </h6>
+      </ion-text>
+      <hr class="line">
+    </div>
+
+    <p>Folio de cotización:</p>
+    <ion-item class="input-data" lines="none">
+      <ion-input class="custom-height" type="text" autocomplete="autocomplete" placeholder="Folio"></ion-input>
+    </ion-item>
+
+    <p>Costo cotizado:</p>
+    <ion-item class="input-data" lines="none">
+      <ion-input class="custom-height" type="text" autocomplete="autocomplete" placeholder="Costo"></ion-input>
+    </ion-item>
+
+    <!-- Card para subir archivos -->
+    <ion-card mode="ios" class="upload-image">
+      <ion-card-content>
+        <div class="card-content">
+          <ion-button id="uploadButton" *ngIf="selectedFiles.length === 0" mode="ios" class="upload" size="small"
+            (click)="triggerFileInput()">
+            <strong>Subir Archivo</strong>
+          </ion-button>
+          <input type="file" id="fileInput" style="display: none;" (change)="onFileSelected($event)" multiple>
+          <div class="scroll-container">
+            <ion-list lines="none">
+              <ion-item *ngFor="let file of selectedFiles; let i = index" class="file-preview custom-item">
+                <ion-label>{{ file.name }}</ion-label>
+                <ion-button id="open-custom-dialog-{{i}}" expand="block" class="eye" shape="round" size="medium" (click)="openFileModal(file.url)">
+                  <ion-icon slot="icon-only" name="eye-outline"></ion-icon>
+                </ion-button>
+                <ion-button class="delete" shape="round" size="medium" (click)="deleteFile(file)">
+                  <ion-icon slot="icon-only" name="icon-eliminar" class="icon-eliminar"></ion-icon>
+                </ion-button>
+              </ion-item>
+            </ion-list>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-button mode="ios" class="add" type="submit" size="small" (click)="addFileQuote()"> <!-- (click)="sendUprising()"-->
+      <strong>Agregar cotización</strong>
+    </ion-button>
+
+    <div class="title-section uprising">
+      <ion-text>
+        <h6>
+          Propuesta de cotización
+        </h6>
+      </ion-text>
+      <hr class="line">
+    </div>
+
+    <ion-card mode="ios" class="view-files">
+      <ion-card-content>
+        <div class="card-content">
+          <h6 class="not-quote" *ngIf="addedQuotes.length === 0">Aún no se han agregado cotizaciones</h6>
+          <div class="scroll-container">
+            <ion-list lines="none">
+              <ion-item *ngFor="let file of addedQuotes; let i = index" class="file-preview custom-item">
+                <ion-label>{{ file.name }}</ion-label>
+                <ion-button id="open-custom-dialog-{{i}}" expand="block" class="eye" shape="round" size="medium" (click)="openFileModal(file.url)">
+                  <ion-icon slot="icon-only" name="eye-outline"></ion-icon>
+                </ion-button>
+                <ion-button class="delete" shape="round" size="medium" (click)="deleteFile(file)">
+                  <ion-icon slot="icon-only" name="icon-eliminar" class="icon-eliminar"></ion-icon>
+                </ion-button>
+              </ion-item>
+            </ion-list>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-button mode="ios" class="add" type="submit" size="small" (click)="addQuote()">
+      <strong>Enviar</strong>
+    </ion-button>
+
+    <ion-modal *ngFor="let file of selectedFiles; let i = index" id="modal-image" trigger="open-custom-dialog-{{i}}">
+      <ng-template>
+        <ion-img class="modal-image" [src]="selectedImage" alt="Preview"></ion-img>
+      </ng-template>
+    </ion-modal>
+    <pre>{{ quoteForm.value | json }}</pre>
+  </form>
+</ion-content>
+
+<!--app-menu-tab></!--app-menu-tab-->

@@ -3,12 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UprisingsService } from 'src/app/services/uprisings.service';
 import { formatDate } from '@angular/common';
 import { NotificationService } from 'src/app/services/notification.service';
-
-interface Image {
-  url: string;
-  imagenID: null | number;
-  imagen: string; // Base64 string
-}
+import { Router } from '@angular/router';
+import { Image, ImageView } from 'src/app/shared/interfaces/requests';
 
 @Component({
   selector: 'app-register-uprising',
@@ -21,6 +17,7 @@ export class RegisterUprisingPage implements OnInit {
   @ViewChild('timeModal') timeModal: any;
 
   private fb = inject(FormBuilder);
+  private router = inject(Router);
   private uprisingsService = inject(UprisingsService);
   private notificationService = inject(NotificationService);
   selectedUprising: any;
@@ -34,7 +31,7 @@ export class RegisterUprisingPage implements OnInit {
     horaInstalacion: ['', Validators.required],
     resumenLevantamiento: ['', Validators.required],
     observaciones: ['', Validators.required],
-    imagenes: [[]], // Añadir campo para las imágenes
+    imagenes: [[] as Image[]], // Añadir campo para las imágenes
   });
 
   public selectedServicio: string = '';
@@ -50,7 +47,7 @@ export class RegisterUprisingPage implements OnInit {
   minute: number = 0;
   formattedMinute: string = '00';
   amPm: string = 'AM';
-  selectedFiles: any[] = [];
+  selectedFiles: ImageView[] = [];
 
   constructor() { 
     this.timeValue = new Date();
@@ -210,7 +207,7 @@ export class RegisterUprisingPage implements OnInit {
                 console.log('Imagen en base64:', this.base64);
             }
             // Actualizar el formulario con las imágenes después de leer cada archivo
-            this.registerUprisingForm.patchValue({ imagenes: this.selectedFiles });
+            this.registerUprisingForm.patchValue({ imagenes: this.selectedFiles.map(({ imagenID, imagen }) => ({ imagenID, imagen })) });
         };
         reader.readAsDataURL(file);
     }
@@ -221,13 +218,13 @@ export class RegisterUprisingPage implements OnInit {
     fileInput.click();
   }
 
-  deleteFile(fileToDelete: { name: string, url: string }) {
+  deleteFile(fileToDelete: ImageView) {
     const initialLength = this.selectedFiles.length;
     this.selectedFiles = this.selectedFiles.filter(file => file !== fileToDelete);
     if (this.selectedFiles.length < initialLength) {
       this.notificationService.presentToast(`La imagen ${fileToDelete.name} ha sido eliminada.`, 'top', 'success');
     }
-    this.registerUprisingForm.patchValue({ imagenes: this.selectedFiles }); // Actualizar el formulario con las imágenes restantes
+    this.registerUprisingForm.patchValue({ imagenes: this.selectedFiles.map(({ imagenID, imagen }) => ({ imagenID, imagen })) }); // Actualizar el formulario con las imágenes restantes
   }
 
   openImageModal(imageUrl: string) {
@@ -241,7 +238,8 @@ export class RegisterUprisingPage implements OnInit {
     this.uprisingsService.addUprisingService(servicioID, formData).subscribe(response => {
       if (response) {
         console.log('Respuesta del servidor:', response); 
-        this.notificationService.presentToast('Levantamiento registrado exitosamente.', 'top', 'success');
+        this.notificationService.presentToast(response.mensaje, 'top', 'success');
+        this.router.navigate(['/main/clients']);
       } else {
         this.notificationService.presentToast('Ocurrió un error al registrar el levantamiento.', 'top', 'danger');
       }
