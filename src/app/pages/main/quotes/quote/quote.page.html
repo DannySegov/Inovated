@@ -27,19 +27,19 @@
     </div>
 
     <p>Servicio:</p>
-    <ion-item class="input-data" lines="none">
+    <ion-item class="input-data view" lines="none">
       <ion-input class="custom-height" type="text" autocomplete="autocomplete" placeholder="Servicio"
       [value]="Servicio" disabled></ion-input> 
     </ion-item>
 
     <p>Clave:</p>
-    <ion-item class="input-data" lines="none">
+    <ion-item class="input-data view" lines="none">
       <ion-input class="custom-height" type="text" autocomplete="autocomplete" placeholder="Clave"
       [value]="Clave" disabled></ion-input>
     </ion-item>
 
     <p>Categoria:</p>
-    <ion-item class="input-data" lines="none">
+    <ion-item class="input-data view" lines="none">
       <ion-input class="custom-height" type="text" autocomplete="autocomplete" placeholder="Categoria"
       [value]="Categoria" disabled></ion-input> 
     </ion-item>
@@ -59,17 +59,17 @@
     </div>
 
     <p>Fecha de levantamiento solicitada:</p>
-    <ion-item class="input-data" lines="none">
+    <ion-item class="input-data view" lines="none">
       <ion-input class="custom-height" type="text" autocomplete="autocomplete" placeholder="Fecha" [value]="FechaLevantamiento" disabled></ion-input>
     </ion-item>
 
     <p>Hora de levantamiento solicitada:</p>
-    <ion-item class="input-data" lines="none">
+    <ion-item class="input-data view" lines="none">
       <ion-input class="custom-height" type="text" autocomplete="autocomplete" placeholder="Hora" [value]="HoraLevantamiento" disabled></ion-input>
     </ion-item>
 
     <p>Información sobre el levantamiento:</p>
-    <ion-item class="inp-descrip" lines="none" size="large">
+    <ion-item class="inp-descrip view" lines="none" size="large">
       <ion-textarea type="text" placeholder="Opcional" [value]="InfoLevantamiento" disabled></ion-textarea>
     </ion-item>
 
@@ -87,7 +87,10 @@
         <div class="card-content">
           <div class="scroll-container">
             <ion-list lines="none">
-              <ion-item *ngFor="let file of addedQuotes; let i = index" class="file-preview custom-item">
+              <ion-item *ngFor="let file of imagesUprising; let i = index" class="file-preview custom-item">
+                <ion-thumbnail class="preview-img">
+                  <img [src]="file.url" alt="Imagen {{i}}"/>
+                </ion-thumbnail>
                 <ion-label>{{ file.name }}</ion-label>
                 <ion-button id="open-custom-dialog-{{i}}" expand="block" class="eye" shape="round" size="medium" (click)="openFileModal(file.url)">
                   <ion-icon slot="icon-only" name="eye-outline"></ion-icon>
@@ -100,7 +103,7 @@
     </ion-card>
 
     <p>Observaciones adicionales:</p>
-    <ion-item class="inp-descrip" lines="none" size="large">
+    <ion-item class="inp-descrip view" lines="none" size="large">
       <ion-textarea type="text" placeholder="Opcional" [value]="ObservacionesAdic" disabled></ion-textarea>
     </ion-item>
 
@@ -115,12 +118,12 @@
 
     <p>Folio de cotización:</p>
     <ion-item class="input-data" lines="none">
-      <ion-input class="custom-height" type="text" autocomplete="autocomplete" placeholder="Folio"></ion-input>
+      <ion-input class="custom-height" type="text" autocomplete="autocomplete" placeholder="Folio" formControlName="folioCotizacion"></ion-input>
     </ion-item>
 
     <p>Costo cotizado:</p>
     <ion-item class="input-data" lines="none">
-      <ion-input class="custom-height" type="text" autocomplete="autocomplete" placeholder="Costo"></ion-input>
+      <ion-input class="custom-height" type="number" autocomplete="autocomplete" placeholder="Costo" formControlName="costoCotizado"></ion-input>
     </ion-item>
 
     <!-- Card para subir archivos -->

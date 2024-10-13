@@ -1,5 +1,6 @@
 import { Component, inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NotificationService } from 'src/app/services/notification.service';
 import { RequestsService } from 'src/app/services/requests.service';
 import { UsersService } from 'src/app/services/users.service';
@@ -14,6 +15,7 @@ import { Employee } from 'src/app/shared/interfaces/requests';
 export class UserAssigmentPage implements OnInit {
 
   private fb = inject(FormBuilder);
+  private router = inject(Router);
   private requestsService = inject(RequestsService);
   private userService = inject(UsersService);
   private notificationService = inject(NotificationService);  
@@ -124,6 +126,7 @@ assignEmployeeToRequest(servicioID: number): void {
     next: (response: ResponseAdd) => {
       console.log(response.mensaje);
       this.notificationService.presentToast(response.mensaje, 'top', 'success');
+      this.router.navigateByUrl('/main/requests');
      //console.log('Empleados asignados exitosamente:', response);
     },
     error: (error) => {

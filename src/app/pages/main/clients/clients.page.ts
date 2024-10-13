@@ -20,64 +20,27 @@ export class ClientsPage implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.clientsService.clients$.subscribe(clientes => {
-      this.clients = clientes;
-    });
-
-    // Actualizar la lista de clientes al iniciar el componente
-    this.clientsService.updateClientsList();
+    this.getClients();
   }
 
-  getClients(page: number = 1) { // Método para obtener los clientes
+  getClients() { // Método para obtener los clientes
     this.clientsService.getClients(10, 1).subscribe({
       next: (resp: any) => {
         if (resp.estatus) {
-          this.clients = resp.datos.map((client: Client) => {
-            const storedColor = localStorage.getItem(`client-color-${client.clienteID}`);
-            if (storedColor) {
-              client.color = storedColor;
-            } else {
-              client.color = this.getRandomColor();
-              localStorage.setItem(`client-color-${client.clienteID}`, client.color);
-            }
-            return client;
-          });
-          this.totalPages = Math.ceil(resp.paginador.total / resp.paginador.limite);
-          this.currentPage = resp.paginador.pagina;
+          this.clients = resp.datos;
+          console.log('Clientes:', this.clients);
         } else {
-          console.error('Error al recuperar los datos de los clientes:', resp.mensaje);
+          console.error('Error al recuperar los clientes:', resp.mensaje);
         }
       },
       error: (error) => {
         console.error('Error en la llamada al servicio de clientes:', error);
       }
-    });
+    })
   }
 
-
-
-
-
-
-
-/*
-  onCardClick(client: any) {
-    this.modalInfoComponent.openClientModal(client);
-    this.clientsService.changeClient(client);
-  }
-    */
-  onCardClick(client: Client) {
+  openClientModal(client: Client) {
     this.modalInfoComponent.openClientModal(client.clienteID);
-    console.log('Cliente seleccionado:', client.clienteID);
-     console.log('Color del cliente:', client.color); // Imprimir el color del cliente
-  }
-
-  getRandomColor(): string {
-    const letters = '0123456789ABCDEF';
-    let color = '#';
-    for (let i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
+    this.clientsService.changeClient(client); // Enviar datos al servicio
   }
 }

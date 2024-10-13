@@ -5,7 +5,8 @@ import { ServiceRequerimentsService } from 'src/app/services/service-requeriment
 import { ClientsService } from 'src/app/services/clients.service';
 import { ServiceRequeriments } from 'src/app/shared/interfaces/services';
 import { NotificationService } from 'src/app/services/notification.service';
-import { RequestsService } from 'src/app/services/requests.service'; // Importar RequestsService
+import { RequestsService } from 'src/app/services/requests.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-service-request',
@@ -16,22 +17,24 @@ export class ServiceRequestPage implements OnInit {
 
   @ViewChild('dateModal') dateModal: any;
   @ViewChild('timeModal') timeModal: any;
-  @ViewChild('employeeModal') employeeModal: any; // Añadir referencia al modal de empleados
+  @ViewChild('employeeModal') employeeModal: any;
 
   private serviceRequeriment = inject(ServiceRequerimentsService);
-  private clientService = inject(ClientsService);
+  private clientsService = inject(ClientsService);
   private notificationService = inject(NotificationService);
-  private requestsService = inject(RequestsService); // Inyectar RequestsService
+  private requestsService = inject(RequestsService);
   private fb = inject(FormBuilder);
+  private router = inject(Router);
   
+  public client: any; 
   public services: any;
   public selectedDate: string = 'dd / mm / aaaa';
   public selectedTime: string = '12:00 pm'; 
   public selectedServiceName: string = 'Selecciona una opción';
   public clienteID: number = 0;
-  public selectedRequest: any; // Variable para almacenar la solicitud seleccionada
-  public selectedServices: any[] = []; // Lista de servicios seleccionados
-  public lastSelectedService: any; // Último servicio seleccionado
+  public selectedRequest: any;
+  public selectedServices: any[] = [];
+  public lastSelectedService: any;
 
   timeValue!: Date;
 
@@ -47,19 +50,19 @@ export class ServiceRequestPage implements OnInit {
   }
 
   ngOnInit() {
+    this.getClientById();
     this.serviceRequeriments();
-    this.getClientID();
     this.requestsService.requests$.subscribe(requests => {
       if (requests.length > 0) {
-        this.selectedRequest = requests[0]; // Selecciona la primera solicitud por defecto
+        this.selectedRequest = requests[0];
+        console.log('Solicitud seleccionada:', this.selectedRequest);
       }
     });
 
-    // Actualizar la lista de solicitudes al iniciar el componente
     this.requestsService.updateRequestsList();
   }
 
-  serviceRequeriments(): void { // Método para obtener los servicios
+  serviceRequeriments(): void {
     this.serviceRequeriment.getServiceRequeriments().subscribe({
       next: (response) => {
         this.services = response; 
@@ -70,7 +73,7 @@ export class ServiceRequestPage implements OnInit {
     });
   }
 
-  onDateChange(event: any) { // Método para cambiar la fecha
+  onDateChange(event: any) {
     const selectedDate = new Date(event.detail.value);
     const formattedDate = formatDate(selectedDate, 'yyyy-MM-dd', 'en-US');
     this.serviceRequestForm.patchValue({ fecha: formattedDate });
@@ -78,7 +81,7 @@ export class ServiceRequestPage implements OnInit {
     this.dateModal.dismiss();
   }
 
-  onTimeChange(event: any) { // Método para cambiar la hora
+  onTimeChange(event: any) {
     const dateValue = event.detail.value;
     if (dateValue) {
         const date = new Date(dateValue);
@@ -99,7 +102,7 @@ export class ServiceRequestPage implements OnInit {
     }
 }
 
-saveTime() { // Método para guardar la hora seleccionada
+saveTime() {
     const date = new Date();
     date.setHours(this.hour, this.minute, 0, 0);
     const formattedTime = this.formatTime(date);
@@ -108,22 +111,29 @@ saveTime() { // Método para guardar la hora seleccionada
     this.timeModal.dismiss();
 }
 
-  getClientID(){ // Método para obtener el ID del cliente
-    this.clientService.clienteID$.subscribe(clienteID => {
-      this.clienteID = clienteID;
-      console.log('ID del cliente:', this.clienteID); 
-    });
-  }
+getClientById() {
+  this.clientsService.currentClient.subscribe(client => {
+    if (client) {
+      this.client = client;
+      console.log('Clients: ', client);
+      this.clienteID = client.clienteID;
+      console.log('ID del cliente:', this.clienteID);
+      
+    }
+  })
+}
 
-  sendRequest() { // Método para enviar la solicitud de servicio
+  sendRequest() {
     if (this.serviceRequestForm.valid) {
       const request: ServiceRequeriments = this.serviceRequestForm.value;
+      console.log('Cliente ID antes de enviar la solicitud:', this.clienteID); // Añadir log para verificar clienteID
       this.serviceRequeriment.addServiceRequeriments(this.clienteID, request).subscribe({
         next: (response) => {
           this.notificationService.presentToast(response.mensaje, 'top', 'success');
           this.serviceRequestForm.reset();
           this.selectedDate = 'dd / mm / aaaa';
           this.selectedTime = '12:00 pm';
+          this.router.navigate(['/main/clients']);
         },
         error: (error) => {
           console.error(error);
@@ -134,7 +144,7 @@ saveTime() { // Método para guardar la hora seleccionada
     }
   }
 
-  selectService(service: any) { // Método para seleccionar un servicio
+  selectService(service: any) {
     const index = this.selectedServices.findIndex(srv => srv.servicioOfreceID === service.servicioOfreceID);
     if (index === -1) {
       this.selectedServices.push(service);
@@ -143,11 +153,12 @@ saveTime() { // Método para guardar la hora seleccionada
     }
     this.lastSelectedService = service;
     this.updateSelectedServiceName();
+    this.serviceRequestForm.patchValue({ servicioOfreceID: service.servicioOfreceID });
     this.employeeModal.dismiss();
     console.log('Servicio seleccionado ID:', service.servicioOfreceID);
   }
 
-  updateSelectedServiceName() { // Método para actualizar el nombre del servicio seleccionado
+  updateSelectedServiceName() {
     if (this.selectedServices.length > 0) {
       this.selectedServiceName = this.selectedServices.map(srv => srv.nombreServicio).join(', ');
     } else {
@@ -268,7 +279,6 @@ saveTime() { // Método para guardar la hora seleccionada
     const minute = this.formattedMinute;
     const amPm = this.amPm;
 
-    // Convierte la hora y minuto a formato de 24 horas si es necesario
     let hour24 = parseInt(hour, 10);
     if (amPm === 'PM' && hour24 < 12) {
       hour24 += 12;

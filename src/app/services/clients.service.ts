@@ -16,6 +16,8 @@ export class ClientsService {
   private clientsSource = new BehaviorSubject<any[]>([]); // Lista de clientes inicializada vacía
   public clients$ = this.clientsSource.asObservable();
   
+  private clientSource = new BehaviorSubject<any>(null);
+  currentClient = this.clientSource.asObservable();
 
   public clienteID = new Subject<number>();
   clienteID$ = this.clienteID.asObservable();
@@ -77,5 +79,9 @@ export class ClientsService {
     this.getClients(10, 1).subscribe(response => {
       this.clientsSource.next(response.datos); // Actualizar la lista de clientes
     });
+  }
+
+  changeClient(client: any) {
+    this.clientSource.next(client);
   }
 }

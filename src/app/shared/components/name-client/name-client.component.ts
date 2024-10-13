@@ -20,7 +20,7 @@ export class NameClientComponent  implements OnInit {
   isClientsPage!: boolean;
 
   ngOnInit() {
-    console.log('Cliente name', this.client);
+    console.log('Cliente name', this.client.nombre);
     this.isUserAssignmentPage = this.router.url.includes('main/requests/user-assigment');
     this.isClientsPage = this.router.url.includes('main/clients');
   }

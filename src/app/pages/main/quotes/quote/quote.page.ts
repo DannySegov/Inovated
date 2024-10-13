@@ -21,6 +21,7 @@ export class QuotePage implements OnInit {
   selectedFiles: any[] = [];
   selectedImage!: string; 
   addedQuotes: any[] = [];
+  imagesUprising: any[] = [];
   base64: any;
 
   public Servicio: string = '';
@@ -36,7 +37,7 @@ export class QuotePage implements OnInit {
 
   public quoteForm: FormGroup = this.fb.group({
     folioCotizacion: ['', Validators.required],
-    horaInstalacion: [0, Validators.required],
+    costoCotizado: ['', Validators.required],
     imagenes: [[] as Image[]], // Añadir campo para las imágenes
   });
 
@@ -46,6 +47,7 @@ export class QuotePage implements OnInit {
     this.getQuoteById();
   }
 
+  /*
   getQuoteById()  {
     this.quotesService.currentData.subscribe(data => {
       this.selectedQuote = data;
@@ -61,6 +63,32 @@ export class QuotePage implements OnInit {
         this.ObservacionesAdic = this.selectedQuote.levantamiento.observaciones
       }
     })
+  }
+    */
+  getQuoteById() {
+    this.quotesService.currentData.subscribe(data => {
+      this.selectedQuote = data;
+      console.log('cotiza', this.selectedQuote);  
+      if (this.selectedQuote) {
+        this.Servicio = this.selectedQuote.infoServicio.nombreServicio;
+        this.Clave = this.selectedQuote.infoServicio.claveServicio;
+        this.Categoria = this.selectedQuote.infoServicio.categoria;
+        this.Descripcion = this.selectedQuote.infoServicio.descripcion;
+        this.FechaLevantamiento = this.selectedQuote.levantamiento.fechaInstalacion;
+        this.HoraLevantamiento = this.selectedQuote.levantamiento.horaInstalacion;
+        this.InfoLevantamiento = this.selectedQuote.levantamiento.resumenLevantamiento;
+        this.ObservacionesAdic = this.selectedQuote.levantamiento.observaciones;
+  
+        if (this.selectedQuote.levantamiento.imagenes) {
+          this.imagesUprising = this.selectedQuote.levantamiento.imagenes.map((img: Image) => ({
+            name: `Imagen ${img.imagenID}`,
+            url: img.imagen,
+            imagenID: img.imagenID,
+            imagen: img.imagen
+          }));
+        }
+      }
+    });
   }
 
   triggerFileInput() {
