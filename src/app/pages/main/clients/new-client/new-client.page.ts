@@ -51,11 +51,6 @@ export class NewClientPage implements OnInit {
     })
   });
   
-  
-  
-  
-  
-  
   get contactosAdicionales(): FormArray {
     return this.newClientForm.get('contactosAdicionales') as FormArray;
   }

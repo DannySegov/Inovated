@@ -14,7 +14,7 @@ export class RequestsService {
   private readonly baseUrl: string = environment.baseUrl;
   private readonly headers: HttpHeaders = new HttpHeaders().set('Authorization', `Bearer ${this.accessToken}`);
 
-  private requestsSource = new BehaviorSubject<any[]>([]); // Lista de clientes inicializada vacía
+  private requestsSource = new BehaviorSubject<any[]>([]); 
   public requests$ = this.requestsSource.asObservable();
 
   private requestSource = new BehaviorSubject<any>(null);

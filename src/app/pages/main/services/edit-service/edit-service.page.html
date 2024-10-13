@@ -1,0 +1,42 @@
+<div class="custom-card-border-radius">
+  <app-header [showMenu]="true" [icon]="'icon-editar'" [cardText]="'Editar Servicio'"></app-header>
+</div>
+
+<ion-content [fullscreen]="true">
+  <form [formGroup]="editServiceForm" class="form" (ngSubmit)="editService()">
+    <div class="title-section">
+      <ion-text>
+        <h6>
+          Información general
+        </h6>
+      </ion-text>
+      <hr class="line">
+    </div>
+
+    <p>Nombre del servicio:</p>
+    <ion-item class="input-data" lines="none">
+      <ion-input formControlName="nombreServicio" class="custom-height" type="text" autocomplete="autocomplete" placeholder="Nombre Completo"></ion-input>
+    </ion-item>
+
+    <p>Clave del servicio:</p>
+    <ion-item class="input-data" lines="none">
+      <ion-input formControlName="claveServicio" class="custom-height" type="text" autocomplete="autocomplete" placeholder="10 Dígitos"></ion-input>
+    </ion-item>
+
+    <p>Categoria:</p>
+    <ion-item class="input-data" lines="none">
+      <ion-input formControlName="categoria" class="custom-height" type="text" autocomplete="autocomplete" placeholder="Correo Electrónico"></ion-input>
+    </ion-item>
+
+    <p>Descripción:</p>
+    <ion-item class="custom-input" lines="none" size="large">
+      <ion-textarea formControlName="descripcion" type="text" placeholder="Opcional"></ion-textarea>
+    </ion-item>
+
+    <ion-button mode="ios" class="add" type="submit" size="small">
+      <strong>Actualizar Servicio</strong>
+    </ion-button>
+  </form>
+</ion-content>
+
+<app-menu-tab></app-menu-tab>
