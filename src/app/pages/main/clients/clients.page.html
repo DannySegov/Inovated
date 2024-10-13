@@ -4,7 +4,7 @@
 
 <ion-content [fullscreen]="true" > <!--(ionScroll)="onScroll($event)"-->
   <ion-card *ngFor="let client of clients" mode="ios" class="client">
-    <ion-card-content id="open-modal" (click)="onCardClick(client)">
+    <ion-card-content id="open-modal" (click)="openClientModal(client)">
       <ion-icon name="ellipsis-vertical" class="card-options-icon"></ion-icon>
       <div class="list-client">
         <app-name-client [client]="client"></app-name-client>

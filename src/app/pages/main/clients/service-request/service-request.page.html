@@ -3,11 +3,11 @@
 </div>
 
 <ion-content [fullscreen]="true">
-  <app-info-client [nombre]="selectedRequest?.perfil?.nombre" [direccion]="selectedRequest?.perfil?.direccion"
-    [telefono]="selectedRequest?.perfil?.telefono" [correo]="selectedRequest?.perfil?.correo"
+  <app-info-client [nombre]="client?.nombre" [direccion]="client?.direccion"
+    [telefono]="client?.telefono" [correo]="client?.correo"
     [backgroundColor]="'white'">
   </app-info-client>
-
+  
   <form [formGroup]="serviceRequestForm" class="form">
     <div class="title-section-info">
       <ion-text>
