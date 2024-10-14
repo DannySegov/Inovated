@@ -2,8 +2,27 @@
     <app-header [showMenu]="true" [icon]="'icon-usuario'" [cardText]="'Usuarios'"></app-header>
 </div>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true"> <!--(ionScroll)="onScroll($event)"-->
+    <ion-card *ngFor="let user of users" mode="ios" class="client">
+        <ion-card-content id="open-modal" (click)="openUserModal(user)"> 
+            <ion-icon name="ellipsis-vertical" class="card-options-icon"></ion-icon>
+            <div class="list-client">
+                <app-name-client [user]="user"></app-name-client>
+                <div class="info">
+                    <ion-card-title class="name-client">{{ user.nombre }} {{ user.paterno }}</ion-card-title>
+                    <ion-label class="address">{{ puestoNombre }}</ion-label>
+                </div>
+            </div>
+        </ion-card-content>
+    </ion-card>
 
+    <ion-fab mode="md" horizontal="end" vertical="bottom" slot="fixed">
+        <ion-fab-button routerLink="/main/users/new-user">
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
 </ion-content>
+
+<app-modal-info-user></app-modal-info-user>
 
 <app-menu-tab></app-menu-tab>

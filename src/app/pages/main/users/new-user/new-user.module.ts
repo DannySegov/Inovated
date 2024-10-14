@@ -4,23 +4,21 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { UsersPageRoutingModule } from './users-routing.module';
+import { NewUserPageRoutingModule } from './new-user-routing.module';
 
-import { UsersPage } from './users.page';
+import { NewUserPage } from './new-user.page';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { MenuTabPageModule } from '../menu-tab/menu-tab.module';
-import { NewUserPageModule } from './new-user/new-user.module';
+import { MenuTabPageModule } from '../../menu-tab/menu-tab.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    UsersPageRoutingModule,
+    NewUserPageRoutingModule,
     SharedModule,
     MenuTabPageModule,
-    NewUserPageModule,
   ],
-  declarations: [UsersPage]
+  declarations: [NewUserPage]
 })
-export class UsersPageModule {}
+export class NewUserPageModule {}

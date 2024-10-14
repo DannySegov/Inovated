@@ -115,10 +115,7 @@ getClientById() {
   this.clientsService.currentClient.subscribe(client => {
     if (client) {
       this.client = client;
-      console.log('Clients: ', client);
       this.clienteID = client.clienteID;
-      console.log('ID del cliente:', this.clienteID);
-      
     }
   })
 }

@@ -7,22 +7,31 @@ import { Router } from '@angular/router';
   templateUrl: './name-client.component.html',
   styleUrls: ['./name-client.component.scss'],
 })
-export class NameClientComponent  implements OnInit {
+export class NameClientComponent implements OnInit {
 
   constructor(private router: Router) { }
+
   @Input() isModal: boolean = false;
-  @Input() client: any; //TODO: Cambiar a Client
+  @Input() client: Client | null = null; // Cambiado a Client
+  @Input() user: any = null; // Nueva propiedad de entrada para user
   @Input() request: any; 
   @Input() selectedUprising: any;
   @Input() employee!: boolean;
 
   isUserAssignmentPage!: boolean;
   isClientsPage!: boolean;
+  isUserPage!: boolean;
 
   ngOnInit() {
-    console.log('Cliente name', this.client.nombre);
+    if (this.client) {
+      console.log('Cliente name', this.client.nombre);
+    }
+    if (this.user) {
+      console.log('User name', this.user.nombre);
+    }
     this.isUserAssignmentPage = this.router.url.includes('main/requests/user-assigment');
     this.isClientsPage = this.router.url.includes('main/clients');
+    this.isUserPage = this.router.url.includes('main/users');
   }
 
   getInitials(name: string): string {
@@ -32,4 +41,8 @@ export class NameClientComponent  implements OnInit {
     return nameParts[0][0] + nameParts[1][0];
   }
 
+  getInitialsUser(nombre: string, paterno: string): string {
+    if (!nombre || !paterno) return '';
+    return nombre[0] + paterno[0];
+  }
 }

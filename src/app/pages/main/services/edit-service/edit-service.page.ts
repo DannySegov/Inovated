@@ -53,7 +53,6 @@ export class EditServicePage implements OnInit {
     const dataService = this.editServiceForm.value;
     this.servicesService.updateService(this.servicioOfreceID, dataService).subscribe(response => {
       this.notificationService.presentToast(response.mensaje, 'top', 'success');
-      //this.servicesService.updateServicesList();
       this.router.navigate(['/main/services']);
     });
   }

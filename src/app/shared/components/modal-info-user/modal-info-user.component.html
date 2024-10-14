@@ -1,0 +1,53 @@
+<ion-content class="ion-padding">
+  <ion-modal #modalUser class="glass-content modal" [initialBreakpoint]="1" [breakpoints]="[0, 1]">
+    <ng-template>
+      <ion-card-content id="open-modal">
+        <ion-icon name="ellipsis-vertical" class="card-options-icon"></ion-icon>
+        <div class="card-content">
+          <app-name-client [isModal]="true" [user]="user" ></app-name-client>
+          <div class="info">
+            <ion-card-title class="name-client">{{ user.nombre }} {{ user.paterno }}</ion-card-title>
+            <ion-label class="address">{{ puestoNombre }}</ion-label>
+          </div>
+        </div>
+
+        <div class="content-button no-hover">
+          <div class="button-container">
+            <ion-button id="open-custom-delete" mode="ios" shape="round" size="large" class="delete" > <!--(click)="openEditPage(service)"-->
+              <ion-icon slot="icon-only" class="icon-editar icon-white large-icon"></ion-icon>
+            </ion-button>
+            <ion-label class="centered-label">Editar</ion-label>
+          </div>
+          <div class="button-container">
+            <ion-button id="open-custom-delete" mode="ios" shape="round" size="large" class="delete" (click)="openDeleteModal()"> 
+              <ion-icon slot="icon-only" class="icon-eliminar icon-white large-icon"></ion-icon>
+            </ion-button>
+            <ion-label class="centered-label">Eliminar</ion-label>
+          </div>
+        </div>
+      </ion-card-content>
+    </ng-template>
+  </ion-modal>
+
+
+    <ion-modal id="modal" #deleteModal trigger="open-custom-delete" class="glass-content custom-modal">
+      <ng-template>
+        <div class="modal-delete">
+          <h5><strong>¿Está seguro de eliminar al usuario {{ user.nombre }} {{ user.paterno }}?</strong></h5>
+          <div class="container-button">
+            <div class="time-box">
+              <ion-button mode="ios" class="btn cancel" type="button" size="small" (click)="cancel()">
+                <strong>Cancelar</strong>
+              </ion-button>
+            </div>
+            <div class="time-box">
+              <ion-button mode="ios" class="btn delete" type="button" size="small" (click)="deleteUser()">
+                <strong>Eliminar</strong>
+              </ion-button>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ion-modal>
+</ion-content>
+

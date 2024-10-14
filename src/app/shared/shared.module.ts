@@ -15,6 +15,7 @@ import { ModalInfoRequestComponent } from './components/modal-info-request/modal
 import { ModalInfoUprisingComponent } from './components/modal-info-uprising/modal-info-uprising.component';
 import { ModalInfoQuoteComponent } from './components/modal-info-quote/modal-info-quote.component';
 import { ModalInfoServiceComponent } from './components/modal-info-service/modal-info-service.component';
+import { ModalInfoUserComponent } from './components/modal-info-user/modal-info-user.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { ModalInfoServiceComponent } from './components/modal-info-service/modal
     ModalInfoUprisingComponent,
     ModalInfoQuoteComponent,
     ModalInfoServiceComponent,
+    ModalInfoUserComponent,
   ],
   exports: [
     //Components
@@ -47,6 +49,7 @@ import { ModalInfoServiceComponent } from './components/modal-info-service/modal
     ModalInfoUprisingComponent, 
     ModalInfoQuoteComponent,
     ModalInfoServiceComponent,
+    ModalInfoUserComponent,
     //Modules
     ReactiveFormsModule,
   ],
