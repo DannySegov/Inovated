@@ -12,6 +12,12 @@
   </div>
 </ion-avatar>
 
+<ion-avatar *ngIf="contact">
+  <div [ngClass]="{'user-assigment contact': !isModal, 'user-initials-modal': isModal}" [ngStyle]="{'background-color': contact?.color}">
+    {{ getInitials(contact.nombre) }}
+  </div>
+</ion-avatar>
+
 <ion-avatar *ngIf="request">
   <div [ngClass]="{'user-initials': !isModal, 'user-initials-modal': isModal}" [ngStyle]="{'background-color': request?.perfil?.color}">
     {{ getInitials(request?.perfil?.nombre) }}

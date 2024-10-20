@@ -2,7 +2,7 @@ export interface UserResponse {
     estatus: boolean;
     mensaje: string;
     paginador: Paginador;
-    datos: User[];
+    datos: User;
     catalogos: any | null; // Definir la estructura de 'catalogos' según tus necesidades si no es null
 }
 
@@ -37,12 +37,14 @@ export interface User {
     paterno: string;
     correo: string;
     fechaNacimiento: string;
+    password?: string;
     estatus: number;
     materno: string;
+    telefono?: string;
     ultimoLogin: string | null;
     perfil?: Perfil;
     direccion: Direccion;
-    contactos: any[]; // Puedes definir la estructura de 'contactos' según tus necesidades
+    contactos: Contactos; // Puedes definir la estructura de 'contactos' según tus necesidades
 }
 
 export interface DataUser {
@@ -56,4 +58,13 @@ export interface DataUser {
     direccion: Direccion;
     contactos: any[]; 
   }
+
+  export interface Contactos {
+    contactoID: number;
+    nombre: string;
+    telefono: string;
+    correo: string;
+  }
+
+
 

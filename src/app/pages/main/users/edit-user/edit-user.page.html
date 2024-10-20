@@ -1,9 +1,9 @@
 <div class="custom-card-border-radius">
-  <app-header [showMenu]="true" [icon]="'icon-usuario'" [cardText]="'Nuevo Usuario'"></app-header>
+  <app-header [showMenu]="true" [icon]="'icon-editar'" [cardText]="'Editar Usuario'"></app-header>
 </div>
 
 <ion-content [fullscreen]="true">
-  <form [formGroup]="newUserForm" class="form" (ngSubmit)="addNewUser()">
+  <form [formGroup]="newUserForm" class="form" (ngSubmit)="editUser()">
     <div class="title-section">
       <ion-text>
         <h6>
@@ -52,12 +52,6 @@
     <ion-item class="input-data" lines="none">
       <ion-input formControlName="correo" class="custom-height" type="email" autocomplete="autocomplete"
         placeholder="Correo Electrónico"></ion-input>
-    </ion-item>
-
-    <p>Contraseña:</p>
-    <ion-item class="input-data" lines="none">
-      <ion-input formControlName="password" class="custom-height" type="password"
-        placeholder="Contraseña"></ion-input>
     </ion-item>
 
     <p>Teléfono:</p>
@@ -214,7 +208,7 @@
     
     <pre>{{ newUserForm.value | json }}</pre>
     <ion-button mode="ios" class="add" type="submit" size="small">
-      <strong>Guardar Usuario</strong>
+      <strong>Actualizar Usuario</strong>
     </ion-button>
   </form>
 </ion-content>

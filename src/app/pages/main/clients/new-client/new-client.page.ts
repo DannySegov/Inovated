@@ -50,6 +50,9 @@ export class NewClientPage implements OnInit {
       })
     })
   });
+
+  ngOnInit() {
+  }
   
   get contactosAdicionales(): FormArray {
     return this.newClientForm.get('contactosAdicionales') as FormArray;
@@ -67,10 +70,6 @@ export class NewClientPage implements OnInit {
     this.contactosAdicionales.push(this.createContactoAdicional());
   }
   
-
-  ngOnInit() {
-  }
-
   addClient() {
     const dataClient = this.newClientForm.value;
     this.clientService.addClients(dataClient).subscribe(response => {

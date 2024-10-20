@@ -13,7 +13,8 @@ export class NameClientComponent implements OnInit {
 
   @Input() isModal: boolean = false;
   @Input() client: Client | null = null; // Cambiado a Client
-  @Input() user: any = null; // Nueva propiedad de entrada para user
+  @Input() user: any = null;
+  @Input() contact: any;
   @Input() request: any; 
   @Input() selectedUprising: any;
   @Input() employee!: boolean;

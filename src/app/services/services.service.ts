@@ -21,6 +21,9 @@ export class ServicesService {
   private servicesSource = new BehaviorSubject<any[]>([]); 
   public services$ = this.servicesSource.asObservable();
 
+  private servicioOfreceIDSource = new BehaviorSubject<number | null>(null);
+  currentServicioOfreceID = this.servicioOfreceIDSource.asObservable();
+
   constructor() { }
 
   // Obtener Servicios
@@ -64,11 +67,6 @@ export class ServicesService {
   changeData(data: any) {
     this.dataService.next(data);
   }
-
-
-
-  private servicioOfreceIDSource = new BehaviorSubject<number | null>(null);
-  currentServicioOfreceID = this.servicioOfreceIDSource.asObservable();
 
   changeServicioOfreceID(id: number) {
     this.servicioOfreceIDSource.next(id);

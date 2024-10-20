@@ -10,6 +10,7 @@ import { UsersPage } from './users.page';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MenuTabPageModule } from '../menu-tab/menu-tab.module';
 import { NewUserPageModule } from './new-user/new-user.module';
+import { EditUserPageModule } from './edit-user/edit-user.module';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { NewUserPageModule } from './new-user/new-user.module';
     SharedModule,
     MenuTabPageModule,
     NewUserPageModule,
+    EditUserPageModule
   ],
   declarations: [UsersPage]
 })

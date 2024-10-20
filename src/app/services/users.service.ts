@@ -14,11 +14,14 @@ export class UsersService {
   private readonly baseUrl: string = environment.baseUrl;
   private readonly headers: HttpHeaders = new HttpHeaders().set('Authorization', `Bearer ${this.accessToken}`);
 
-  private usersSource = new BehaviorSubject<any[]>([]); 
+  private usersSource = new BehaviorSubject<any>([]); 
   public users$ = this.usersSource.asObservable();
 
   private userSource = new BehaviorSubject<any>(null);
   currentUser = this.userSource.asObservable();
+
+  private userIDSource = new BehaviorSubject<number | null>(null);
+  currentUserID = this.userIDSource.asObservable();
 
   constructor() { }
 
@@ -48,7 +51,7 @@ export class UsersService {
   }
 
     // Método para actualizar la lista de usuarios
-    updateServicesList() {
+    updateUsersList() {
       this.getUsers(10, 1).subscribe(response => {
         this.usersSource.next(response.datos); // Actualizar la lista de usuarios
         console.log('Usuarios:', response.datos);
@@ -62,5 +65,9 @@ export class UsersService {
 
     changeUser(user: any) {
       this.userSource.next(user);
+    }
+
+    changeUserID(id: number) {
+      this.userIDSource.next(id);
     }
 }

@@ -43,6 +43,14 @@ export class ModalInfoUserComponent implements OnInit {
     });
   }
 
+  openEditPage(user: any) {
+    const id = this.user.id;
+    console.log('Desde editar', id);
+    this.usersService.changeUserID(id); // Usa el servicio compartido
+    this.modalUser.dismiss();
+    this.router.navigate(['/main/users/edit-user']);
+  }
+
   openDeleteModal() {
     this.modalUser.dismiss();
     this.deleteModal.present();
@@ -58,7 +66,7 @@ export class ModalInfoUserComponent implements OnInit {
       if (response.estatus) {
         this.notificationService.presentToast(response.mensaje, 'top', 'success');
         this.deleteModal.dismiss();
-        this.usersService.updateServicesList();
+        this.usersService.updateUsersList();
         this.router.navigate(['/main/users']);
       }
     });

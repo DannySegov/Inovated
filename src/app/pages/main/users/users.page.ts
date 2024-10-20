@@ -22,14 +22,18 @@ export class UsersPage implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.usersService.users$.subscribe(users => {
+      this.users = users;
+      console.log('Usuarios:', users);
+    });
     this.getUsers();
   }
 
   getUsers() {
     this.usersService.getUsers(10, 1).subscribe({
       next: (response: any) => {
-        this.users = response.datos;
         if (response.estatus) {
+          this.usersService.updateUsersList(); // Actualizar la lista de usuarios
           response.datos.forEach((usuario: any) => {
             this.puestoID = usuario.perfil.puestoID;
             this.getJobById(this.puestoID);
@@ -54,5 +58,6 @@ export class UsersPage implements OnInit {
   openUserModal(user: User) {
     this.modalInfoUserComponent.openUserModal(user.id);
     this.usersService.changeUser(user); // Enviar datos al servicio
+    this.usersService.updateUsersList(); // Actualizar la lista de usuarios
   }
 }

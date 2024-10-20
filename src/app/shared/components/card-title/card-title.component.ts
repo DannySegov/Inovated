@@ -21,6 +21,8 @@ export class CardTitleComponent  implements OnInit {
   isQuotePage!: boolean;  
   isNewServicePage!: boolean;
   isEditServicePage!: boolean;
+  isNewUserPage!: boolean;
+  isEditUserPage!: boolean;
 
   ngOnInit() {
     this.isNewClientPage = this.router.url.includes('main/clients/new-client');
@@ -30,6 +32,8 @@ export class CardTitleComponent  implements OnInit {
     this.isQuotePage = this.router.url.includes('main/quotes/quote');
     this.isNewServicePage = this.router.url.includes('main/services/new-service');
     this.isEditServicePage = this.router.url.includes('main/services/edit-service');
+    this.isNewUserPage = this.router.url.includes('main/users/new-user');
+    this.isEditUserPage = this.router.url.includes('main/users/edit-user');
   }
 
   navigateTo(url: string) {
