@@ -1,0 +1,220 @@
+<div class="custom-card-border-radius">
+  <app-header [showMenu]="true" [icon]="'icon-usuario'" [cardText]="'Nuevo Usuario'"></app-header>
+</div>
+
+<ion-content [fullscreen]="true">
+  <form [formGroup]="newUserForm" class="form" (ngSubmit)="addNewUser()">
+    <div class="title-section">
+      <ion-text>
+        <h6>
+          Información general
+        </h6>
+      </ion-text>
+      <hr class="line">
+    </div>
+
+    <p>Nombre:</p>
+    <ion-item class="input-data" lines="none">
+      <ion-input formControlName="nombre" class="custom-height" type="text" autocomplete="autocomplete"
+        placeholder="Nombre Completo"></ion-input>
+    </ion-item>
+
+    <p>Apellido Paterno:</p>
+    <ion-item class="input-data" lines="none">
+      <ion-input formControlName="paterno" class="custom-height" type="text" autocomplete="autocomplete"
+        placeholder="Apellido Paterno"></ion-input>
+    </ion-item>
+
+    <p>Apellido Materno:</p>
+    <ion-item class="input-data" lines="none">
+      <ion-input formControlName="materno" class="custom-height" type="text" autocomplete="autocomplete"
+        placeholder="Apellido Materno"></ion-input>
+    </ion-item>
+
+    <p>Fecha de Nacimiento:</p>
+    <ion-button mode="ios" id="open-custom-date" class="custom-button" size="small"
+      style="display: flex; align-items: center; justify-content: space-between;">
+      <span [ngClass]="{'black-text': selectedDate !== 'dd / mm / aaaa'}" style="margin-right: auto;">
+        {{ selectedDate }}
+      </span>
+      <span class="icon-calendario" style="margin-left: auto;"></span>
+    </ion-button>
+
+    <ion-modal id="example-modal" #dateModal trigger="open-custom-date" class="glass-content">
+      <ng-template>
+        <div class="wrapper">
+          <ion-datetime presentation="date" formControlName="fechaNacimiento" (ionChange)="onDateChange($event)"></ion-datetime>
+        </div>
+      </ng-template>
+    </ion-modal>
+
+    <p>Correo:</p>
+    <ion-item class="input-data" lines="none">
+      <ion-input formControlName="correo" class="custom-height" type="email" autocomplete="autocomplete"
+        placeholder="Correo Electrónico"></ion-input>
+    </ion-item>
+
+    <p>Contraseña:</p>
+    <ion-item class="input-data" lines="none">
+      <ion-input formControlName="password" class="custom-height" type="password"
+        placeholder="Contraseña"></ion-input>
+    </ion-item>
+
+    <p>Teléfono:</p>
+    <ion-item class="input-data" lines="none">
+      <ion-input formControlName="telefono" class="custom-height" type="number" autocomplete="autocomplete"
+        placeholder="10 Dígitos"></ion-input>
+    </ion-item>
+
+    <p>Departamento:</p>
+    <ion-button mode="ios" id="open-custom-department" class="custom-button select" size="small"
+      style="display: flex; align-items: center; justify-content: space-between;">
+      <span [ngClass]="{'black-text': selectedDepartmentName !== 'Selecciona una opción'}" style="margin-right: auto;">
+        {{ selectedDepartmentName }}
+      </span>
+      <span id="icon-drop" class="icon-drop"></span>
+    </ion-button>
+
+    <ion-modal id="example-modal" #departmentModal trigger="open-custom-department" class="glass-content">
+      <ng-template>
+        <ion-list [inset]="true">
+          <ion-item *ngFor="let department of departments" (click)="selectDepartment(department)">
+            <ion-label> {{ department.nombre }}</ion-label>
+          </ion-item>
+        </ion-list>
+      </ng-template>
+    </ion-modal>
+
+    <p>Puesto:</p>
+    <ion-button mode="ios" id="open-custom-job" class="custom-button select" size="small"
+      style="display: flex; align-items: center; justify-content: space-between;">
+      <span [ngClass]="{'black-text': selectedJobName !== 'Selecciona una opción'}" style="margin-right: auto;">
+        {{ selectedJobName }}
+      </span>
+      <span id="icon-drop" class="icon-drop"></span>
+    </ion-button>
+
+    <ion-modal id="example-modal" #jobModal trigger="open-custom-job" class="glass-content">
+      <ng-template>
+        <ion-list [inset]="true">
+          <ion-item *ngFor="let job of jobs" (click)="selectJob(job)">
+            <ion-label> {{ job.nombre }}</ion-label>
+          </ion-item>
+        </ion-list>
+      </ng-template>
+    </ion-modal>
+
+    <div class="title-section">
+      <ion-text>
+        <h6>
+          Dirección
+        </h6>
+      </ion-text>
+      <hr class="line">
+    </div>
+
+    <div formGroupName="direccion">
+      <p>Calle:</p>
+      <ion-item class="input-data" lines="none">
+        <ion-input formControlName="calle" class="custom-height" type="text" autocomplete="autocomplete"
+          placeholder="Calle"></ion-input>
+      </ion-item>
+
+      <p>Número exterior:</p>
+      <ion-item class="input-data" lines="none">
+        <ion-input formControlName="numeroExterior" class="custom-height" type="number" autocomplete="autocomplete"
+          placeholder="ext."></ion-input>
+      </ion-item>
+
+      <p>Número interior:</p>
+      <ion-item class="input-data" lines="none">
+        <ion-input formControlName="numeroInterior" class="custom-height" type="number" autocomplete="autocomplete"
+          placeholder="Opcional"></ion-input>
+      </ion-item>
+
+      <p>Colonia:</p>
+      <ion-item class="input-data" lines="none">
+        <ion-input formControlName="colonia" class="custom-height" type="text" autocomplete="autocomplete"
+          placeholder="Colonia"></ion-input>
+      </ion-item>
+
+      <p>Código Postal:</p>
+      <ion-item class="input-data" lines="none">
+        <ion-input formControlName="codigoPostal" class="custom-height" type="number" autocomplete="autocomplete"
+          placeholder="CP"></ion-input>
+      </ion-item>
+
+      <p>Ciudad:</p>
+      <ion-item class="input-data" lines="none">
+        <ion-input formControlName="ciudad" class="custom-height" type="text" autocomplete="autocomplete"
+          placeholder="Delegación o Municipio"></ion-input>
+      </ion-item>
+
+      <p>Estado:</p>
+      <ion-item class="input-data" lines="none">
+        <ion-input formControlName="estado" class="custom-height" type="text" autocomplete="autocomplete"
+          placeholder="Entidad Federativa"></ion-input>
+      </ion-item>
+    </div>
+
+    <div class="title-section">
+      <ion-text>
+        <h6>
+          Contactos de emergencia
+        </h6>
+      </ion-text>
+      <hr class="line">
+    </div>
+
+    <div [formGroup]="tempContactForm">
+      <p>Nombre:</p>
+      <ion-item class="input-data" lines="none">
+        <ion-input class="custom-height" type="text" autocomplete="autocomplete" formControlName="nombre"
+          placeholder="Nombre Completo"></ion-input>
+      </ion-item>
+    
+      <p>Teléfono:</p>
+      <ion-item class="input-data" lines="none">
+        <ion-input class="custom-height" type="number" autocomplete="autocomplete" formControlName="telefono"
+          placeholder="10 Dígitos"></ion-input>
+      </ion-item>
+    
+      <p>Correo:</p>
+      <ion-item class="input-data" lines="none">
+        <ion-input class="custom-height" type="email" autocomplete="autocomplete" formControlName="correo"
+          placeholder="Correo Electrónico"></ion-input>
+      </ion-item>
+    </div>
+    <ion-button mode="ios" class="add" type="button" size="small" (click)="agregarContacto()">
+      <strong>Agregar</strong>
+    </ion-button>
+    
+    <div class="container-user">
+      <ion-card class="name-user" *ngFor="let contact of selectedContacts">
+        <ion-card-content class="name">
+          <div class="list-client">
+            <app-name-client [contact]="contact"></app-name-client>
+            <div class="info-cli">
+              <ion-card-title class="name-contact">{{ contact.nombre }}</ion-card-title>
+              <ion-label class="text-contact">{{ contact.telefono }}</ion-label>
+              <ion-label class="text-contact">{{ contact.correo }}</ion-label>
+            </div>
+          </div>
+          <div class="button-container">
+            <ion-button mode="ios" shape="round" size="small" class="edit small-button" (click)="editContact(contact)">
+              <ion-icon slot="icon-only" class="icon-editar icon-blue large-icon small-icon"></ion-icon>
+            </ion-button>
+            <ion-button mode="ios" shape="round" size="small" class="delete small-button" (click)="deleteContact(contact)">
+              <ion-icon slot="icon-only" class="icon-eliminar icon-red large-icon small-icon"></ion-icon>
+            </ion-button>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </div>
+    
+    <pre>{{ newUserForm.value | json }}</pre>
+    <ion-button mode="ios" class="add" type="submit" size="small">
+      <strong>Guardar Usuario</strong>
+    </ion-button>
+  </form>
+</ion-content>

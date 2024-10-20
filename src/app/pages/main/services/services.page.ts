@@ -21,7 +21,6 @@ export class ServicesPage implements OnInit {
     this.servicesService.services$.subscribe(services => {
       this.services = services;
     });
-
     this.getServices();
   }
 

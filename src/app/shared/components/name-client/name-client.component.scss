@@ -41,10 +41,16 @@
     background-color: #0d3d57;
 }
 
+.user-assigment.contact {
+    width: 65px;
+    height: 65px;
+    transform: translateY(8px);
+}
+
 .info {
     transform: translateY(20%);
 }
 
 .name-client {
     font-size: 17px; 
-}    
+}  

@@ -1,0 +1,191 @@
+.client-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  ion-text {
+    margin-right: 10px;
+    height: 50px !important;
+    margin-bottom: -15px;
+    transform: translateY(-20%);
+  }
+  
+  ion-textarea {
+    --placeholder-color: #219cdb;
+  }
+  
+  .line {
+    flex-grow: 1;
+    border: .5px solid #288bd6;
+    background-color: #288bd6;
+    transform: translateY(20%) !important;
+    border-radius: 10px;
+  }
+  
+  .add {
+    width: 100%;
+    --background: #219cdb;
+    --background-hover: #219cdb;    
+    --background-activated: #1d85b9;
+    --border-radius: 11px;
+    font-size: 14px;
+    margin-top: 12px;
+    margin-bottom: 0px !important;
+  }
+  
+  .title-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+  }
+  
+  .title-section + p {
+    margin-top: 0; 
+  }
+  
+  .form {
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+    transform: translateY(-3.5%);
+  
+    p {
+      text-align: left;
+      margin-bottom: -7px;
+      font-size: small;
+      transform: translateY(-50%);
+    }
+  
+    margin-bottom: 0 !important; /* Ajusta el margen inferior del formulario a 0 */
+    padding-bottom: 0 !important; 
+  }
+  
+  app-custom-input {
+    height: 5px !important; /* Ajusta el alto de los inputs */
+    margin: 0;
+  }
+  
+  .title {
+    color: #219cdb;
+    font-size: 13px;
+    margin-right: 30px;
+  }
+  
+  .title1 {
+    font-size: 13px;
+    margin-right: 10px;
+  }
+  
+  .title, .title1 {
+    margin-top: 8px;
+    margin-bottom: 15px;
+  }
+  
+  ion-input {
+    --placeholder-color: #219cdb;
+  }
+  
+  .custom-input {
+    height: 120px; // Permitir que el contenedor se ajuste automáticamente
+    display: flex; // Asegurar que el contenido se alinee correctamente
+    align-items: center; // Centrar verticalmente el contenido
+    --border-radius: 8px; // Añadir un borde redondeado
+  }
+  
+  ion-textarea {
+    font-size: 14px !important;
+    min-height: 100px !important; // Ajustar la altura mínima
+    height: 100px !important; // Ajustar la altura
+    width: 100%; // Asegurar que el input ocupe todo el ancho del contenedor
+  }
+  
+  ion-content {
+    --padding-bottom: 0px !important;
+  }
+  
+  //Card contacts
+  .title-section.employee {
+    transform: translateY(-27px); // Ajusta la posición vertical
+    margin-bottom: 0; // Elimina el margen inferior
+    padding-bottom: 0; // Elimina el padding inferior
+  }
+  
+  .container-user {
+    max-height: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  
+  .name-user {
+    margin-bottom: 10px;
+    width: 100%;
+    border-radius: 13px;
+    transform: translateX(-9px);
+  }
+  
+  .name {
+    display: flex;
+    justify-content: space-between; // Asegura que el contenido se distribuya correctamente
+    align-items: center;
+    transform: translateX(-5px);
+    height: 80px;
+  }
+  
+  .info-cli {
+    display: flex;
+    flex-direction: column;
+    /* margin-left: -4px; */
+    margin-top: 10px;
+    align-items: baseline;
+    transform: translateX(10px);
+  }
+
+  .text-contact {
+    color: #878787;
+    margin-bottom: -5px;
+  }€
+
+  .name-contact {
+    font-size: 20px;
+  }
+  
+  .button-container {
+    margin-top: 3px;
+  }
+  
+  ion-button.common {
+    --background: white;
+    outline-offset: -4px;
+    border-radius: 50%; 
+   // width: 30px; 
+    //height: 30px; 
+    line-height: 30px; 
+    vertical-align: middle;
+    display: flex;
+    transform: translateX(10px);
+    align-self: flex-end; // Asegurar que el botón se alinee al final
+    margin-bottom: 7px;
+  }
+  
+  ion-button.delete {
+    @extend .common;
+    color: #e60f2f;
+    outline: 6px solid #e60f2f; 
+  }
+  
+  ion-button.edit {
+    @extend .common;
+    color: #219cdb; // Color azul para el texto
+    outline: 6px solid #219cdb; // Contorno azul
+  }
+  
+  .icon-red:before {
+    color: #e60f2f !important;
+    font-size: 24px; /* Ajusta el tamaño según sea necesario */
+  }
+  
+  .large-icon {
+    font-size: 23px; /* Ajusta el tamaño según sea necesario */
+  }
+  

@@ -1,13 +1,25 @@
 <ng-container *ngIf="isClientsPage">
   <ion-avatar *ngIf="client">
     <div [ngClass]="{'user-initials': !isModal, 'user-initials-modal': isModal}" [ngStyle]="{'background-color': client.color}">
-      {{ client.nombre.split(' ')[0][0] + client.nombre.split(' ')[1][0] }}
+      {{ getInitials(client.nombre) }}
     </div>
   </ion-avatar>
 </ng-container>
 
+<ion-avatar *ngIf="user">
+  <div [ngClass]="{'user-initials': !isModal, 'user-initials-modal': isModal}" style="background-color: aqua;">
+    {{ getInitialsUser(user.nombre, user.paterno) }}
+  </div>
+</ion-avatar>
+
+<ion-avatar *ngIf="contact">
+  <div [ngClass]="{'user-assigment contact': !isModal, 'user-initials-modal': isModal}" [ngStyle]="{'background-color': contact?.color}">
+    {{ getInitials(contact.nombre) }}
+  </div>
+</ion-avatar>
+
 <ion-avatar *ngIf="request">
   <div [ngClass]="{'user-initials': !isModal, 'user-initials-modal': isModal}" [ngStyle]="{'background-color': request?.perfil?.color}">
-    {{ request?.perfil?.nombre?.split(' ')[0][0] + request?.perfil?.nombre?.split(' ')[1][0] }}
+    {{ getInitials(request?.perfil?.nombre) }}
   </div>
 </ion-avatar>

@@ -9,6 +9,8 @@ import { UsersPageRoutingModule } from './users-routing.module';
 import { UsersPage } from './users.page';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MenuTabPageModule } from '../menu-tab/menu-tab.module';
+import { NewUserPageModule } from './new-user/new-user.module';
+import { EditUserPageModule } from './edit-user/edit-user.module';
 
 @NgModule({
   imports: [
@@ -17,7 +19,9 @@ import { MenuTabPageModule } from '../menu-tab/menu-tab.module';
     IonicModule,
     UsersPageRoutingModule,
     SharedModule,
-    MenuTabPageModule
+    MenuTabPageModule,
+    NewUserPageModule,
+    EditUserPageModule
   ],
   declarations: [UsersPage]
 })
