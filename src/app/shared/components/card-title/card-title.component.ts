@@ -19,6 +19,7 @@ export class CardTitleComponent  implements OnInit {
   isUserAssignmentPage!: boolean;
   isUprisingPage!: boolean; 
   isQuotePage!: boolean;  
+  isExecutionPage!: boolean;
   isNewServicePage!: boolean;
   isEditServicePage!: boolean;
   isNewUserPage!: boolean;
@@ -30,6 +31,7 @@ export class CardTitleComponent  implements OnInit {
     this.isUserAssignmentPage = this.router.url.includes('main/requests/user-assigment');
     this.isUprisingPage = this.router.url.includes('main/uprisings/register-uprising');
     this.isQuotePage = this.router.url.includes('main/quotes/quote');
+    this.isExecutionPage = this.router.url.includes('main/executions/register-installation');
     this.isNewServicePage = this.router.url.includes('main/services/new-service');
     this.isEditServicePage = this.router.url.includes('main/services/edit-service');
     this.isNewUserPage = this.router.url.includes('main/users/new-user');

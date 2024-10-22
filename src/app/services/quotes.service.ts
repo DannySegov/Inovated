@@ -16,7 +16,10 @@ export class QuotesService {
   private readonly headers: HttpHeaders = new HttpHeaders().set('Authorization', `Bearer ${this.accessToken}`);
 
   private dataQuote = new BehaviorSubject<any>(null);
- currentData = this.dataQuote.asObservable();
+  currentData = this.dataQuote.asObservable();
+
+  private quoteSource = new BehaviorSubject<any[]>([]); 
+  public executions$ = this.quoteSource.asObservable();
 
   constructor() { }
 
@@ -30,11 +33,18 @@ export class QuotesService {
     return this.http.get<RequestResponse>(`${this.baseUrl}/cotizaciones/info-cotizacion/${servicioID}`, { headers: this.headers });
   }
 
-   //Agregar Cotización
-   addQuote(levantamientoID: number, quote: Quote): Observable<ResponseAdd> {
+  //Agregar Cotización
+  addQuote(levantamientoID: number, quote: Quote): Observable<ResponseAdd> {
     return this.http.post<ResponseAdd>(`${this.baseUrl}/cotizaciones/crear-cotizacion/${levantamientoID}`, quote, { headers: this.headers });
   }
 
+    // Método para actualizar la lista de ejecuciones
+    updateQuotesList() {
+      this.getQuotes(10, 1).subscribe(response => {
+        this.quoteSource.next(response.datos); // Actualizar la lista de usuarios
+        console.log('Lista de cotizaciones act:', response.datos);
+      });
+    }
 
   // Método para obtener el token de acceso
   get accessToken(): string | null {

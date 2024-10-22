@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: ExecutionsPage
+  },
+  {
+    path: 'register-installation',
+    loadChildren: () => import('./register-installation/register-installation.module').then( m => m.RegisterInstallationPageModule)
   }
 ];
 

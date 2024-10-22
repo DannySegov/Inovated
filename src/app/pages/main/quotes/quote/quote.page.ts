@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NotificationService } from 'src/app/services/notification.service';
 import { QuotesService } from 'src/app/services/quotes.service';
@@ -47,24 +47,6 @@ export class QuotePage implements OnInit {
     this.getQuoteById();
   }
 
-  /*
-  getQuoteById()  {
-    this.quotesService.currentData.subscribe(data => {
-      this.selectedQuote = data;
-      console.log('cotiza',this.selectedQuote);  
-      if (this.selectedQuote && this.selectedQuote) {
-        this.Servicio = this.selectedQuote.infoServicio.nombreServicio;
-        this.Clave = this.selectedQuote.infoServicio.claveServicio;
-        this.Categoria = this.selectedQuote.infoServicio.categoria;
-        this.Descripcion = this.selectedQuote.infoServicio.descripcion;
-        this.FechaLevantamiento = this.selectedQuote.levantamiento.fechaInstalacion;
-        this.HoraLevantamiento = this.selectedQuote.levantamiento.horaInstalacion;
-        this.InfoLevantamiento = this.selectedQuote.levantamiento.resumenLevantamiento;
-        this.ObservacionesAdic = this.selectedQuote.levantamiento.observaciones
-      }
-    })
-  }
-    */
   getQuoteById() {
     this.quotesService.currentData.subscribe(data => {
       this.selectedQuote = data;
@@ -96,6 +78,7 @@ export class QuotePage implements OnInit {
     fileInput.click();
   }
 
+  
   onFileSelected(event: any) {
     const files = event.target.files;
     this.selectedFiles = []; // Asegurarse de limpiar la lista de archivos seleccionados
@@ -107,17 +90,19 @@ export class QuotePage implements OnInit {
             if (i === 0) { // Si es el primer archivo, asignar a base64
                 this.base64 = e.target.result;
             }
-            // Actualizar el formulario con las imágenes después de leer cada archivo
-            this.quoteForm.patchValue({ imagenes: this.selectedFiles.map(({ imagenID, imagen }) => ({ imagenID, imagen })) });
         };
         reader.readAsDataURL(file);
     }
-  }
+}
 
-  addFileQuote() {
-    this.addedQuotes.push(...this.selectedFiles);
-    this.selectedFiles = [];
-  }
+addFileQuote() {
+    if (this.selectedFiles.length > 0) {
+        this.addedQuotes.push(...this.selectedFiles);
+        // Actualizar el formulario con las imágenes seleccionadas
+        this.quoteForm.patchValue({ imagenes: this.selectedFiles.map(({ imagenID, imagen }) => ({ imagenID, imagen })) });
+        this.selectedFiles = [];
+    }
+}
 
   addQuote() {
     const quoteData = this.quoteForm.value;
@@ -126,6 +111,7 @@ export class QuotePage implements OnInit {
       console.log('Cotización agregada:', response);
       if (response) {
         this.notificationService.presentToast(response.mensaje, 'top', 'success');
+        this.quotesService.updateQuotesList();
         this.router.navigate(['/main/quotes']);
       } else {
         this.notificationService.presentToast('Ocurrió un error al agregar la cotización.', 'top', 'danger');
@@ -134,12 +120,23 @@ export class QuotePage implements OnInit {
   }
   
   openFileModal(fileUrl: string) {
-    console.log('File URL:', fileUrl); // Agrega esto para verificar que el método se llama correctamente
-    // Lógica para abrir el modal con el archivo
+    this.selectedImage = fileUrl;
+    const modal = document.getElementById('modal-image') as HTMLIonModalElement;
+    if (modal) {
+      modal.present();
+    }
   }
 
-  deleteFile(file: any) {
-    this.selectedFiles = this.selectedFiles.filter(f => f !== file);
-    this.addedQuotes = this.addedQuotes.filter(f => f !== file);
+  deleteFile(file: any) { 
+    // Eliminar el archivo del FormArray
+    const filesArray = this.quoteForm.get('imagenes') as FormArray;
+    const index = filesArray.controls.findIndex((ctrl) => ctrl.value.imagenID === file.imagenID);
+    if (index !== -1) {
+      filesArray.removeAt(index);
+    }
+
+    // Eliminar el archivo del estado local
+    this.selectedFiles = this.selectedFiles.filter(f => f.imagenID !== file.imagenID);
+    console.log('Archivo eliminado:', this.selectedFiles);
   }
 }
