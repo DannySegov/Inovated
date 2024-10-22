@@ -17,6 +17,7 @@ import { ModalInfoQuoteComponent } from './components/modal-info-quote/modal-inf
 import { ModalInfoServiceComponent } from './components/modal-info-service/modal-info-service.component';
 import { ModalInfoUserComponent } from './components/modal-info-user/modal-info-user.component';
 import { ModalInfoExecutionComponent } from './components/modal-info-execution/modal-info-execution.component';
+import { ModalInfoPaymentComponent } from './components/modal-info-payment/modal-info-payment.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { ModalInfoExecutionComponent } from './components/modal-info-execution/m
     ModalInfoUprisingComponent,
     ModalInfoQuoteComponent,
     ModalInfoExecutionComponent,
+    ModalInfoPaymentComponent,
     ModalInfoServiceComponent,
     ModalInfoUserComponent,
   ],
@@ -51,6 +53,7 @@ import { ModalInfoExecutionComponent } from './components/modal-info-execution/m
     ModalInfoUprisingComponent, 
     ModalInfoQuoteComponent,
     ModalInfoExecutionComponent,
+    ModalInfoPaymentComponent,
     ModalInfoServiceComponent,
     ModalInfoUserComponent,
     //Modules

@@ -2,8 +2,28 @@
     <app-header [showMenu]="true" [icon]="'icon-pagos-pendientes'" [cardText]="'Pagos pendientes'"></app-header>
 </div>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true"> 
+    <ion-card *ngFor="let pendingPayment of pendingPayments" mode="ios" class="client">
+        <ion-card-content id="open-modal" (click)="openPaymentModal(pendingPayment)">
+            <ion-icon name="ellipsis-vertical" class="card-options-icon"></ion-icon>
+            <div class="list-client">
+                <app-name-client [pendingPayment]="pendingPayment"></app-name-client>
+                <div class="info">
+                    <ion-card-title class="name-client">{{ pendingPayment.perfil.nombre }}</ion-card-title>
+                    <ion-label class="name-client">{{ pendingPayment.estatusCotizacion }}</ion-label>
+                    <ion-label class="name-client">${{ pendingPayment.costoCotizado }}</ion-label>
+                </div>
+            </div>
+        </ion-card-content>
+    </ion-card>
 
+    <ion-fab mode="md" horizontal="end" vertical="bottom" slot="fixed">
+        <ion-fab-button routerLink="/main/clients/service-request">
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
 </ion-content>
+
+<app-modal-info-payment></app-modal-info-payment>
 
 <app-menu-tab></app-menu-tab>
