@@ -1,0 +1,59 @@
+<ion-content class="ion-padding">
+  <ion-modal #modalPayment class="glass-content modal-request" [initialBreakpoint]="1" [breakpoints]="[0, 1]">
+    <ng-template>
+      <ion-card-content id="modal-payment">
+
+        <app-info-client 
+          [nombre]="payment.perfil.nombre" 
+          [direccion]="payment.perfil.direccion" 
+          [telefono]="payment.perfil.telefono" 
+          [correo]="payment.perfil.correo">
+        </app-info-client>
+
+        <div class="label-modal" style="flex-direction: column;">
+          <h2><strong>{{ payment.descripcion }}</strong></h2>
+          <ion-label>Clave</ion-label>
+          <p>{{ payment.infoServicio.claveServicio }}</p>
+          <ion-label>Categoria</ion-label>
+          <p>{{ payment.infoServicio.categoria }}</p>
+          <ion-label>Fecha de instalación</ion-label>
+          <p>{{ payment.fechaInstalacion }}</p>
+          <ion-label>Monto a pagar</ion-label>
+          <p>{{ payment.costoCotizado }}</p>
+          <ion-label>Estatus</ion-label>
+          <p>{{ payment.estatusCotizacion }}</p>
+        </div>
+
+        <div class="content-button no-hover">
+          <div class="button-container">
+            <ion-button id="open-custom-delete" mode="ios" shape="round" size="large" class="delete" (click)="onReminder()">
+              <ion-icon slot="icon-only" class="icon-rec_pago icon-white large-icon"></ion-icon>
+            </ion-button>
+            <ion-label class="centered-label">Recordatorio</ion-label>
+          </div>
+        </div>
+      </ion-card-content>
+    </ng-template>
+  </ion-modal>
+
+  <ion-modal id="modal" #alertModal trigger="open-custom-delete" class="glass-content custom-modal">
+    <ng-template>
+      <div class="modal-delete">
+        <h5><strong>¿Desea envíar un recordatorio de pago a {{ payment.perfil.nombre }}?</strong></h5>
+        <div class="container-button">
+          <div class="time-box">
+            <ion-button mode="ios" class="btn cancel" type="button" size="small" (click)="send()">
+              <strong>Enviar</strong>
+            </ion-button>
+          </div>
+          <div class="time-box">
+            <ion-button mode="ios" class="btn delete" type="button" size="small" (click)="cancel()">
+              <strong>Cancelar</strong>
+            </ion-button>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </ion-modal>
+
+</ion-content>

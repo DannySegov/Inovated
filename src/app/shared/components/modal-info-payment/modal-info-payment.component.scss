@@ -1,0 +1,130 @@
+ion-label {
+    display: inline-flex;
+    align-items: center;
+}
+
+.content-button {
+    position: absolute;
+    right: 40px;
+    transform: translateY(-60px);
+    display: -webkit-inline-box;
+
+    ion-button {
+        margin-left: 15px;
+    }
+}
+
+.icon-white:before {
+    color: white !important;
+}
+
+.large-icon {
+    font-size: 1.5em;
+    color: white !important;
+}
+
+// MODAL REQUEST
+
+.content-button-request {
+    position: relative;
+    right: -40%;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.label-modal {
+    transform: translateY(-70px);
+}
+
+.label-modal ion-label {
+    text-align: left;
+    margin-bottom: -7px;
+    font-size: small;
+    font-weight: bold;
+}
+
+h2 {
+    margin-top: 15px;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.button-container ion-label {
+    margin-top: 5px;
+    font-weight: bold;
+    font-size: 10px;
+}
+
+ion-button.delete {
+    --background: red;
+}
+
+//Modal Delete
+.custom-modal {
+    --width: 340px;
+    --min-width: 20px;
+    --height: 150px; /* Ajusta esta propiedad según tus necesidades */
+    --border-radius: 20px;
+    --box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.1); /* Ajuste de la sombra para ser más difuminada */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-delete {
+    margin-top: 7px;
+    margin-left: 20px;
+    margin-right: 16px;
+}
+
+.container-button {
+    display: flex;
+    justify-content: end;
+    transform: translateY(25px);
+}
+
+.time-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 4px;
+}
+
+.btn {
+    --color: white;
+    --border-radius: 10px;
+    position: relative;
+    margin: 3% 70%;
+    background-color: var(--background);
+    border-radius: var(--border-radius);
+}
+
+.btn.cancel {
+    --background: #219cdb;
+}
+
+.btn.delete {
+    --background: #f22e3e;
+}
+
+app-info-client {
+    display: flex;
+    margin-top: 50px;
+    transform: translateX(-12px);
+    width: 108%;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; // Espacio entre los elementos
+}
+
+
+

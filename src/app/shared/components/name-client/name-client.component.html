@@ -23,3 +23,9 @@
     {{ getInitials(request?.perfil?.nombre) }}
   </div>
 </ion-avatar>
+
+<ion-avatar *ngIf="pendingPayment">
+  <div [ngClass]="{'user-initials': !isModal, 'user-initials-modal': isModal}">
+    {{ getInitials(pendingPayment?.perfil?.nombre) }}
+  </div>
+</ion-avatar>

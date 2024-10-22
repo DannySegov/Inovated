@@ -18,6 +18,7 @@ export class NameClientComponent implements OnInit {
   @Input() request: any; 
   @Input() selectedUprising: any;
   @Input() employee!: boolean;
+  @Input() pendingPayment!: any;
 
   isUserAssignmentPage!: boolean;
   isClientsPage!: boolean;
