@@ -2,8 +2,21 @@
     <app-header [showMenu]="true" [icon]="'icon-ejecuciones'" [cardText]="'Ejecuciones pendientes'"></app-header>
 </div>
 
-<ion-content [fullscreen]="true">
-
+<ion-content [fullscreen]="true"> 
+    <ion-card *ngFor="let execution of executions" mode="ios" class="client">
+        <ion-card-content id="open-modal" (click)="openExecutionModal(execution)">
+            <ion-icon name="ellipsis-vertical" class="card-options-icon"></ion-icon>
+            <div class="list-client">
+                <div class="info-cli">
+                    <ion-card-title class="name-client">{{ execution.descripcion }}</ion-card-title>
+                    <ion-label class="address">{{ execution.perfil.nombre}}</ion-label>
+                    <ion-label class="address">{{ execution.fecha | date:'dd / MMMM / yyyy' }}</ion-label>
+                </div>
+            </div>
+        </ion-card-content>
+    </ion-card>
 </ion-content>
+
+<app-modal-info-execution></app-modal-info-execution>
 
 <app-menu-tab></app-menu-tab>

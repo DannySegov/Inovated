@@ -190,7 +190,7 @@
       <strong>Enviar</strong>
     </ion-button>
 
-    <ion-modal *ngFor="let file of selectedFiles; let i = index" id="modal-image" trigger="open-custom-dialog-{{i}}">
+    <ion-modal id="modal-image">
       <ng-template>
         <ion-img class="modal-image" [src]="selectedImage" alt="Preview"></ion-img>
       </ng-template>
