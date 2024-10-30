@@ -30,8 +30,7 @@ export class AuthPage implements OnInit {
   }
 
   login() { // Método para iniciar sesión
-      this.authService.login(this.loginForm.value)
-      .subscribe({
+      this.authService.login(this.loginForm.value).subscribe({
         next: () => this.router.navigate(['/main/home']), // Navegar a la página principal
         error: (error) => console.error('Error al iniciar sesión', error)
       });

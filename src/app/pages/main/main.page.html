@@ -24,14 +24,33 @@
   <ion-card mode="ios" class="menu">
     <ion-card-content>
       @for(page of pages; track page) {
-      <ion-menu-toggle auto-hide="false">
-        <ion-item [routerLink]="page.Url" routerDirection="root" detail='false' lines="none">
-          <div class="icon-container">
-            <span class="{{ 'icon-' + page.Icon }}" id="icon"></span>
-          </div>
-          <ion-label class="option">{{ page.Title }}</ion-label>
-        </ion-item>
-      </ion-menu-toggle>
+        <ion-menu-toggle auto-hide="false">
+          <ion-item 
+            [routerLink]="page.Url" 
+            routerDirection="root" 
+            detail="false" 
+            lines="none" 
+            (click)="toggleSubOptions(page); selectOption($event)">
+            <div class="icon-container">
+              <span class="{{ 'icon-' + page.Icon }}" id="icon"></span>
+            </div>
+            <ion-label class="option">{{ page.Title }}</ion-label>
+            <ion-icon *ngIf="page.SubOptions" name="chevron-down-outline"></ion-icon>
+          </ion-item>
+        </ion-menu-toggle>
+    
+        <ion-list *ngIf="showSubOptions && page.Title === 'Configuración'">
+          <ion-item 
+            *ngFor="let subOption of page.SubOptions" 
+            [routerLink]="subOption.Url" 
+            routerDirection="root" 
+            detail="false" 
+            lines="none" 
+            (click)="selectSubOption(subOption); selectOption($event)"
+            class="sub-option">
+            <ion-label class="option">{{ subOption.Title }}</ion-label>
+          </ion-item>
+        </ion-list>
       }
     </ion-card-content>
     <ion-button class="logout" size="small" color="danger" expand="block" (click)="logout()">

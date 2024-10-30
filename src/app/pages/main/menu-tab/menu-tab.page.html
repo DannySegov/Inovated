@@ -5,11 +5,10 @@
 </ion-fab>
 
 <ion-toolbar class="menu-tab">
-  <ion-tabs #tabs (ionTabsDidChange)="setCurrentTab($event)" class="tab"> <!--class="rounded-tabs"-->
-    <!-- -------------------Custom Tabs with fab button------------------------------- -->
+  <ion-tabs #tabs (ionTabsDidChange)="setCurrentTab($event)">
     <ion-tab-bar slot="bottom" class="custom-tab-bar">
       <ion-tab-button routerLink="/main/uprisings">
-        <span class="icon-levantamiento icon-black"></span>
+        <span class="icon-bandeja icon-black"></span>
       </ion-tab-button>
   
       <ion-tab-button routerLink="/main/clients">

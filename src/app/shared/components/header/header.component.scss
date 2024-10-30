@@ -1,6 +1,5 @@
 .custom-toolbar-color {
   --background: #219cdb;
-  color: white;
   height: 80px;
 }
 
@@ -23,22 +22,40 @@ ion-img {
   margin: auto;
 }
 
-/* Estilos específicos para modo escritorio */
+ion-buttons {
+  font-size: 30px;
+  padding: 20px;
+}
+
+ion-button {
+  --background: #219cdb;
+  --background-hover: #219cdb;
+  --background-activated: #219cdb;
+  --background-focused: #219cdb;
+}
+
+@media (max-width: 800px) {
+  ion-img {
+    width: 200px; 
+    margin: auto; 
+  }
+}
+
 @media (min-width: 768px) {
   .custom-toolbar-color {
     height: 70px; 
   }
 
   ion-header ion-toolbar {
-    border-radius: 0 0 50px 50px; 
+    border-radius: 0 0 30px 30px; 
     display: flex; 
     align-items: center;
     justify-content: center; 
   }
 
   ion-img {
-    width: 15%; 
-    margin: auto; /* Mantiene el margen automático para asegurar el centrado */
+    width: 180px; 
+    margin: auto; 
   }
 
   ion-buttons {
