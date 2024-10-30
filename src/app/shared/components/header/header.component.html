@@ -1,12 +1,17 @@
 <ion-header mode="ios" class="ion-no-border">
   <ion-toolbar class="custom-toolbar-color">
     <ion-buttons slot="start">
-      <ion-menu-button *ngIf="showMenu" menu="menu-content"></ion-menu-button>
+      <ion-menu-toggle>
+        <ion-icon class="icon-MENU"></ion-icon>
+    </ion-menu-toggle>
     </ion-buttons>
-    <ion-img src="assets/icon/logo/inovated white.png"></ion-img>
-  </ion-toolbar>
 
+    <div class="toolbar-center">
+      <ion-img src="assets/icon/logo/inovated white.png"></ion-img>
+    </div>
+    <ion-buttons slot="end">
+      <ion-icon class="icon-notificacion"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
   <app-card-title *ngIf="showCardTitle" [icon]="icon" [cardText]="cardText"></app-card-title> <!-- TODO: Cambiar el nombre de showToolbar y acomodar el if con la nueva sintaxis-->
 </ion-header>
-
-

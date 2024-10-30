@@ -40,6 +40,7 @@
 .icon-correo1:before {
   content: "\e91a";
   color: #229cdb;
+  font-size: 15px;
 }
 .icon-drop:before {
   content: "\e91b";
@@ -47,15 +48,17 @@
 }
 .icon-MENU:before {
   content: "\e91c";
-  color: #229cdb;
+  color: #ffffff;
+  font-size: 24px;
 }
 .icon-notificacion:before {
   content: "\e91d";
-  color: #229cdb;
+  color: #ffffff;
 }
 .icon-password:before {
   content: "\e91e";
   color: #229cdb;
+  font-size: 20px;
 }
 .icon-reloj:before {
   content: "\e91f";

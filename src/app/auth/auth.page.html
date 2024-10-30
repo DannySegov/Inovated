@@ -3,21 +3,25 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="true" class="ion-padding">
     <div class="d-flex-center">
         <form [formGroup]="loginForm" (ngSubmit)="login()" class="auth-form">
-            <app-logo></app-logo>
+            <ion-img class="logo" src="/assets/icon/logo/inovated vert.png" alt="Inovated"></ion-img>
+            <h3 style="text-align: center;"><strong>Inicio de sesión</strong></h3>
             <p>Usuario:</p>
             <ion-item class="custom-input" lines="none">
-                <ion-icon class="icon" slot="start" name="mail-outline"></ion-icon>
-                <ion-input class="custom-label" type="email" autocomplete="email" formControlName="correo" placeholder="Correo electrónico"></ion-input>
+                <ion-icon class="icon-correo1" slot="start"></ion-icon>
+                <ion-input class="custom-label" type="email" autocomplete="email" formControlName="correo"
+                    placeholder="Correo electrónico"></ion-input>
             </ion-item>
 
             <p>Contraseña:</p>
             <ion-item class="custom-input" lines="none">
-                <ion-icon class="icon" slot="start" name="lock-closed-outline"></ion-icon>
-                <ion-input class="custom-label" [type]="showNewPassword ? 'text' : 'password'" formControlName="password" placeholder="Contraseña"></ion-input>
-                <ion-button (click)="showNewPassword = !showNewPassword" slot="end" fill="clear" shape="round">
+                <ion-icon class="icon-password" slot="start"></ion-icon>
+                <ion-input class="custom-label" [type]="showNewPassword ? 'text' : 'password'"
+                    formControlName="password" placeholder="Contraseña"></ion-input>
+                <ion-button class="eyes" (click)="showNewPassword = !showNewPassword" slot="end" fill="clear"
+                    shape="round">
                     <ion-icon slot="icon-only" [name]="showNewPassword ? 'eye-off-outline' : 'eye-outline'"></ion-icon>
                 </ion-button>
             </ion-item>
@@ -27,10 +31,11 @@
                     <ion-toggle [checked]="false" mode="ios" class="toggle"></ion-toggle>
                     <p>Recuérdame</p>
                 </div>
-                <ion-button fill="clear" id="forgot-password" routerLink="forgot-password">Olvidé mi contraseña</ion-button>
+                <ion-button fill="clear" id="forgot-password" routerLink="forgot-password">Olvidé mi
+                    contraseña</ion-button>
             </ion-row>
 
-            <ion-button class="submit" type="submit" size="smaller" size="medium" [disabled]="loginForm.invalid">
+            <ion-button mode="ios" class="submit" type="submit" size="small" [disabled]="loginForm.invalid">
                 Iniciar Sesión
             </ion-button>
         </form>

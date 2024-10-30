@@ -1,24 +1,60 @@
+.custom-toolbar-color {
+    --background: #219cdb;
+    color: white;
+    height: 40px;
+}
+
 ion-content {
     --background: #ffff !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+    overflow: hidden;
+}
+
+.d-flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90%;
+}
+
+.flex-column {
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.logo {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.auth-form {
+    width: 100%;
+    max-width: 400px; 
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 p {
     font-size: small;
 }
 
-.toggle {
-    zoom: 0.8;
-    margin-left: 8px;
-}
-
 ion-input {
     --placeholder-color: #219cdb;
 }
 
-#forgot-password {
-    color: #259edb;
-    text-align: right;
-    font-size: 12px;
+.custom-input ion-icon {
+    display: flex;
+    align-items: center;
+}
+
+.eyes {
+    font-size: 18px;
+    color: #219cdb;
 }
 
 #remember {
@@ -33,15 +69,37 @@ ion-input {
     }
 }
 
-.custom-toolbar-color {
-    --background: #219cdb;
-    color: white;
-    height: 40px;
+#forgot-password {
+    color: #259edb;
+    text-align: right;
+    font-size: 12px;
 }
 
-//Toggle
-ion-toggle::part(track),
-ion-toggle.toggle-checked::part(track) {
-    background: #278bd6;
+ion-toggle::part(track) {
+    height: 23px;
+    width: 40px;
     overflow: visible;
+    --handle-width: 20px;
+    --handle-max-height: 20px;
+    background: #d62727; // Rojo por defecto
+}
+
+ion-toggle.toggle-checked::part(track) {
+    background: #278bd6; // Azul cuando está activo
+}
+
+.logo2 {
+    width: 50%;
+    height: 5%;
+    align-self: flex-end;
+}
+
+@media (min-width: 369px) {
+    .logo2 {
+        width: 50%;
+        height: 5%;
+        margin-top: 3%;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }

@@ -3,9 +3,7 @@ import { computed, inject, Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, of, throwError, BehaviorSubject } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
-
-
-import { User, AuthResponse, AuthStatus, InfoUserResponse, RefreshResponse } from '../shared/interfaces/auth';
+import { User, AuthResponse, AuthStatus, InfoUserResponse } from '../shared/interfaces/auth';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -46,8 +44,6 @@ export class AuthService {
     }
   }
 
-
-
   private setAuthentication(user: User, refresh: string, access: string): boolean { // Método para establecer la autenticación
     this._currentUser.set(user);
     this._authStatus.set(AuthStatus.authenticated);
@@ -60,7 +56,6 @@ export class AuthService {
   login(user: User): Observable<boolean> { // Método para iniciar sesión
     return this.http.post<AuthResponse>(`${this.baseUrl}/auth/get`, user).pipe(
       map(({ correo, refresh, access }) => {
-        console.log('Respuesta del servidor:', { correo, refresh, access });
         return this.setAuthentication(user, refresh, access);
       }),
       map(() => {
@@ -99,7 +94,6 @@ export class AuthService {
     return this.http.post<any>(`${this.baseUrl}/auth/verificar`, { token })
       .pipe(
         switchMap((resp) => {
-          console.log('Respuesta del servidor:', resp); // Imprimir la respuesta del servidor
           if (resp === true) {
             return this.infoUser().pipe(
               tap(infoUserResponse => {
@@ -112,11 +106,8 @@ export class AuthService {
         }),
         catchError((error) => {
           if (error.status === 401 && error.error?.detail) {
-            console.log('Error 401 recibido:', error.error.detail); 
             const refresh = localStorage.getItem('refresh');
-            console.log('Intentando obtener el token de actualización del localStorage:', refresh);
             if (refresh) {
-              console.log('Token de actualización encontrado, llamando a updateToken...');
               return this.updateToken(refresh).pipe(
                 switchMap(() => this.validateToken()),
                 catchError(() => {
@@ -144,12 +135,10 @@ export class AuthService {
   }
 
   logout() { // Método para cerrar sesión
-    console.log('Cerrando sesión...');
     localStorage.clear();
     this._currentUser.set(null);
     this._authStatus.set(AuthStatus.notAuthenticated);
     this.userSubject.next(null);
     this.router.navigate(['/auth'])
-    console.log('Sesión cerrada.');
   }
 }
