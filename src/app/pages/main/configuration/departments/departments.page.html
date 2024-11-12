@@ -1,0 +1,101 @@
+<div class="custom-card-border-radius">
+  <app-header [showMenu]="true" [icon]="'icon-cliente'" [cardText]="'Departamentos'"></app-header>
+</div>
+
+<ion-content [fullscreen]="true">
+  <form [formGroup]="newDepartmentForm" class="form" (ngSubmit)="onSubmit()">
+    <div class="title-section">
+      <ion-text>
+        <h6>
+          {{ titleText() }}
+        </h6>
+      </ion-text>
+      <hr class="line">
+    </div>
+
+    <p>Nombre:</p>
+    <ion-item class="input-data" lines="none">
+      <ion-input formControlName="nombre" class="custom-height" type="text" autocomplete="autocomplete"
+        placeholder="Nombre Completo"></ion-input>
+    </ion-item>
+
+    <p>Descripción:</p>
+    <ion-item class="custom-input" lines="none" size="large">
+      <ion-textarea formControlName="descripcion" type="text" placeholder="Descripción"></ion-textarea>
+    </ion-item>
+
+    <ion-button mode="ios" class="add" type="submit" size="small">
+      <strong>{{ buttonText() }}</strong>
+    </ion-button>
+
+    <div class="title-section">
+      <ion-text>
+        <h6>
+          {{ selectedSegment === 'permisos' ? 'Lista de permisos' : 'Lista de departamentos' }}
+        </h6>
+      </ion-text>
+      <hr class="line">
+    </div>
+    
+    <ion-segment mode="ios" value="departamentos" (ionChange)="selectedSegment = $event.detail.value || 'departamentos'">
+      <ion-segment-button value="departamentos">
+        <ion-label>Departamentos</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="permisos">
+        <ion-label>Permisos</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+
+    <div *ngIf="selectedSegment === 'departamentos'">
+      <div class="container">
+        <table>
+          <tr>
+            <th>Nombre</th>
+            <th>Descripción</th>
+          </tr>
+          @for( department of departmentsService.departments(); track department ) {
+          <tr (click)="onDepartment(department.departamentoID)">
+            <td>{{ department.nombre }}</td>
+            <td>{{ department.descripcion }}</td>
+          </tr>
+          }
+        </table>
+      </div>
+    </div>
+
+    <div *ngIf="selectedSegment === 'permisos'">
+      <ion-radio-group class="all-radio-group">
+        <div style="display: flex; flex-direction: column;">
+          <ion-label>Activar</ion-label>
+          <ion-label>todos</ion-label>
+          <ion-radio value="true" aria-label="Activado"></ion-radio>
+        </div>
+        <div style="display: flex; flex-direction: column;">
+          <ion-label>Desactivar</ion-label>
+          <ion-label>todos</ion-label>
+          <ion-radio value="false" aria-label="Desactivado"></ion-radio>
+        </div>
+      </ion-radio-group>
+      <div class="container">
+        <table>
+          <tr>
+            <th>Permiso</th>
+            <th>Activado</th>
+            <th>Desactivado</th>
+          </tr>
+          <tr *ngFor="let permission of jobsService.permissions(); trackBy: trackByPermission">
+            <td (click)="onDepartment(permission.id)">{{ permission.descripcion }}</td>
+            <td colspan="3">
+              <ion-radio-group class="centered-radio-group" (ionChange)="onPermissionChange(permission, $event)">
+                <ion-radio value="true" aria-label="Activado"></ion-radio>
+                <ion-radio value="false" aria-label="Desactivado"></ion-radio>
+              </ion-radio-group>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <pre>{{newDepartmentForm.value | json}}</pre>
+  </form>
+</ion-content>

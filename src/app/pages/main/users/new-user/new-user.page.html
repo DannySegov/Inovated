@@ -78,9 +78,14 @@
     <ion-modal id="example-modal" #departmentModal trigger="open-custom-department" class="glass-content">
       <ng-template>
         <ion-list [inset]="true">
-          <ion-item *ngFor="let department of departments" (click)="selectDepartment(department)">
+          <!--ion-item *ngFor="let department of departments" (click)="selectDepartment(department)">
             <ion-label> {{ department.nombre }}</ion-label>
-          </ion-item>
+          </!--ion-item-->
+          @for ( department of departmentsService.listDepartments(); track department ) {
+            <ion-item (click)="selectDepartment(department)">
+              <ion-label> {{ department.nombre }}</ion-label>
+            </ion-item>
+          }
         </ion-list>
       </ng-template>
     </ion-modal>

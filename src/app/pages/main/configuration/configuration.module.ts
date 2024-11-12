@@ -9,6 +9,7 @@ import { ConfigurationPageRoutingModule } from './configuration-routing.module';
 import { ConfigurationPage } from './configuration.page';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { MenuTabPageModule } from '../menu-tab/menu-tab.module';
+import { DepartmentsPageModule } from './departments/departments.module';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { MenuTabPageModule } from '../menu-tab/menu-tab.module';
     IonicModule,
     ConfigurationPageRoutingModule,
     SharedModule,
-    MenuTabPageModule
+    MenuTabPageModule,
+    DepartmentsPageModule
   ],
   declarations: [ConfigurationPage]
 })

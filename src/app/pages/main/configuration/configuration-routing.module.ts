@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: ConfigurationPage
+  },
+  {
+    path: 'departments',
+    loadChildren: () => import('./departments/departments.module').then( m => m.DepartmentsPageModule)
   }
 ];
 

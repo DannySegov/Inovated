@@ -19,7 +19,7 @@ export class EditUserPage implements OnInit {
   private fb = inject(FormBuilder);
   private router = inject(Router);
   private usersService = inject(UsersService);
-  private departementsService = inject(DepartmentsService);
+  public departmentsService = inject(DepartmentsService);
   private jobsService = inject(JobsService);
   private notificationService = inject(NotificationService); 
 
@@ -78,7 +78,7 @@ export class EditUserPage implements OnInit {
       }
     });
 
-    this.getJobs();
+    //this.getJobs();
   }
 
   editUser() {
@@ -90,6 +90,7 @@ export class EditUserPage implements OnInit {
     });
   }
 
+  /*
   getDepartments(): void {
     this.departementsService.getDepartments().subscribe({
       next: (response) => {
@@ -101,6 +102,7 @@ export class EditUserPage implements OnInit {
       }
     });
   }
+    */
 
   selectDepartment(department: any) {
     const index = this.selectedDepartments.findIndex(srv => srv.puestoID === department.departamentoID);
@@ -124,7 +126,7 @@ export class EditUserPage implements OnInit {
       this.selectedDepartmentName = 'Selecciona una opción';
     }
   }
-
+/*
   getJobs() {
     this.jobsService.getJobs().subscribe({
       next: (response) => {
@@ -136,6 +138,7 @@ export class EditUserPage implements OnInit {
       }
     });
   }
+    */
 
   getUserById(id: number) {
     this.usersService.getUserById(id).subscribe(user => {
