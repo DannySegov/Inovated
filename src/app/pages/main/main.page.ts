@@ -30,7 +30,7 @@ export class MainPage implements OnInit {
       Title: 'Configuración',
       Icon: 'configuracion',
       SubOptions: [
-        { Title: 'Departamentos', Url: 'option1' },
+        { Title: 'Departamentos', Url: 'departments', Icon: 'usuario' },
         { Title: 'Puestos', Url: 'option2' }
       ]
     },

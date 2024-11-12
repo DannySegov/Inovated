@@ -1,9 +1,9 @@
 export interface DepartmentResponse {
     estatus: boolean;
     mensaje: string;
-    paginador: Paginador;
-    datos: Department[];
-    catalogos: null
+    paginador?: Paginador;
+    datos: DataDepartment;
+    catalogos?: null;
 }
 
 export interface Paginador {
@@ -15,9 +15,9 @@ export interface Paginador {
     siguiente: number;
 }
 
-export interface Department {
+export interface DataDepartment {
     nombre: string;
     descripcion: string;
-    departamentoID: number;
+    departamentoID?: number;
     permisos: string[];
 }

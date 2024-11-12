@@ -33,3 +33,14 @@ export interface Paginador {
     registros: number;
     siguiente: number;
 }
+
+export interface PermissionsResponse {
+    estatus: boolean;
+    mensaje: string;
+    datos: Permissions[];
+}
+
+export interface Permissions {
+    id: number;
+    descripcion: string;
+}

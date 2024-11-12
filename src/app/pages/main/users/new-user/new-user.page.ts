@@ -21,7 +21,7 @@ export class NewUserPage implements OnInit {
   private fb = inject(FormBuilder);
   private router = inject(Router);
   private usersService = inject(UsersService);
-  private departementsService = inject(DepartmentsService);
+  public departmentsService = inject(DepartmentsService);
   private jobsService = inject(JobsService);
   private notificationService = inject(NotificationService);
 
@@ -71,8 +71,8 @@ export class NewUserPage implements OnInit {
   });
 
   ngOnInit() {
-    this.getDepartments();
-    this.getJobs();
+   // this.getDepartments();
+   // this.getJobs();
   }
 
   onDateChange(event: any) {
@@ -112,6 +112,7 @@ export class NewUserPage implements OnInit {
     this.deleteContact(contact);
   }
 
+  /*
   getDepartments(): void {
     this.departementsService.getDepartments().subscribe({
       next: (response) => {
@@ -123,6 +124,7 @@ export class NewUserPage implements OnInit {
       }
     });
   }
+    */
 
   selectDepartment(department: any) {
     const index = this.selectedDepartments.findIndex(srv => srv.puestoID === department.departamentoID);
@@ -162,6 +164,7 @@ export class NewUserPage implements OnInit {
     console.log('Puesto ID:', job.puestoID);
   }
 
+  /*
   getJobs() {
     this.jobsService.getJobs().subscribe({
       next: (response) => {
@@ -173,7 +176,7 @@ export class NewUserPage implements OnInit {
       }
     });
   }
-
+    */
   updateSelectedJobName() {
     if (this.selectedJobs.length > 0) {
       this.selectedJobName = this.selectedJobs.map(job => job.nombre).join(', ');
